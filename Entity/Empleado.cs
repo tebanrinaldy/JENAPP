@@ -8,5 +8,6 @@ namespace Entity
 {
     internal class Empleado
     {
+       
     }
 }

@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace Entity
 {
-    internal class Cliente
+   public class Cliente :Persona
     {
+       //no se nada
     }
 }
