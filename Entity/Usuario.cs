@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace Entity
 {
-    internal class Empleado
+   public class Usuario: Persona
     {
-       // hola como estas
+        public string Login { get; set; }
+        public string Clave { get; set; }
     }
 }

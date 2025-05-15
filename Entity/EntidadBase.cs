@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace Entity
 {
-    public class Class1
+   public abstract class EntidadBase
     {
+        public int Id { get; set; }
+        public DateTime FechaRegistro { get; set; }
     }
 }
