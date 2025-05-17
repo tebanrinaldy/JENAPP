@@ -38,6 +38,7 @@
             this.TextLogin = new System.Windows.Forms.TextBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pictureUsuario = new System.Windows.Forms.PictureBox();
+            this.BtnAcceder = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -140,12 +141,28 @@
             this.pictureUsuario.TabStop = false;
             this.pictureUsuario.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
+            // BtnAcceder
+            // 
+            this.BtnAcceder.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
+            this.BtnAcceder.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            this.BtnAcceder.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.BtnAcceder.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnAcceder.ForeColor = System.Drawing.Color.LightGray;
+            this.BtnAcceder.Location = new System.Drawing.Point(366, 246);
+            this.BtnAcceder.Name = "BtnAcceder";
+            this.BtnAcceder.Size = new System.Drawing.Size(277, 31);
+            this.BtnAcceder.TabIndex = 8;
+            this.BtnAcceder.Text = "ACCEDER";
+            this.BtnAcceder.UseVisualStyleBackColor = false;
+            this.BtnAcceder.Click += new System.EventHandler(this.button1_Click);
+            // 
             // FrmLogin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
             this.ClientSize = new System.Drawing.Size(780, 330);
+            this.Controls.Add(this.BtnAcceder);
             this.Controls.Add(this.TextLogin);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.TextContraseña);
@@ -180,6 +197,7 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.TextBox TextLogin;
         private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.Button BtnAcceder;
     }
 }
 
