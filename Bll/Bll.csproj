@@ -41,9 +41,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CajaService.cs" />
+    <Compile Include="CategoriaService.cs" />
+    <Compile Include="ClienteService.cs" />
     <Compile Include="Iservice.cs" />
     <Compile Include="ProductoService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UsuarioService.cs" />
+    <Compile Include="VentaService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Entity\Entity.csproj">
