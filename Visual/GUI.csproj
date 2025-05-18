@@ -52,15 +52,33 @@
     <Compile Include="FrmLogin.Designer.cs">
       <DependentUpon>FrmLogin.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmPrincipalcs.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmPrincipalcs.Designer.cs">
+      <DependentUpon>FrmPrincipalcs.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="FrmPrueba.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmPrueba.Designer.cs">
+      <DependentUpon>FrmPrueba.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="FrmLogin.resx">
       <DependentUpon>FrmLogin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmPrincipalcs.resx">
+      <DependentUpon>FrmPrincipalcs.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmPrueba.resx">
+      <DependentUpon>FrmPrueba.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -81,6 +99,11 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\MaximizarBlanco.png" />
+    <None Include="Resources\IconoMaximizar.PNG" />
+    <None Include="Resources\-Blanco.PNG" />
+    <None Include="Resources\-_SinFondo.png" />
+    <None Include="Resources\X_SinFondo.png" />
     <None Include="Resources\LogoJenapp_SinFondo3.png" />
     <None Include="Resources\LogoJenapp_SinFondo2.png" />
     <None Include="Resources\LogoJenapp_SinFondo1.png" />
@@ -91,6 +114,20 @@
     <None Include="Resources\user_SinFondo.png" />
     <Content Include="Resources\PictureUsuario.png" />
     <None Include="Resources\PictureUsuario1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Dal\Dal.csproj">
+      <Project>{eab2d675-b01b-4bd4-8c30-56faac34c2f6}</Project>
+      <Name>Dal</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DAL_TXT\DAL_TXT.csproj">
+      <Project>{27c10886-2237-4a8a-9505-0d0a120f227d}</Project>
+      <Name>DAL_TXT</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Entity\Entity.csproj">
+      <Project>{e095de6a-2266-4b9d-9a73-e06bb5c038e3}</Project>
+      <Name>Entity</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

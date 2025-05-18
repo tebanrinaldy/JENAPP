@@ -30,19 +30,24 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmLogin));
             this.panel1 = new System.Windows.Forms.Panel();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
             this.TextUsuario = new System.Windows.Forms.TextBox();
             this.Line = new System.Windows.Forms.Label();
             this.TextContraseña = new System.Windows.Forms.TextBox();
             this.TextLogin = new System.Windows.Forms.TextBox();
+            this.BtnAcceder = new System.Windows.Forms.Button();
+            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
+            this.pictureBox4 = new System.Windows.Forms.PictureBox();
+            this.BtnCerrar = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pictureUsuario = new System.Windows.Forms.PictureBox();
-            this.BtnAcceder = new System.Windows.Forms.Button();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BtnCerrar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureUsuario)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -54,16 +59,7 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(250, 330);
             this.panel1.TabIndex = 0;
-            // 
-            // pictureBox2
-            // 
-            this.pictureBox2.Image = global::Visual.Properties.Resources.LogoJenapp_SinFondo;
-            this.pictureBox2.Location = new System.Drawing.Point(1, 12);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(247, 306);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox2.TabIndex = 0;
-            this.pictureBox2.TabStop = false;
+            this.panel1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseDown);
             // 
             // label1
             // 
@@ -83,9 +79,11 @@
             this.TextUsuario.Location = new System.Drawing.Point(339, 93);
             this.TextUsuario.Name = "TextUsuario";
             this.TextUsuario.Size = new System.Drawing.Size(404, 25);
-            this.TextUsuario.TabIndex = 2;
+            this.TextUsuario.TabIndex = 1;
             this.TextUsuario.Text = "USUARIO:";
             this.TextUsuario.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            this.TextUsuario.Enter += new System.EventHandler(this.TextUsuario_Enter);
+            this.TextUsuario.Leave += new System.EventHandler(this.TextUsuario_Leave);
             // 
             // Line
             // 
@@ -105,8 +103,10 @@
             this.TextContraseña.Location = new System.Drawing.Point(339, 173);
             this.TextContraseña.Name = "TextContraseña";
             this.TextContraseña.Size = new System.Drawing.Size(404, 25);
-            this.TextContraseña.TabIndex = 5;
+            this.TextContraseña.TabIndex = 2;
             this.TextContraseña.Text = "CONTRASEÑA:";
+            this.TextContraseña.Enter += new System.EventHandler(this.TextContraseña_Enter);
+            this.TextContraseña.Leave += new System.EventHandler(this.TextContraseña_Leave);
             // 
             // TextLogin
             // 
@@ -120,27 +120,6 @@
             this.TextLogin.TabIndex = 7;
             this.TextLogin.Text = "LOGIN";
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(270, 164);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(53, 50);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 6;
-            this.pictureBox1.TabStop = false;
-            // 
-            // pictureUsuario
-            // 
-            this.pictureUsuario.Image = global::Visual.Properties.Resources.user_SinFondo;
-            this.pictureUsuario.Location = new System.Drawing.Point(270, 80);
-            this.pictureUsuario.Name = "pictureUsuario";
-            this.pictureUsuario.Size = new System.Drawing.Size(53, 50);
-            this.pictureUsuario.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureUsuario.TabIndex = 3;
-            this.pictureUsuario.TabStop = false;
-            this.pictureUsuario.Click += new System.EventHandler(this.pictureBox1_Click);
-            // 
             // BtnAcceder
             // 
             this.BtnAcceder.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
@@ -151,10 +130,74 @@
             this.BtnAcceder.Location = new System.Drawing.Point(366, 246);
             this.BtnAcceder.Name = "BtnAcceder";
             this.BtnAcceder.Size = new System.Drawing.Size(277, 31);
-            this.BtnAcceder.TabIndex = 8;
+            this.BtnAcceder.TabIndex = 3;
             this.BtnAcceder.Text = "ACCEDER";
             this.BtnAcceder.UseVisualStyleBackColor = false;
             this.BtnAcceder.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // linkLabel1
+            // 
+            this.linkLabel1.AutoSize = true;
+            this.linkLabel1.LinkColor = System.Drawing.Color.Gray;
+            this.linkLabel1.Location = new System.Drawing.Point(386, 290);
+            this.linkLabel1.Name = "linkLabel1";
+            this.linkLabel1.Size = new System.Drawing.Size(227, 16);
+            this.linkLabel1.TabIndex = 0;
+            this.linkLabel1.TabStop = true;
+            this.linkLabel1.Text = "¿HA OLVIDADO LA CONTRASEÑA?";
+            // 
+            // pictureBox4
+            // 
+            this.pictureBox4.Image = global::Visual.Properties.Resources.@__SinFondo;
+            this.pictureBox4.Location = new System.Drawing.Point(721, 0);
+            this.pictureBox4.Name = "pictureBox4";
+            this.pictureBox4.Size = new System.Drawing.Size(22, 24);
+            this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox4.TabIndex = 11;
+            this.pictureBox4.TabStop = false;
+            this.pictureBox4.Click += new System.EventHandler(this.pictureBox4_Click);
+            // 
+            // BtnCerrar
+            // 
+            this.BtnCerrar.Image = global::Visual.Properties.Resources.X_SinFondo;
+            this.BtnCerrar.Location = new System.Drawing.Point(748, 0);
+            this.BtnCerrar.Name = "BtnCerrar";
+            this.BtnCerrar.Size = new System.Drawing.Size(30, 24);
+            this.BtnCerrar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.BtnCerrar.TabIndex = 10;
+            this.BtnCerrar.TabStop = false;
+            this.BtnCerrar.Click += new System.EventHandler(this.BtnCerrar_Click);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(284, 161);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(39, 37);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 6;
+            this.pictureBox1.TabStop = false;
+            // 
+            // pictureUsuario
+            // 
+            this.pictureUsuario.Image = global::Visual.Properties.Resources.user_SinFondo;
+            this.pictureUsuario.Location = new System.Drawing.Point(284, 83);
+            this.pictureUsuario.Name = "pictureUsuario";
+            this.pictureUsuario.Size = new System.Drawing.Size(39, 35);
+            this.pictureUsuario.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureUsuario.TabIndex = 3;
+            this.pictureUsuario.TabStop = false;
+            this.pictureUsuario.Click += new System.EventHandler(this.pictureBox1_Click);
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Image = global::Visual.Properties.Resources.LogoJenapp_SinFondo;
+            this.pictureBox2.Location = new System.Drawing.Point(0, 58);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(247, 206);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox2.TabIndex = 0;
+            this.pictureBox2.TabStop = false;
             // 
             // FrmLogin
             // 
@@ -162,6 +205,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
             this.ClientSize = new System.Drawing.Size(780, 330);
+            this.Controls.Add(this.pictureBox4);
+            this.Controls.Add(this.BtnCerrar);
+            this.Controls.Add(this.linkLabel1);
             this.Controls.Add(this.BtnAcceder);
             this.Controls.Add(this.TextLogin);
             this.Controls.Add(this.pictureBox1);
@@ -177,10 +223,13 @@
             this.Opacity = 0.9D;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
+            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.FrmLogin_MouseDown);
             this.panel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BtnCerrar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureUsuario)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -198,6 +247,9 @@
         private System.Windows.Forms.TextBox TextLogin;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.Button BtnAcceder;
+        private System.Windows.Forms.LinkLabel linkLabel1;
+        private System.Windows.Forms.PictureBox BtnCerrar;
+        private System.Windows.Forms.PictureBox pictureBox4;
     }
 }
 

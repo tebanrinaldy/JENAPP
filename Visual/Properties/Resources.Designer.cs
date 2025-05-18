@@ -61,6 +61,26 @@ namespace Visual.Properties {
         }
         
         /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap @__SinFondo {
+            get {
+                object obj = ResourceManager.GetObject("-_SinFondo", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap _Blanco {
+            get {
+                object obj = ResourceManager.GetObject("-Blanco", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Busca un recurso adaptado de tipo System.Byte[].
         /// </summary>
         internal static byte[] BPaswword {
@@ -73,9 +93,29 @@ namespace Visual.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap IconoMaximizar {
+            get {
+                object obj = ResourceManager.GetObject("IconoMaximizar", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap LogoJenapp_SinFondo {
             get {
                 object obj = ResourceManager.GetObject("LogoJenapp_SinFondo", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap MaximizarBlanco {
+            get {
+                object obj = ResourceManager.GetObject("MaximizarBlanco", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -126,6 +166,16 @@ namespace Visual.Properties {
         internal static System.Drawing.Bitmap user_SinFondo {
             get {
                 object obj = ResourceManager.GetObject("user_SinFondo", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap X_SinFondo {
+            get {
+                object obj = ResourceManager.GetObject("X_SinFondo", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
