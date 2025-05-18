@@ -99,6 +99,11 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\salir.png" />
+    <None Include="Resources\reportes.png" />
+    <None Include="Resources\venta.png" />
+    <None Include="Resources\producto1.png" />
+    <None Include="Resources\producto.png" />
     <None Include="Resources\MaximizarBlanco.png" />
     <None Include="Resources\IconoMaximizar.PNG" />
     <None Include="Resources\-Blanco.PNG" />
@@ -109,6 +114,8 @@
     <None Include="Resources\LogoJenapp_SinFondo1.png" />
     <None Include="Resources\user_SinFondo1.png" />
     <None Include="Resources\BPaswword.png" />
+    <None Include="Resources\compras.png" />
+    <None Include="Resources\cerrar.png" />
     <Content Include="Resources\LogoIcono.ico" />
     <Content Include="Resources\Logo.jpeg" />
     <None Include="Resources\user_SinFondo.png" />

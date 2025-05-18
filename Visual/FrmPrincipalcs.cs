@@ -17,11 +17,7 @@ namespace Visual
         {
             InitializeComponent();
         }
-        [DllImport("user32.dll", EntryPoint = "ReleaseCapture")]
-        public static extern void ReleaseCapture();
-        [DllImport("user32.dll", EntryPoint = "SendMessage")]
-        public static extern void SendMessage(IntPtr hwnd, int wMsg, int wParam, int lParam);
-        public void cerrar()
+    public void cerrar()
         {
             Application.Exit();
         }
@@ -43,6 +39,31 @@ namespace Visual
         private void BtnCerrar_Click(object sender, EventArgs e)
         {
             cerrar();
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+        [DllImport("user32.dll", EntryPoint = "ReleaseCapture")]
+        public static extern void ReleaseCapture();
+        [DllImport("user32.dll", EntryPoint = "SendMessage")]
+        public static extern void SendMessage(IntPtr hwnd, int wMsg, int wParam, int lParam);
+
+        private void BarraTitulo_MouseDown(object sender, MouseEventArgs e)
+        {
+            ReleaseCapture();
+            SendMessage(this.Handle, 0x112, 0xf012, 0);
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
