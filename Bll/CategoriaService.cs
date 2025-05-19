@@ -39,4 +39,5 @@ namespace Bll
 
         public List<Categoria> Listar() => _categorias;
     }
+    #endregion bh  q1
 }
