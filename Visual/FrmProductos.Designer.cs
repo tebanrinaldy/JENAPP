@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.button1 = new System.Windows.Forms.Button();
+            this.BtnGuardarProducto = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -38,17 +38,17 @@
             this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // button1
+            // BtnGuardarProducto
             // 
-            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.button1.FlatAppearance.BorderSize = 0;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Location = new System.Drawing.Point(290, 282);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(204, 35);
-            this.button1.TabIndex = 15;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = false;
+            this.BtnGuardarProducto.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.BtnGuardarProducto.FlatAppearance.BorderSize = 0;
+            this.BtnGuardarProducto.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnGuardarProducto.Location = new System.Drawing.Point(290, 282);
+            this.BtnGuardarProducto.Name = "BtnGuardarProducto";
+            this.BtnGuardarProducto.Size = new System.Drawing.Size(204, 35);
+            this.BtnGuardarProducto.TabIndex = 15;
+            this.BtnGuardarProducto.Text = "button1";
+            this.BtnGuardarProducto.UseVisualStyleBackColor = false;
             // 
             // label4
             // 
@@ -125,7 +125,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(66)))), ((int)(((byte)(82)))));
             this.ClientSize = new System.Drawing.Size(1080, 615);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.BtnGuardarProducto);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.textBox3);
             this.Controls.Add(this.label3);
@@ -143,7 +143,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button BtnGuardarProducto;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.Label label3;
