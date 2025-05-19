@@ -3,48 +3,70 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Dal;
 using Entity;
 namespace Bll
 {
+    /// <summary>
+    /// Capa de lógica de negocio para la entidad Producto.
+    /// – Valida las reglas de negocio.
+    /// – Delega el CRUD al repositorio (DAL).
+    /// </summary>
     public class ProductoService : IService<Producto>
     {
-        private List<Producto> _productos = new List<Producto>();
+        private readonly ProductoRepository _productoRepo;
+        private readonly CategoriaRepository _categoriaRepo;
 
+        /// <param name="connectionString">
+        /// Cadena de conexión que comparten los repositorios.
+        /// </param>
+        public ProductoService(string connectionString)
+        {
+            _productoRepo = new ProductoRepository(connectionString);
+            _categoriaRepo = new CategoriaRepository(connectionString);
+        }
+
+        /*-----------------------------------------------------------
+         *  Crear
+         *----------------------------------------------------------*/
         public void Agregar(Producto producto)
         {
-            producto.Id = _productos.Count + 1;
+            // Regla de negocio – la categoría debe existir
+            if (_categoriaRepo.ObtenerPorId(producto.IdCategoria) == null)
+                throw new Exception("La categoría especificada no existe.");
+
             producto.FechaRegistro = DateTime.Now;
-            _productos.Add(producto);
+
+            if (!_productoRepo.Agregar(producto))
+                throw new Exception("No se pudo insertar el producto en la base de datos.");
         }
 
-        public void Eliminar(int id)
-        {
-            var producto = _productos.FirstOrDefault(p => p.Id == id);
-            if (producto != null)
-                _productos.Remove(producto);
-        }
-
+        /*-----------------------------------------------------------
+         *  Actualizar
+         *----------------------------------------------------------*/
         public void Actualizar(Producto producto)
         {
-            var existente = ObtenerPorId(producto.Id);
-            if (existente != null)
-            {
-                existente.Nombre = producto.Nombre;
-                existente.Precio = producto.Precio;
-                existente.Stock = producto.Stock;
-                existente.IdCategoria = producto.IdCategoria;
-            }
+            if (_categoriaRepo.ObtenerPorId(producto.IdCategoria) == null)
+                throw new Exception("La categoría especificada no existe.");
+
+            if (!_productoRepo.Actualizar(producto))
+                throw new Exception("No se pudo actualizar el producto.");
         }
 
-        public Producto ObtenerPorId(int id)
+        /*-----------------------------------------------------------
+         *  Eliminar
+         *----------------------------------------------------------*/
+        public void Eliminar(int id)
         {
-            return _productos.FirstOrDefault(p => p.Id == id);
+            if (!_productoRepo.Eliminar(id))
+                throw new Exception("No se pudo eliminar el producto.");
         }
 
-        public List<Producto> Listar()
-        {
-            return _productos;
-        }
+        /*-----------------------------------------------------------
+         *  Consultas
+         *----------------------------------------------------------*/
+        public Producto ObtenerPorId(int id) => _productoRepo.ObtenerPorId(id);
+
+        public List<Producto> Listar() => _productoRepo.ObtenerTodos();
     }
-
 }

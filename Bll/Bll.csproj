@@ -52,6 +52,10 @@
     <Compile Include="VentaService.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Dal\Dal.csproj">
+      <Project>{eab2d675-b01b-4bd4-8c30-56faac34c2f6}</Project>
+      <Name>Dal</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Entity\Entity.csproj">
       <Project>{e095de6a-2266-4b9d-9a73-e06bb5c038e3}</Project>
       <Name>Entity</Name>

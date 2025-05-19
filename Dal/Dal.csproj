@@ -78,16 +78,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CategoriaRepository.cs" />
     <Compile Include="ConexionOracle.cs" />
     <Compile Include="IRepository.cs" />
     <Compile Include="ProductoRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Bll\Bll.csproj">
-      <Project>{8141d861-6280-44b0-bafb-c60985b738b4}</Project>
-      <Name>Bll</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Entity\Entity.csproj">
       <Project>{e095de6a-2266-4b9d-9a73-e06bb5c038e3}</Project>
       <Name>Entity</Name>
