@@ -6,26 +6,15 @@ using System.Threading.Tasks;
 using Dal;
 
 namespace TestCnx
-{
+{   
     internal class Program
     {
         static void Main(string[] args)
         {
-            try
-            {
-                using (var cn = ConexionOracle.Obtener())
-                {
-                    Console.WriteLine("¡Conexión exitosa a Oracle!");
-                }
+            var repo = new ProductoRepository("");   // cadena vacía usa la de ConexionOracle
+            var lista = repo.ObtenerTodos();
+            Console.WriteLine($"Total productos: {lista.Count}");
 
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Error de conexión: {ex.Message}");
-            }
-
-            Console.WriteLine("Pulsa una tecla para salir…");
-            Console.ReadKey();
         }
     }
 }

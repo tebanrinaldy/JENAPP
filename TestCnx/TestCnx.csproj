@@ -98,6 +98,10 @@
       <Project>{eab2d675-b01b-4bd4-8c30-56faac34c2f6}</Project>
       <Name>Dal</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Entity\Entity.csproj">
+      <Project>{E095DE6A-2266-4B9D-9A73-E06BB5C038E3}</Project>
+      <Name>Entity</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

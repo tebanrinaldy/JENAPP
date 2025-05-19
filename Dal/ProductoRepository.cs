@@ -8,123 +8,116 @@ using System.Threading.Tasks;
 using Oracle.ManagedDataAccess.Client;
 
 namespace Dal
+
 {
+    public class ProductoRepository : IRepository<Producto>
+    {
+        private string v;
 
-        public class ProductoRepository : IRepository<Producto>
+        public ProductoRepository(string v)
         {
-            private readonly string _connectionString;
+            this.v = v;
+        }
 
-            public ProductoRepository(string connectionString)
+        /* ---------------- CRUD ---------------- */
+
+        public bool Agregar(Producto p)
+        {
+            const string sql = @"
+                INSERT INTO producto
+                (id, nombre, descripcion, precio, stock, id_categoria, fecha_registro)
+                VALUES (SEQ_PRODUCTO.NEXTVAL, :nombre, :descripcion, :precio,
+                        :stock, :id_categoria, :fecha_registro)";
+
+            using (var cn = ConexionOracle.Obtener())
+            using (var cmd = new OracleCommand(sql, cn))
             {
-                _connectionString = connectionString;
-            }
-
-            public bool Agregar(Producto entidad)
-            {
-                using (var conn = new OracleConnection(_connectionString))
-                {
-                    conn.Open();
-                    var cmd = new OracleCommand("INSERT INTO producto (id, nombre, descripcion, precio, stock, id_categoria, fecha_registro) " +
-                                                "VALUES (:id, :nombre, :descripcion, :precio, :stock, :id_categoria, :fecha_registro)", conn);
-
-                    cmd.Parameters.Add(new OracleParameter("id", entidad.Id));
-                    cmd.Parameters.Add(new OracleParameter("nombre", entidad.Nombre));
-                    cmd.Parameters.Add(new OracleParameter("descripcion", entidad.Descripcion));
-                    cmd.Parameters.Add(new OracleParameter("precio", entidad.Precio));
-                    cmd.Parameters.Add(new OracleParameter("stock", entidad.Stock));
-                    cmd.Parameters.Add(new OracleParameter("id_categoria", entidad.IdCategoria));
-                    cmd.Parameters.Add(new OracleParameter("fecha_registro", entidad.FechaRegistro));
-
-                    return cmd.ExecuteNonQuery() > 0;
-                }
-            }
-
-            public bool Actualizar(Producto entidad)
-            {
-                using (var conn = new OracleConnection(_connectionString))
-                {
-                    conn.Open();
-                    var cmd = new OracleCommand("UPDATE producto SET nombre = :nombre, descripcion = :descripcion, precio = :precio, " +
-                                                "stock = :stock, id_categoria = :id_categoria WHERE id = :id", conn);
-
-                    cmd.Parameters.Add(new OracleParameter("nombre", entidad.Nombre));
-                    cmd.Parameters.Add(new OracleParameter("descripcion", entidad.Descripcion));
-                    cmd.Parameters.Add(new OracleParameter("precio", entidad.Precio));
-                    cmd.Parameters.Add(new OracleParameter("stock", entidad.Stock));
-                    cmd.Parameters.Add(new OracleParameter("id_categoria", entidad.IdCategoria));
-                    cmd.Parameters.Add(new OracleParameter("id", entidad.Id));
-
-                    return cmd.ExecuteNonQuery() > 0;
-                }
-            }
-
-            public bool Eliminar(int id)
-            {
-                using (var conn = new OracleConnection(_connectionString))
-                {
-                    conn.Open();
-                    var cmd = new OracleCommand("DELETE FROM producto WHERE id = :id", conn);
-                    cmd.Parameters.Add(new OracleParameter("id", id));
-
-                    return cmd.ExecuteNonQuery() > 0;
-                }
-            }
-
-            public Producto ObtenerPorId(int id)
-            {
-                using (var conn = new OracleConnection(_connectionString))
-                {
-                    conn.Open();
-                    var cmd = new OracleCommand("SELECT * FROM producto WHERE id = :id", conn);
-                    cmd.Parameters.Add(new OracleParameter("id", id));
-
-                    using (var reader = cmd.ExecuteReader())
-                    {
-                        if (reader.Read())
-                        {
-                            return new Producto
-                            {
-                                Id = Convert.ToInt32(reader["id"]),
-                                Nombre = reader["nombre"].ToString(),
-                                Descripcion = reader["descripcion"].ToString(),
-                                Precio = Convert.ToDecimal(reader["precio"]),
-                                Stock = Convert.ToInt32(reader["stock"]),
-                                IdCategoria = Convert.ToInt32(reader["id_categoria"]),
-                                FechaRegistro = Convert.ToDateTime(reader["fecha_registro"])
-                            };
-                        }
-                    }
-                }
-                return null;
-            }
-
-            public List<Producto> ObtenerTodos()
-            {
-                var lista = new List<Producto>();
-                using (var conn = new OracleConnection(_connectionString))
-                {
-                    conn.Open();
-                    var cmd = new OracleCommand("SELECT * FROM producto", conn);
-                    using (var reader = cmd.ExecuteReader())
-                    {
-                        while (reader.Read())
-                        {
-                            lista.Add(new Producto
-                            {
-                                Id = Convert.ToInt32(reader["id"]),
-                                Nombre = reader["nombre"].ToString(),
-                                Descripcion = reader["descripcion"].ToString(),
-                                Precio = Convert.ToDecimal(reader["precio"]),
-                                Stock = Convert.ToInt32(reader["stock"]),
-                                IdCategoria = Convert.ToInt32(reader["id_categoria"]),
-                                FechaRegistro = Convert.ToDateTime(reader["fecha_registro"])
-                            });
-                        }
-                    }
-                }
-                return lista;
+                AddParameters(cmd, p, includeId: false);
+                return cmd.ExecuteNonQuery() > 0;
             }
         }
 
+        public bool Actualizar(Producto p)
+        {
+            const string sql = @"
+                UPDATE producto SET
+                    nombre        = :nombre,
+                    descripcion   = :descripcion,
+                    precio        = :precio,
+                    stock         = :stock,
+                    id_categoria  = :id_categoria
+                WHERE id = :id";
 
+            using (var cn = ConexionOracle.Obtener())
+            using (var cmd = new OracleCommand(sql, cn))
+            {
+                AddParameters(cmd, p, includeId: true);
+                return cmd.ExecuteNonQuery() > 0;
+            }
+        }
+
+        public bool Eliminar(int id)
+        {
+            using (var cn = ConexionOracle.Obtener())
+            using (var cmd = new OracleCommand("DELETE FROM producto WHERE id = :id", cn))
+            {
+                cmd.Parameters.Add("id", id);
+                return cmd.ExecuteNonQuery() > 0;
+            }
+        }
+
+        public Producto ObtenerPorId(int id)
+        {
+            using (var cn = ConexionOracle.Obtener())
+            using (var cmd = new OracleCommand("SELECT * FROM producto WHERE id = :id", cn))
+            {
+                cmd.Parameters.Add("id", id);
+                using (var dr = cmd.ExecuteReader())
+                {
+                    return dr.Read() ? Map(dr) : null;
+                }
+            }
+        }
+
+        public List<Producto> ObtenerTodos()
+        {
+            var lista = new List<Producto>();
+
+            using (var cn = ConexionOracle.Obtener())
+            using (var cmd = new OracleCommand("SELECT * FROM producto", cn))
+            using (var dr = cmd.ExecuteReader())
+            {
+                while (dr.Read()) lista.Add(Map(dr));
+            }
+            return lista;
+        }
+
+        /* ------------ helpers privados ------------ */
+
+        private static void AddParameters(OracleCommand cmd, Producto p, bool includeId)
+        {
+            if (includeId) cmd.Parameters.Add("id", p.Id);
+
+            cmd.Parameters.Add("nombre", p.Nombre);
+            cmd.Parameters.Add("descripcion", p.Descripcion);
+            cmd.Parameters.Add("precio", p.Precio);
+            cmd.Parameters.Add("stock", p.Stock);
+            cmd.Parameters.Add("id_categoria", p.IdCategoria);
+            cmd.Parameters.Add("fecha_registro", p.FechaRegistro);
+        }
+
+        private static Producto Map(OracleDataReader dr)
+        {
+            return new Producto
+            {
+                Id = Convert.ToInt32(dr["id"]),
+                Nombre = dr["nombre"].ToString(),
+                Descripcion = dr["descripcion"].ToString(),
+                Precio = Convert.ToDecimal(dr["precio"]),
+                Stock = Convert.ToInt32(dr["stock"]),
+                IdCategoria = Convert.ToInt32(dr["id_categoria"]),
+                FechaRegistro = Convert.ToDateTime(dr["fecha_registro"])
+            };
+        }
     }
+}
