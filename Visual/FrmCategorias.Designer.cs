@@ -280,6 +280,7 @@
             this.BtnGuardarProducto.TabIndex = 33;
             this.BtnGuardarProducto.Text = "Guardar";
             this.BtnGuardarProducto.UseVisualStyleBackColor = false;
+            this.BtnGuardarProducto.Click += new System.EventHandler(this.BtnGuardarProducto_Click);
             // 
             // label3
             // 

@@ -11,11 +11,10 @@ namespace Bll
     {
         private List<Categoria> _categorias = new List<Categoria>();
 
-        #region bh  q1
         public void Agregar(Categoria categoria)
         {
             categoria.Id = _categorias.Count + 1;
-            categoria.FechaRegistro = DateTime.Now;
+            categoria.Nombre = categoria.Nombre;
             _categorias.Add(categoria);
         }
 
@@ -39,5 +38,5 @@ namespace Bll
 
         public List<Categoria> Listar() => _categorias;
     }
-    #endregion bh  q1
+    
 }

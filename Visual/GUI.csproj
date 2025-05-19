@@ -153,6 +153,10 @@
     <None Include="Resources\PictureUsuario1.png" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Bll\Bll.csproj">
+      <Project>{8141d861-6280-44b0-bafb-c60985b738b4}</Project>
+      <Name>Bll</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Dal\Dal.csproj">
       <Project>{eab2d675-b01b-4bd4-8c30-56faac34c2f6}</Project>
       <Name>Dal</Name>
