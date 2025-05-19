@@ -16,5 +16,15 @@ namespace Visual
         {
             InitializeComponent();
         }
+
+        private void panelContenedor_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void BtnCerrar_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

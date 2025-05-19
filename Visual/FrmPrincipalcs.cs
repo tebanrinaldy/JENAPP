@@ -105,15 +105,17 @@ namespace Visual
             panelContenedor.Controls.Add(fh);
             panelContenedor.Tag = fh;
             
-            fh.Show();
-            this.Hide();
-           
+      
 
         }
 
         private void btnventas_Click(object sender, EventArgs e)
         {
             Abrirformularioventas(new FrmVentas());
+            FrmVentas frm = new FrmVentas();
+            frm.Show();
+            frm.FormClosed += (s, args) => this.Show(); // Vuelve a mostrar FrmPrincipal al cerrar FrmVentas
+            this.Hide(); // Oculta FrmPrincipal al abrir FrmVentas  
         }
 
         private void Abrirformularioreportes(object formreportes)
