@@ -93,6 +93,16 @@ namespace Visual.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap BTNguardar {
+            get {
+                object obj = ResourceManager.GetObject("BTNguardar", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap cerrar {
             get {
                 object obj = ResourceManager.GetObject("cerrar", resourceCulture);
@@ -116,6 +126,16 @@ namespace Visual.Properties {
         internal static System.Drawing.Bitmap IconoMaximizar {
             get {
                 object obj = ResourceManager.GetObject("IconoMaximizar", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap LogoEmpleado {
+            get {
+                object obj = ResourceManager.GetObject("LogoEmpleado", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+
 namespace Visual
 {
     public partial class FrmProductos : Form
@@ -15,11 +16,70 @@ namespace Visual
         public FrmProductos()
         {
             InitializeComponent();
+
+         
+
+        }
+
+        public void Minimizar()
+        {
+            this.WindowState = FormWindowState.Minimized;
         }
 
         private void label1_Click(object sender, EventArgs e)
         {
 
+        }
+      
+
+        private void textBox3_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnproductos_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnproductos_MouseEnter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void MenuVertical_Paint(object sender, PaintEventArgs e)
+        {
+        }
+
+
+        private void pictureBox5_Click(object sender, EventArgs e)//boton cerrar
+        {
+           this.Close();
+        }
+
+        private void BtnCerrar_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void FrmProductos_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnproductos_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void minimizar_Click(object sender, EventArgs e)
+        {
+            Minimizar();
         }
     }
 }

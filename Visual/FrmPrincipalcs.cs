@@ -66,6 +66,7 @@ namespace Visual
 
         }
 
+        
         private void Abrirformularioproductos(object formproductos)
         {
             if (this.panelContenedor.Controls.Count > 0)
@@ -76,12 +77,22 @@ namespace Visual
             fh.Dock = DockStyle.Fill;
             panelContenedor.Controls.Add(fh);
             panelContenedor.Tag = fh;
-            fh.Show();
+         
+            
+      
+
         }
 
         private void btnproductos_Click(object sender, EventArgs e)
         {
             Abrirformularioproductos(new FrmProductos());
+            FrmProductos frm = new FrmProductos();
+            frm.Show();
+            frm.FormClosed += (s, args) => this.Show(); // Vuelve a mostrar FrmPrincipal al cerrar FrmProductos
+            this.Hide(); // Oculta FrmPrincipal al abrir FrmProductos
+           
+         
+
         }
         private void Abrirformularioventas(object formventas)
         {
@@ -93,7 +104,11 @@ namespace Visual
             fh.Dock = DockStyle.Fill;
             panelContenedor.Controls.Add(fh);
             panelContenedor.Tag = fh;
+            
             fh.Show();
+            this.Hide();
+           
+
         }
 
         private void btnventas_Click(object sender, EventArgs e)
