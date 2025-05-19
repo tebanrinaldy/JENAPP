@@ -100,5 +100,23 @@ namespace Visual
         {
             Abrirformularioventas(new FrmVentas());
         }
+
+        private void Abrirformularioreportes(object formreportes)
+        {
+            if (this.panelContenedor.Controls.Count > 0)
+                this.panelContenedor.Controls.RemoveAt(0);
+            Form fh = formreportes as Form;
+            fh.TopLevel = false;
+            fh.FormBorderStyle = FormBorderStyle.None;
+            fh.Dock = DockStyle.Fill;
+            panelContenedor.Controls.Add(fh);
+            panelContenedor.Tag = fh;
+            fh.Show();
+        }
+
+        private void btnreportes_Click(object sender, EventArgs e)
+        {
+            Abrirformularioreportes(new FrmReportes());
+        }
     }
 }

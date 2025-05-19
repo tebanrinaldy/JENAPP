@@ -37,7 +37,7 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.button6 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.button5 = new System.Windows.Forms.Button();
+            this.btnreportes = new System.Windows.Forms.Button();
             this.btnproductos = new System.Windows.Forms.Button();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.BtnMinimizar = new System.Windows.Forms.PictureBox();
@@ -73,7 +73,7 @@
             this.MenuVertical.BackColor = System.Drawing.SystemColors.HotTrack;
             this.MenuVertical.Controls.Add(this.btnventas);
             this.MenuVertical.Controls.Add(this.panel2);
-            this.MenuVertical.Controls.Add(this.button5);
+            this.MenuVertical.Controls.Add(this.btnreportes);
             this.MenuVertical.Controls.Add(this.panel3);
             this.MenuVertical.Controls.Add(this.btnproductos);
             this.MenuVertical.Controls.Add(this.panel1);
@@ -142,21 +142,22 @@
             this.label1.Text = resources.GetString("label1.Text");
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // button5
+            // btnreportes
             // 
-            this.button5.BackColor = System.Drawing.SystemColors.HotTrack;
-            this.button5.FlatAppearance.BorderSize = 0;
-            this.button5.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Navy;
-            this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button5.Font = new System.Drawing.Font("Century Gothic", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button5.Image = global::Visual.Properties.Resources.reportes;
-            this.button5.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button5.Location = new System.Drawing.Point(8, 266);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(211, 30);
-            this.button5.TabIndex = 8;
-            this.button5.Text = "Reportes";
-            this.button5.UseVisualStyleBackColor = false;
+            this.btnreportes.BackColor = System.Drawing.SystemColors.HotTrack;
+            this.btnreportes.FlatAppearance.BorderSize = 0;
+            this.btnreportes.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Navy;
+            this.btnreportes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnreportes.Font = new System.Drawing.Font("Century Gothic", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnreportes.Image = global::Visual.Properties.Resources.reportes;
+            this.btnreportes.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnreportes.Location = new System.Drawing.Point(8, 266);
+            this.btnreportes.Name = "btnreportes";
+            this.btnreportes.Size = new System.Drawing.Size(211, 30);
+            this.btnreportes.TabIndex = 8;
+            this.btnreportes.Text = "Reportes";
+            this.btnreportes.UseVisualStyleBackColor = false;
+            this.btnreportes.Click += new System.EventHandler(this.btnreportes_Click);
             // 
             // btnproductos
             // 
@@ -282,7 +283,7 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button btnproductos;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button btnreportes;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Button button6;
         private System.Windows.Forms.Label label1;
