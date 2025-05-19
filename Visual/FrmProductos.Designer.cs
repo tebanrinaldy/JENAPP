@@ -36,7 +36,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
@@ -61,7 +60,7 @@
             this.btnventas = new System.Windows.Forms.Button();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.MenuVertical = new System.Windows.Forms.Panel();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.listBox1 = new System.Windows.Forms.ListBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.BarraTitulo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.cerrar)).BeginInit();
@@ -80,7 +79,7 @@
             this.BtnGuardarProducto.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
             this.BtnGuardarProducto.FlatAppearance.BorderSize = 0;
             this.BtnGuardarProducto.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnGuardarProducto.Location = new System.Drawing.Point(540, 500);
+            this.BtnGuardarProducto.Location = new System.Drawing.Point(356, 489);
             this.BtnGuardarProducto.Name = "BtnGuardarProducto";
             this.BtnGuardarProducto.Size = new System.Drawing.Size(204, 35);
             this.BtnGuardarProducto.TabIndex = 15;
@@ -146,23 +145,12 @@
             this.label1.TabIndex = 8;
             this.label1.Text = "PRODUCTOS";
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.pictureBox1.Image = global::Visual.Properties.Resources.BTNguardar;
-            this.pictureBox1.Location = new System.Drawing.Point(990, 355);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(46, 35);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 16;
-            this.pictureBox1.TabStop = false;
-            // 
             // pictureBox2
             // 
             this.pictureBox2.Image = global::Visual.Properties.Resources.LogoJenapp_SinFondo;
-            this.pictureBox2.Location = new System.Drawing.Point(223, 37);
+            this.pictureBox2.Location = new System.Drawing.Point(29, 402);
             this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(66, 69);
+            this.pictureBox2.Size = new System.Drawing.Size(158, 157);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox2.TabIndex = 1;
             this.pictureBox2.TabStop = false;
@@ -204,15 +192,16 @@
             this.label6.BackColor = System.Drawing.Color.Transparent;
             this.label6.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.Color.White;
-            this.label6.Location = new System.Drawing.Point(352, 313);
+            this.label6.Location = new System.Drawing.Point(381, 313);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(144, 23);
+            this.label6.Size = new System.Drawing.Size(73, 23);
             this.label6.TabIndex = 21;
-            this.label6.Text = "DESCRIPCION";
+            this.label6.Text = "STOCK";
             // 
             // textBox5
             // 
             this.textBox5.Location = new System.Drawing.Point(502, 313);
+            this.textBox5.Multiline = true;
             this.textBox5.Name = "textBox5";
             this.textBox5.Size = new System.Drawing.Size(259, 22);
             this.textBox5.TabIndex = 20;
@@ -223,17 +212,18 @@
             this.label7.BackColor = System.Drawing.Color.Transparent;
             this.label7.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.ForeColor = System.Drawing.Color.White;
-            this.label7.Location = new System.Drawing.Point(381, 355);
+            this.label7.Location = new System.Drawing.Point(352, 363);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(73, 23);
+            this.label7.Size = new System.Drawing.Size(144, 23);
             this.label7.TabIndex = 23;
-            this.label7.Text = "STOCK";
+            this.label7.Text = "DESCRIPCION";
             // 
             // textBox6
             // 
             this.textBox6.Location = new System.Drawing.Point(502, 355);
+            this.textBox6.Multiline = true;
             this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(259, 22);
+            this.textBox6.Size = new System.Drawing.Size(259, 110);
             this.textBox6.TabIndex = 22;
             // 
             // BarraTitulo
@@ -419,6 +409,7 @@
             this.MenuVertical.Controls.Add(this.panel3);
             this.MenuVertical.Controls.Add(this.btnproductos);
             this.MenuVertical.Controls.Add(this.panel1);
+            this.MenuVertical.Controls.Add(this.pictureBox2);
             this.MenuVertical.Dock = System.Windows.Forms.DockStyle.Left;
             this.MenuVertical.Location = new System.Drawing.Point(0, 0);
             this.MenuVertical.Name = "MenuVertical";
@@ -426,12 +417,22 @@
             this.MenuVertical.TabIndex = 17;
             this.MenuVertical.Paint += new System.Windows.Forms.PaintEventHandler(this.MenuVertical_Paint);
             // 
+            // listBox1
+            // 
+            this.listBox1.FormattingEnabled = true;
+            this.listBox1.ItemHeight = 16;
+            this.listBox1.Location = new System.Drawing.Point(819, 126);
+            this.listBox1.Name = "listBox1";
+            this.listBox1.Size = new System.Drawing.Size(359, 340);
+            this.listBox1.TabIndex = 25;
+            // 
             // FrmProductos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(66)))), ((int)(((byte)(82)))));
             this.ClientSize = new System.Drawing.Size(1300, 650);
+            this.Controls.Add(this.listBox1);
             this.Controls.Add(this.BarraTitulo);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.textBox6);
@@ -440,12 +441,10 @@
             this.Controls.Add(this.label5);
             this.Controls.Add(this.textBox4);
             this.Controls.Add(this.MenuVertical);
-            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.BtnGuardarProducto);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.textBox3);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.textBox1);
@@ -456,7 +455,6 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.FrmProductos_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.BarraTitulo.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.cerrar)).EndInit();
@@ -482,7 +480,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
@@ -507,5 +504,6 @@
         private System.Windows.Forms.Button btnventas;
         private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.Panel MenuVertical;
+        private System.Windows.Forms.ListBox listBox1;
     }
 }
