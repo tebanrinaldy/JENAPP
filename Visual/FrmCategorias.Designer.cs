@@ -96,7 +96,6 @@
             // 
             this.btnventas.AutoEllipsis = true;
             this.btnventas.BackColor = System.Drawing.SystemColors.HotTrack;
-            this.btnventas.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnventas.FlatAppearance.BorderSize = 0;
             this.btnventas.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Navy;
             this.btnventas.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -165,7 +164,6 @@
             // btnproductos
             // 
             this.btnproductos.BackColor = System.Drawing.SystemColors.HotTrack;
-            this.btnproductos.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnproductos.FlatAppearance.BorderSize = 0;
             this.btnproductos.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Navy;
             this.btnproductos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -274,7 +272,7 @@
             this.BtnGuardarProducto.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
             this.BtnGuardarProducto.FlatAppearance.BorderSize = 0;
             this.BtnGuardarProducto.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnGuardarProducto.Location = new System.Drawing.Point(430, 402);
+            this.BtnGuardarProducto.Location = new System.Drawing.Point(482, 304);
             this.BtnGuardarProducto.Name = "BtnGuardarProducto";
             this.BtnGuardarProducto.Size = new System.Drawing.Size(204, 35);
             this.BtnGuardarProducto.TabIndex = 33;
