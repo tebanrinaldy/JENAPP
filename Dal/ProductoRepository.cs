@@ -6,103 +6,117 @@ using System.Text;
 using System.Threading.Tasks;
 using Dal;
 using Oracle.ManagedDataAccess.Client;
+using System.Data;
+using Oracle.ManagedDataAccess.Types;
 
 namespace Dal
 
 {
     public class ProductoRepository : IRepository<Producto>
     {
+        /*-------------------------------------------------
+         *  F I E L D S
+         *------------------------------------------------*/
         private readonly string _connectionString;
 
+        /*-------------------------------------------------
+         *  C T O R
+         *------------------------------------------------*/
         public ProductoRepository(string connectionString)
         {
             _connectionString = connectionString;
         }
 
-        /* ---------- CRUD ---------- */
+        /*-------------------------------------------------
+         *  C R U D
+         *------------------------------------------------*/
 
+        // ------------- CREATE -------------
         public bool Agregar(Producto entidad)
         {
             const string sql = @"
                 INSERT INTO productos
-                    (id_producto, nombre, descripcion, precio, stock, id_categoria)
-                VALUES
-                    (seq_productos.NEXTVAL, :nombre, :descripcion, :precio, :stock, :id_categoria)";
+                (nombre, descripcion, precio, stock, id_categoria)
+                VALUES (:nombre, :descripcion, :precio, :stock, :id_categoria)
+                RETURNING id_producto INTO :id_out";
 
             using (var conn = new OracleConnection(_connectionString))
             using (var cmd = new OracleCommand(sql, conn))
             {
-                cmd.Parameters.Add("nombre", entidad.Nombre);
-                cmd.Parameters.Add("descripcion", entidad.Descripcion);
-                cmd.Parameters.Add("precio", entidad.Precio);
-                cmd.Parameters.Add("stock", entidad.Stock);
-                cmd.Parameters.Add("id_categoria", entidad.IdCategoria);
+                cmd.BindByName = true;
+
+                // parámetros de entrada
+                cmd.Parameters.Add("nombre", OracleDbType.Varchar2).Value = entidad.Nombre;
+                cmd.Parameters.Add("descripcion", OracleDbType.Varchar2).Value = entidad.Descripcion;
+                cmd.Parameters.Add("precio", OracleDbType.Decimal).Value = entidad.Precio;
+                cmd.Parameters.Add("stock", OracleDbType.Int32).Value = entidad.Stock;
+                cmd.Parameters.Add("id_categoria", OracleDbType.Int32).Value = entidad.IdCategoria;
+
+                // parámetro de salida
+                var pIdOut = cmd.Parameters.Add("id_out", OracleDbType.Decimal);
+                pIdOut.Direction = ParameterDirection.Output;
 
                 conn.Open();
-                return cmd.ExecuteNonQuery() == 1;
+                var filas = cmd.ExecuteNonQuery();
+
+                // conversión OracleDecimal → int
+                entidad.Id = Convert.ToInt32(((OracleDecimal)pIdOut.Value).Value);
+                entidad.FechaRegistro = DateTime.Now;
+
+                return filas > 0;
             }
         }
 
-        public bool Actualizar(Producto entidad)
-        {
-            const string sql = @"
-                UPDATE productos
-                   SET nombre       = :nombre,
-                       descripcion  = :descripcion,
-                       precio       = :precio,
-                       stock        = :stock,
-                       id_categoria = :id_categoria
-                 WHERE id_producto  = :id_producto";
-
-            using (var conn = new OracleConnection(_connectionString))
-            using (var cmd = new OracleCommand(sql, conn))
-            {
-                cmd.Parameters.Add("nombre", entidad.Nombre);
-                cmd.Parameters.Add("descripcion", entidad.Descripcion);
-                cmd.Parameters.Add("precio", entidad.Precio);
-                cmd.Parameters.Add("stock", entidad.Stock);
-                cmd.Parameters.Add("id_categoria", entidad.IdCategoria);
-                cmd.Parameters.Add("id_producto", entidad.Id);
-
-                conn.Open();
-                return cmd.ExecuteNonQuery() == 1;
-            }
-        }
-
-        public bool Eliminar(int id)
-        {
-            const string sql = "DELETE FROM productos WHERE id_producto = :id_producto";
-
-            using (var conn = new OracleConnection(_connectionString))
-            using (var cmd = new OracleCommand(sql, conn))
-            {
-                cmd.Parameters.Add("id_producto", id);
-
-                conn.Open();
-                return cmd.ExecuteNonQuery() == 1;
-            }
-        }
-
+        // ------------- READ (por id) -------------
         public Producto ObtenerPorId(int id)
         {
-            const string sql = "SELECT * FROM productos WHERE id_producto = :id_producto";
+            const string sql = @"
+                SELECT  p.id_producto,
+                        p.nombre,
+                        p.descripcion,
+                        p.precio,
+                        p.stock,
+                        p.id_categoria,
+                        c.nombre AS nom_categoria,
+                        p.fecha_registro
+                FROM    productos p
+                JOIN    categorias c ON c.id_categoria = p.id_categoria
+                WHERE   p.id_producto = :id";
 
             using (var conn = new OracleConnection(_connectionString))
             using (var cmd = new OracleCommand(sql, conn))
             {
-                cmd.Parameters.Add("id_producto", id);
+                cmd.BindByName = true;
+                cmd.Parameters.Add("id", OracleDbType.Int32).Value = id;
 
                 conn.Open();
                 using (var reader = cmd.ExecuteReader())
                 {
-                    return reader.Read() ? Map(reader) : null;
+                    if (reader.Read())
+                    {
+                        return Map(reader);
+                    }
                 }
             }
+            return null;
         }
 
+        // ------------- READ (todos) -------------
         public List<Producto> ObtenerTodos()
         {
-            const string sql = "SELECT * FROM productos ORDER BY id_producto";
+            const string sql = @"
+                SELECT  p.id_producto,
+                        p.nombre,
+                        p.descripcion,
+                        p.precio,
+                        p.stock,
+                        p.id_categoria,
+                        c.nombre AS nom_categoria,
+                        p.fecha_registro
+                FROM    productos p
+                JOIN    categorias c ON c.id_categoria = p.id_categoria
+                ORDER   BY p.id_producto";
+
             var lista = new List<Producto>();
 
             using (var conn = new OracleConnection(_connectionString))
@@ -112,24 +126,82 @@ namespace Dal
                 using (var reader = cmd.ExecuteReader())
                 {
                     while (reader.Read())
+                    {
                         lista.Add(Map(reader));
+                    }
                 }
             }
             return lista;
         }
 
-        /* ---------- Helper ---------- */
+        // ------------- UPDATE -------------
+        public bool Actualizar(Producto entidad)
+        {
+            const string sql = @"
+                UPDATE productos
+                SET    nombre       = :nombre,
+                       descripcion  = :descripcion,
+                       precio       = :precio,
+                       stock        = :stock,
+                       id_categoria = :id_categoria
+                WHERE  id_producto  = :id_producto";
 
-        private static Producto Map(OracleDataReader r)
+            using (var conn = new OracleConnection(_connectionString))
+            using (var cmd = new OracleCommand(sql, conn))
+            {
+                cmd.BindByName = true;
+
+                cmd.Parameters.Add("nombre", OracleDbType.Varchar2).Value = entidad.Nombre;
+                cmd.Parameters.Add("descripcion", OracleDbType.Varchar2).Value = entidad.Descripcion;
+                cmd.Parameters.Add("precio", OracleDbType.Decimal).Value = entidad.Precio;
+                cmd.Parameters.Add("stock", OracleDbType.Int32).Value = entidad.Stock;
+                cmd.Parameters.Add("id_categoria", OracleDbType.Int32).Value = entidad.IdCategoria;
+                cmd.Parameters.Add("id_producto", OracleDbType.Int32).Value = entidad.Id;
+
+                conn.Open();
+                return cmd.ExecuteNonQuery() > 0;
+            }
+        }
+
+        // ------------- DELETE -------------
+        public bool Eliminar(int id)
+        {
+            const string sql = @"
+                DELETE FROM productos
+                WHERE  id_producto = :id";
+
+            using (var conn = new OracleConnection(_connectionString))
+            using (var cmd = new OracleCommand(sql, conn))
+            {
+                cmd.BindByName = true;
+                cmd.Parameters.Add("id", OracleDbType.Int32).Value = id;
+
+                conn.Open();
+                return cmd.ExecuteNonQuery() > 0;
+            }
+        }
+
+        /*-------------------------------------------------
+         *  H E L P E R
+         *------------------------------------------------*/
+        private static Producto Map(OracleDataReader reader)
         {
             return new Producto
             {
-                Id = Convert.ToInt32(r["id_producto"]),
-                Nombre = r["nombre"].ToString(),
-                Descripcion = r["descripcion"]?.ToString(),
-                Precio = Convert.ToDecimal(r["precio"]),
-                Stock = Convert.ToInt32(r["stock"]),
-                IdCategoria = Convert.ToInt32(r["id_categoria"])
+                Id = reader.GetInt32(reader.GetOrdinal("id_producto")),
+                Nombre = reader.GetString(reader.GetOrdinal("nombre")),
+                Descripcion = reader.IsDBNull(reader.GetOrdinal("descripcion"))
+                                ? null
+                                : reader.GetString(reader.GetOrdinal("descripcion")),
+                Precio = reader.GetDecimal(reader.GetOrdinal("precio")),
+                Stock = reader.GetInt32(reader.GetOrdinal("stock")),
+                IdCategoria = reader.GetInt32(reader.GetOrdinal("id_categoria")),
+                FechaRegistro = reader.GetDateTime(reader.GetOrdinal("fecha_registro")),
+                Categoria = new Categoria
+                {
+                    Id = reader.GetInt32(reader.GetOrdinal("id_categoria")),
+                    Nombre = reader.GetString(reader.GetOrdinal("nom_categoria"))
+                }
             };
         }
     }
