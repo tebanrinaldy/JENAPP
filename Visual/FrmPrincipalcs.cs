@@ -133,5 +133,31 @@ namespace Visual
         {
             Abrirformularioreportes(new FrmReportes());
         }
+
+        private void MenuVertical_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void Abrirformulariocategorias(object formcategorias)
+        {
+            if (this.panelContenedor.Controls.Count > 0)
+                this.panelContenedor.Controls.RemoveAt(0);
+            Form fh = formcategorias as Form;
+            fh.TopLevel = false;
+            fh.FormBorderStyle = FormBorderStyle.None;
+            fh.Dock = DockStyle.Fill;
+            panelContenedor.Controls.Add(fh);
+            panelContenedor.Tag = fh;
+
+        }
+        private void btncategorias_Click(object sender, EventArgs e)
+        {
+            Abrirformulariocategorias(new FrmCategorias());
+            FrmCategorias frm = new FrmCategorias();
+            frm.Show();
+            frm.FormClosed += (s, args) => this.Show(); // Vuelve a mostrar FrmPrincipal al cerrar FrmCategorias
+            this.Hide(); // Oculta FrmPrincipal al abrir FrmCategorias
+        }
     }
 }

@@ -123,6 +123,16 @@ namespace Visual.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap compras1 {
+            get {
+                object obj = ResourceManager.GetObject("compras1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap IconoMaximizar {
             get {
                 object obj = ResourceManager.GetObject("IconoMaximizar", resourceCulture);

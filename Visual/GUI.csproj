@@ -145,6 +145,7 @@
     <None Include="Resources\cerrar.png" />
     <None Include="Resources\BTNguardar.png" />
     <None Include="Resources\LogoEmpleado.png" />
+    <None Include="Resources\compras1.png" />
     <Content Include="Resources\LogoIcono.ico" />
     <Content Include="Resources\Logo.jpeg" />
     <None Include="Resources\user_SinFondo.png" />
