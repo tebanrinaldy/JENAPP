@@ -11,6 +11,7 @@ using System.Windows.Forms;
 using Entity;
 using Bll;
 using Entity.Entity;
+using Bll.Bll;
 
 
 
@@ -33,7 +34,7 @@ namespace Visual
         CategoriaRepository _categoriaRepository = new CategoriaRepository(" User Id=jenapp;Password=jen123;Data Source=192.168.1.38:1521/XEPDB1");
         ProductoRepository _productoRepository = new ProductoRepository("User Id=jenapp;Password=jen123;Data Source=192.168.1.38:1521/XEPDB1");
         VentaRepository ventaRepository = new VentaRepository("User Id=jenapp;Password=jen123;Data Source=192.168.1.38:1521/XEPDB1");
-
+        DetalleVentaRepository detalleVentaRepository = new DetalleVentaRepository("User Id=jenapp;Password=jen123;Data Source=192.168.1.38:1521/XEPDB1");
         private void panelContenedor_Paint(object sender, PaintEventArgs e)
         {
 
@@ -199,10 +200,7 @@ namespace Visual
 
                     nuevaVenta.DetalleVentas.Add(detalle);
                 }
-
-                // Guardar usando el repositorio  
-                bool guardado = ventaRepository.Agregar(nuevaVenta); // Cambiado para usar el método Agregar correctamente  
-
+                bool guardado = ventaRepository.Agregar(nuevaVenta);
                 if (guardado)
                 {
                     MessageBox.Show("Venta registrada correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -223,6 +221,7 @@ namespace Visual
             {
                 MessageBox.Show("Error: " + ex.Message, "Excepción", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+
         }
     }
     

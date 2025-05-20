@@ -79,6 +79,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CategoriaRepository.cs" />
+    <Compile Include="Conexion.cs" />
     <Compile Include="DetalleVentaRepository.cs" />
     <Compile Include="IRepository.cs" />
     <Compile Include="ProductoRepository.cs" />
