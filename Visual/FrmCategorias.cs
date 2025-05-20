@@ -71,3 +71,32 @@ namespace Visual
         }
     }
 }
+/*private void BtnEliminar_Click(object sender, EventArgs e)
+{
+    if (listBox1.SelectedItem is Categoria categoriaSeleccionada)
+    {
+        var confirmResult = MessageBox.Show(
+            "¿Estás seguro de que deseas eliminar esta categoría?",
+            "Confirmar eliminación",
+            MessageBoxButtons.YesNo,
+            MessageBoxIcon.Warning);
+        if (confirmResult == DialogResult.Yes)
+        {
+            var exito = _categoriaRepository.Eliminar(categoriaSeleccionada.Id);
+            if (exito)
+            {
+                MessageBox.Show("Categoría eliminada correctamente.");
+                CargarCategorias(); // Recargar lista
+            }
+            else
+            {
+                MessageBox.Show("Error al eliminar la categoría.");
+            }
+        }
+    }
+    else
+    {
+        MessageBox.Show("Por favor selecciona una categoría para eliminar.");
+    }
+}
+*/
