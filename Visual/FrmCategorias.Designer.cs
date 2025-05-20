@@ -325,9 +325,9 @@
             // 
             this.listBox1.FormattingEnabled = true;
             this.listBox1.ItemHeight = 16;
-            this.listBox1.Location = new System.Drawing.Point(1077, 172);
+            this.listBox1.Location = new System.Drawing.Point(883, 172);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(120, 84);
+            this.listBox1.Size = new System.Drawing.Size(314, 196);
             this.listBox1.TabIndex = 34;
             // 
             // FrmCategorias
