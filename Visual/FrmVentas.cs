@@ -167,10 +167,10 @@ namespace Visual
                         cmd.CommandText = "INSERT INTO detalle_ventas (id_detalle, id_venta, id_producto, cantidad) VALUES (:id_detalle, :id_venta, :id_producto, :cantidad)";
 
                         // Suponiendo que tomas los valores de tus controles
-                        cmd.Parameters.Add("id_detalle", OracleDbType.Int32).Value = int.Parse(txtIdDetalle.Text);
+                        /*cmd.Parameters.Add("id_detalle", OracleDbType.Int32).Value = int.Parse(txtIdDetalle.Text);
                         cmd.Parameters.Add("id_venta", OracleDbType.Int32).Value = int.Parse(txtIdVenta.Text);
                         cmd.Parameters.Add("id_producto", OracleDbType.Int32).Value = int.Parse(txtIdProducto.Text);
-                        cmd.Parameters.Add("cantidad", OracleDbType.Int32).Value = int.Parse(txtCantidad.Text);
+                        cmd.Parameters.Add("cantidad", OracleDbType.Int32).Value = int.Parse(txtCantidad.Text);*/
 
                         cmd.ExecuteNonQuery();
                         MessageBox.Show("Detalle de venta guardado correctamente.");
