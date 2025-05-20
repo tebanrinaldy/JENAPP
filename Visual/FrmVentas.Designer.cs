@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmVentas));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label1 = new System.Windows.Forms.Label();
@@ -47,7 +48,12 @@
             this.button1 = new System.Windows.Forms.Button();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.panelContenedor = new System.Windows.Forms.Panel();
+            this.DataProducto = new System.Windows.Forms.DataGridView();
             this.dgvVentas = new System.Windows.Forms.DataGridView();
+            this.IdVenta = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Producto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Subtotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.BtnCerrar = new System.Windows.Forms.PictureBox();
             this.BtnMinimizar = new System.Windows.Forms.PictureBox();
             this.BarraTitulo = new System.Windows.Forms.Panel();
@@ -57,12 +63,7 @@
             this.lblCliente = new System.Windows.Forms.Label();
             this.txtBuscarProducto = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.DataProducto = new System.Windows.Forms.DataGridView();
-            this.IdVenta = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Producto = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Subtotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colCategorias = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.colCategorias = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.IDProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.NombreProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PrecioProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -75,12 +76,12 @@
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.panelContenedor.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.DataProducto)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvVentas)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.BtnCerrar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.BtnMinimizar)).BeginInit();
             this.BarraTitulo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.DataProducto)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -112,7 +113,7 @@
             // 
             // pictureBox3
             // 
-            this.pictureBox3.Image = global::Visual.Properties.Resources.LogoEmpleado;
+            this.pictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox3.Image")));
             this.pictureBox3.Location = new System.Drawing.Point(0, 21);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(208, 141);
@@ -128,7 +129,7 @@
             this.btncategorias.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Navy;
             this.btncategorias.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btncategorias.Font = new System.Drawing.Font("Century Gothic", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btncategorias.Image = global::Visual.Properties.Resources.compras1;
+            this.btncategorias.Image = ((System.Drawing.Image)(resources.GetObject("btncategorias.Image")));
             this.btncategorias.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btncategorias.Location = new System.Drawing.Point(8, 179);
             this.btncategorias.Name = "btncategorias";
@@ -164,7 +165,7 @@
             this.btnventas.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Navy;
             this.btnventas.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnventas.Font = new System.Drawing.Font("Century Gothic", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnventas.Image = global::Visual.Properties.Resources.venta;
+            this.btnventas.Image = ((System.Drawing.Image)(resources.GetObject("btnventas.Image")));
             this.btnventas.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnventas.Location = new System.Drawing.Point(8, 270);
             this.btnventas.Name = "btnventas";
@@ -198,7 +199,7 @@
             this.btnreportes.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Navy;
             this.btnreportes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnreportes.Font = new System.Drawing.Font("Century Gothic", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnreportes.Image = global::Visual.Properties.Resources.reportes;
+            this.btnreportes.Image = ((System.Drawing.Image)(resources.GetObject("btnreportes.Image")));
             this.btnreportes.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnreportes.Location = new System.Drawing.Point(8, 315);
             this.btnreportes.Name = "btnreportes";
@@ -233,7 +234,7 @@
             this.btnproductos.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Navy;
             this.btnproductos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnproductos.Font = new System.Drawing.Font("Century Gothic", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnproductos.Image = global::Visual.Properties.Resources.producto1;
+            this.btnproductos.Image = ((System.Drawing.Image)(resources.GetObject("btnproductos.Image")));
             this.btnproductos.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnproductos.Location = new System.Drawing.Point(8, 221);
             this.btnproductos.Name = "btnproductos";
@@ -262,7 +263,7 @@
             // 
             // pictureBox2
             // 
-            this.pictureBox2.Image = global::Visual.Properties.Resources.LogoJenapp_SinFondo;
+            this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
             this.pictureBox2.Location = new System.Drawing.Point(26, 443);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(182, 130);
@@ -281,6 +282,24 @@
             this.panelContenedor.Size = new System.Drawing.Size(1300, 477);
             this.panelContenedor.TabIndex = 28;
             this.panelContenedor.Paint += new System.Windows.Forms.PaintEventHandler(this.panelContenedor_Paint);
+            // 
+            // DataProducto
+            // 
+            this.DataProducto.BackgroundColor = System.Drawing.SystemColors.ActiveCaption;
+            this.DataProducto.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.DataProducto.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.colCategorias,
+            this.IDProducto,
+            this.NombreProducto,
+            this.PrecioProducto,
+            this.StockProducto});
+            this.DataProducto.Location = new System.Drawing.Point(225, 0);
+            this.DataProducto.Name = "DataProducto";
+            this.DataProducto.RowHeadersWidth = 51;
+            this.DataProducto.RowTemplate.Height = 24;
+            this.DataProducto.Size = new System.Drawing.Size(545, 265);
+            this.DataProducto.TabIndex = 144;
+            this.DataProducto.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // dgvVentas
             // 
@@ -319,9 +338,41 @@
             this.dgvVentas.Size = new System.Drawing.Size(476, 298);
             this.dgvVentas.TabIndex = 143;
             // 
+            // IdVenta
+            // 
+            this.IdVenta.HeaderText = "IdVenta";
+            this.IdVenta.MinimumWidth = 6;
+            this.IdVenta.Name = "IdVenta";
+            this.IdVenta.ReadOnly = true;
+            this.IdVenta.Width = 80;
+            // 
+            // Producto
+            // 
+            this.Producto.HeaderText = "Producto";
+            this.Producto.MinimumWidth = 6;
+            this.Producto.Name = "Producto";
+            this.Producto.ReadOnly = true;
+            this.Producto.Width = 120;
+            // 
+            // Cantidad
+            // 
+            this.Cantidad.HeaderText = "Cantidad";
+            this.Cantidad.MinimumWidth = 6;
+            this.Cantidad.Name = "Cantidad";
+            this.Cantidad.ReadOnly = true;
+            this.Cantidad.Width = 80;
+            // 
+            // Subtotal
+            // 
+            this.Subtotal.HeaderText = "Subtotal";
+            this.Subtotal.MinimumWidth = 6;
+            this.Subtotal.Name = "Subtotal";
+            this.Subtotal.ReadOnly = true;
+            this.Subtotal.Width = 140;
+            // 
             // BtnCerrar
             // 
-            this.BtnCerrar.Image = global::Visual.Properties.Resources.X_SinFondo;
+            this.BtnCerrar.Image = ((System.Drawing.Image)(resources.GetObject("BtnCerrar.Image")));
             this.BtnCerrar.Location = new System.Drawing.Point(1264, -2);
             this.BtnCerrar.Name = "BtnCerrar";
             this.BtnCerrar.Size = new System.Drawing.Size(35, 40);
@@ -332,7 +383,7 @@
             // 
             // BtnMinimizar
             // 
-            this.BtnMinimizar.Image = global::Visual.Properties.Resources._Blanco;
+            this.BtnMinimizar.Image = ((System.Drawing.Image)(resources.GetObject("BtnMinimizar.Image")));
             this.BtnMinimizar.Location = new System.Drawing.Point(1206, -2);
             this.BtnMinimizar.Name = "BtnMinimizar";
             this.BtnMinimizar.Size = new System.Drawing.Size(35, 40);
@@ -359,7 +410,7 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Image = global::Visual.Properties.Resources.venta;
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
             this.pictureBox1.Location = new System.Drawing.Point(1197, 60);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(102, 100);
@@ -430,61 +481,14 @@
             this.label6.TabIndex = 109;
             this.label6.Text = "Codigo:";
             // 
-            // DataProducto
-            // 
-            this.DataProducto.BackgroundColor = System.Drawing.SystemColors.ActiveCaption;
-            this.DataProducto.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.DataProducto.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.colCategorias,
-            this.IDProducto,
-            this.NombreProducto,
-            this.PrecioProducto,
-            this.StockProducto});
-            this.DataProducto.Location = new System.Drawing.Point(225, 0);
-            this.DataProducto.Name = "DataProducto";
-            this.DataProducto.RowHeadersWidth = 51;
-            this.DataProducto.RowTemplate.Height = 24;
-            this.DataProducto.Size = new System.Drawing.Size(545, 265);
-            this.DataProducto.TabIndex = 144;
-            this.DataProducto.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
-            // 
-            // IdVenta
-            // 
-            this.IdVenta.HeaderText = "IdVenta";
-            this.IdVenta.MinimumWidth = 6;
-            this.IdVenta.Name = "IdVenta";
-            this.IdVenta.ReadOnly = true;
-            this.IdVenta.Width = 80;
-            // 
-            // Producto
-            // 
-            this.Producto.HeaderText = "Producto";
-            this.Producto.MinimumWidth = 6;
-            this.Producto.Name = "Producto";
-            this.Producto.ReadOnly = true;
-            this.Producto.Width = 120;
-            // 
-            // Cantidad
-            // 
-            this.Cantidad.HeaderText = "Cantidad";
-            this.Cantidad.MinimumWidth = 6;
-            this.Cantidad.Name = "Cantidad";
-            this.Cantidad.ReadOnly = true;
-            this.Cantidad.Width = 80;
-            // 
-            // Subtotal
-            // 
-            this.Subtotal.HeaderText = "Subtotal";
-            this.Subtotal.MinimumWidth = 6;
-            this.Subtotal.Name = "Subtotal";
-            this.Subtotal.ReadOnly = true;
-            this.Subtotal.Width = 140;
-            // 
             // colCategorias
             // 
             this.colCategorias.HeaderText = "Categoria";
             this.colCategorias.MinimumWidth = 6;
             this.colCategorias.Name = "colCategorias";
+            this.colCategorias.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.colCategorias.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.colCategorias.Width = 125;
             // 
             // IDProducto
             // 
@@ -535,13 +539,13 @@
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.panelContenedor.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.DataProducto)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvVentas)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.BtnCerrar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.BtnMinimizar)).EndInit();
             this.BarraTitulo.ResumeLayout(false);
             this.BarraTitulo.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.DataProducto)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -581,7 +585,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Producto;
         private System.Windows.Forms.DataGridViewTextBoxColumn Cantidad;
         private System.Windows.Forms.DataGridViewTextBoxColumn Subtotal;
-        private System.Windows.Forms.DataGridViewComboBoxColumn colCategorias;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colCategorias;
         private System.Windows.Forms.DataGridViewTextBoxColumn IDProducto;
         private System.Windows.Forms.DataGridViewTextBoxColumn NombreProducto;
         private System.Windows.Forms.DataGridViewTextBoxColumn PrecioProducto;
