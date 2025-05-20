@@ -71,6 +71,30 @@ namespace Visual
                 MessageBox.Show("Error al guardar en la base de datos.");
             }
         }
+
+        private void cerrar_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+        public void minimizar24()
+        {
+            this.WindowState = FormWindowState.Minimized;
+        }
+        private void minimizar_Click(object sender, EventArgs e)
+        {
+            minimizar24();
+        }
+
+
+  
+        private void btnproductos_Click(object sender, EventArgs e)
+        {
+
+            FrmProductos frm = new FrmProductos();
+            frm.Show();
+            this.Close();
+
+        }
     }
 }
 /*private void BtnEliminar_Click(object sender, EventArgs e)

@@ -30,20 +30,20 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmProductos));
             this.BtnGuardarProducto = new System.Windows.Forms.Button();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.txtCategoria = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.txtNombre = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtId = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.txtPrecio = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.txtStock = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.textBox6 = new System.Windows.Forms.TextBox();
+            this.txtDescripcion = new System.Windows.Forms.TextBox();
             this.BarraTitulo = new System.Windows.Forms.Panel();
             this.cerrar = new System.Windows.Forms.PictureBox();
             this.minimizar = new System.Windows.Forms.PictureBox();
@@ -51,7 +51,6 @@
             this.BtnCerrar = new System.Windows.Forms.PictureBox();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.MenuVertical = new System.Windows.Forms.Panel();
-            this.listBox1 = new System.Windows.Forms.ListBox();
             this.btncategorias = new System.Windows.Forms.Button();
             this.panel4 = new System.Windows.Forms.Panel();
             this.button4 = new System.Windows.Forms.Button();
@@ -64,6 +63,7 @@
             this.btnproductos = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.button1 = new System.Windows.Forms.Button();
+            this.ListaProducto = new System.Windows.Forms.ListBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.BarraTitulo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.cerrar)).BeginInit();
@@ -83,20 +83,21 @@
             this.BtnGuardarProducto.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
             this.BtnGuardarProducto.FlatAppearance.BorderSize = 0;
             this.BtnGuardarProducto.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnGuardarProducto.Location = new System.Drawing.Point(356, 489);
+            this.BtnGuardarProducto.Location = new System.Drawing.Point(520, 493);
             this.BtnGuardarProducto.Name = "BtnGuardarProducto";
             this.BtnGuardarProducto.Size = new System.Drawing.Size(204, 35);
             this.BtnGuardarProducto.TabIndex = 15;
             this.BtnGuardarProducto.Text = "Guardar";
             this.BtnGuardarProducto.UseVisualStyleBackColor = false;
+            this.BtnGuardarProducto.Click += new System.EventHandler(this.BtnGuardarProducto_Click);
             // 
-            // textBox3
+            // txtCategoria
             // 
-            this.textBox3.Location = new System.Drawing.Point(502, 221);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(259, 22);
-            this.textBox3.TabIndex = 13;
-            this.textBox3.TextChanged += new System.EventHandler(this.textBox3_TextChanged);
+            this.txtCategoria.Location = new System.Drawing.Point(502, 221);
+            this.txtCategoria.Name = "txtCategoria";
+            this.txtCategoria.Size = new System.Drawing.Size(259, 22);
+            this.txtCategoria.TabIndex = 13;
+            this.txtCategoria.TextChanged += new System.EventHandler(this.textBox3_TextChanged);
             // 
             // label3
             // 
@@ -110,12 +111,12 @@
             this.label3.TabIndex = 12;
             this.label3.Text = "NOMBRE";
             // 
-            // textBox2
+            // txtNombre
             // 
-            this.textBox2.Location = new System.Drawing.Point(502, 173);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(259, 22);
-            this.textBox2.TabIndex = 11;
+            this.txtNombre.Location = new System.Drawing.Point(502, 173);
+            this.txtNombre.Name = "txtNombre";
+            this.txtNombre.Size = new System.Drawing.Size(259, 22);
+            this.txtNombre.TabIndex = 11;
             // 
             // label2
             // 
@@ -130,12 +131,12 @@
             this.label2.Text = "ID";
             this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
-            // textBox1
+            // txtId
             // 
-            this.textBox1.Location = new System.Drawing.Point(502, 129);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(259, 22);
-            this.textBox1.TabIndex = 9;
+            this.txtId.Location = new System.Drawing.Point(502, 129);
+            this.txtId.Name = "txtId";
+            this.txtId.Size = new System.Drawing.Size(259, 22);
+            this.txtId.TabIndex = 9;
             // 
             // label1
             // 
@@ -183,12 +184,12 @@
             this.label5.TabIndex = 19;
             this.label5.Text = "PRECIO";
             // 
-            // textBox4
+            // txtPrecio
             // 
-            this.textBox4.Location = new System.Drawing.Point(502, 268);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(259, 22);
-            this.textBox4.TabIndex = 18;
+            this.txtPrecio.Location = new System.Drawing.Point(502, 268);
+            this.txtPrecio.Name = "txtPrecio";
+            this.txtPrecio.Size = new System.Drawing.Size(259, 22);
+            this.txtPrecio.TabIndex = 18;
             // 
             // label6
             // 
@@ -202,13 +203,13 @@
             this.label6.TabIndex = 21;
             this.label6.Text = "STOCK";
             // 
-            // textBox5
+            // txtStock
             // 
-            this.textBox5.Location = new System.Drawing.Point(502, 313);
-            this.textBox5.Multiline = true;
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(259, 22);
-            this.textBox5.TabIndex = 20;
+            this.txtStock.Location = new System.Drawing.Point(502, 313);
+            this.txtStock.Multiline = true;
+            this.txtStock.Name = "txtStock";
+            this.txtStock.Size = new System.Drawing.Size(259, 22);
+            this.txtStock.TabIndex = 20;
             // 
             // label7
             // 
@@ -222,13 +223,13 @@
             this.label7.TabIndex = 23;
             this.label7.Text = "DESCRIPCION";
             // 
-            // textBox6
+            // txtDescripcion
             // 
-            this.textBox6.Location = new System.Drawing.Point(502, 355);
-            this.textBox6.Multiline = true;
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(259, 110);
-            this.textBox6.TabIndex = 22;
+            this.txtDescripcion.Location = new System.Drawing.Point(502, 355);
+            this.txtDescripcion.Multiline = true;
+            this.txtDescripcion.Name = "txtDescripcion";
+            this.txtDescripcion.Size = new System.Drawing.Size(259, 110);
+            this.txtDescripcion.TabIndex = 22;
             // 
             // BarraTitulo
             // 
@@ -315,15 +316,6 @@
             this.MenuVertical.TabIndex = 17;
             this.MenuVertical.Paint += new System.Windows.Forms.PaintEventHandler(this.MenuVertical_Paint);
             // 
-            // listBox1
-            // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.ItemHeight = 16;
-            this.listBox1.Location = new System.Drawing.Point(819, 126);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(359, 340);
-            this.listBox1.TabIndex = 25;
-            // 
             // btncategorias
             // 
             this.btncategorias.BackColor = System.Drawing.SystemColors.HotTrack;
@@ -340,6 +332,7 @@
             this.btncategorias.TabIndex = 20;
             this.btncategorias.Text = "Categorias";
             this.btncategorias.UseVisualStyleBackColor = false;
+            this.btncategorias.Click += new System.EventHandler(this.btncategorias_Click);
             // 
             // panel4
             // 
@@ -464,28 +457,38 @@
             this.button1.Text = "button1";
             this.button1.UseVisualStyleBackColor = true;
             // 
+            // ListaProducto
+            // 
+            this.ListaProducto.FormattingEnabled = true;
+            this.ListaProducto.ItemHeight = 16;
+            this.ListaProducto.Location = new System.Drawing.Point(819, 126);
+            this.ListaProducto.Name = "ListaProducto";
+            this.ListaProducto.Size = new System.Drawing.Size(359, 340);
+            this.ListaProducto.TabIndex = 25;
+            this.ListaProducto.SelectedIndexChanged += new System.EventHandler(this.ListaProducto_SelectedIndexChanged);
+            // 
             // FrmProductos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(66)))), ((int)(((byte)(82)))));
             this.ClientSize = new System.Drawing.Size(1300, 650);
-            this.Controls.Add(this.listBox1);
+            this.Controls.Add(this.ListaProducto);
             this.Controls.Add(this.BarraTitulo);
             this.Controls.Add(this.label7);
-            this.Controls.Add(this.textBox6);
+            this.Controls.Add(this.txtDescripcion);
             this.Controls.Add(this.label6);
-            this.Controls.Add(this.textBox5);
+            this.Controls.Add(this.txtStock);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.textBox4);
+            this.Controls.Add(this.txtPrecio);
             this.Controls.Add(this.MenuVertical);
             this.Controls.Add(this.BtnGuardarProducto);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.textBox3);
+            this.Controls.Add(this.txtCategoria);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.txtNombre);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.txtId);
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -513,20 +516,20 @@
         #endregion
 
         private System.Windows.Forms.Button BtnGuardarProducto;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox txtCategoria;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox txtNombre;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtId;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.TextBox txtPrecio;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.TextBox txtStock;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox textBox6;
+        private System.Windows.Forms.TextBox txtDescripcion;
         private System.Windows.Forms.Panel BarraTitulo;
         private System.Windows.Forms.PictureBox BtnMinimizar;
         private System.Windows.Forms.PictureBox BtnCerrar;
@@ -534,7 +537,7 @@
         private System.Windows.Forms.PictureBox minimizar;
         private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.Panel MenuVertical;
-        private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.ListBox ListaProducto;
         private System.Windows.Forms.Button btncategorias;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Button button4;

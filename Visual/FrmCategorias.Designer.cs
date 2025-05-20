@@ -176,6 +176,7 @@
             this.btnproductos.TabIndex = 4;
             this.btnproductos.Text = "Productos";
             this.btnproductos.UseVisualStyleBackColor = false;
+            this.btnproductos.Click += new System.EventHandler(this.btnproductos_Click);
             // 
             // panel1
             // 
@@ -227,6 +228,7 @@
             this.cerrar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.cerrar.TabIndex = 25;
             this.cerrar.TabStop = false;
+            this.cerrar.Click += new System.EventHandler(this.cerrar_Click);
             // 
             // minimizar
             // 
@@ -237,6 +239,7 @@
             this.minimizar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.minimizar.TabIndex = 2;
             this.minimizar.TabStop = false;
+            this.minimizar.Click += new System.EventHandler(this.minimizar_Click);
             // 
             // BtnMinimizar
             // 

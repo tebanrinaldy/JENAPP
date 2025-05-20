@@ -77,7 +77,6 @@ namespace Dal
                         p.stock,
                         p.id_categoria,
                         c.nombre AS nom_categoria,
-                        p.fecha_registro
                 FROM    productos p
                 JOIN    categorias c ON c.id_categoria = p.id_categoria
                 WHERE   p.id_producto = :id";
@@ -111,7 +110,6 @@ namespace Dal
                         p.stock,
                         p.id_categoria,
                         c.nombre AS nom_categoria,
-                        p.fecha_registro
                 FROM    productos p
                 JOIN    categorias c ON c.id_categoria = p.id_categoria
                 ORDER   BY p.id_producto";

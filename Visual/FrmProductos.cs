@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Dal;
+using Entity;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -13,14 +15,17 @@ namespace Visual
 {
     public partial class FrmProductos : Form
     {
+        // ← Conexión a Oracle
+        private const string connectionString =
+            "User Id=jenapp;Password=jen123;Data Source=192.168.1.38:1521/XEPDB1";
         public FrmProductos()
         {
             InitializeComponent();
-
          
 
-        }
 
+        }
+        ProductoRepository _productoRepository = new ProductoRepository("User Id=jenapp;Password=jen123;Data Source=192.168.1.38:1521/XEPDB1");
         public void Minimizar()
         {
             this.WindowState = FormWindowState.Minimized;
@@ -81,5 +86,74 @@ namespace Visual
         {
             Minimizar();
         }
+
+
+
+        
+
+        private void btncategorias_Click(object sender, EventArgs e)
+        {
+
+            this.Close();
+            FrmCategorias frm = new FrmCategorias();
+           
+            frm.Show();
+          
+        }
+
+        private void BtnGuardarProducto_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                // Leer los valores de los TextBox
+                string nombre = txtNombre.Text.Trim();
+                string descripcion = txtDescripcion.Text.Trim();
+                decimal precio = decimal.Parse(txtPrecio.Text.Trim());
+                int stock = int.Parse(txtStock.Text.Trim());
+                int idCategoria = int.Parse(txtCategoria.Text.Trim()); // Debes ingresar un ID numérico válido
+
+                // Crear objeto Producto
+                var producto = new Producto
+                {
+                    Nombre = nombre,
+                    Descripcion = descripcion,
+                    Precio = precio,
+                    Stock = stock,
+                    IdCategoria = idCategoria
+                };
+
+                // Guardar en base de datos
+                bool exito = _productoRepository.Agregar(producto);
+
+                if (exito)
+                {
+                    MessageBox.Show("Producto guardado correctamente.\nID generado: " + producto.Id);
+                    LimpiarCampos();
+                }
+                else
+                {
+                    MessageBox.Show("Error al guardar el producto.");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ocurrió un error: " + ex.Message);
+            }
+            
+    }
+        private void LimpiarCampos()
+        {
+            txtNombre.Clear();
+            txtDescripcion.Clear();
+            txtPrecio.Clear();
+            txtStock.Clear();
+            txtCategoria.Clear();
+        }
+
+        private void ListaProducto_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
+
