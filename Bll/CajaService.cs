@@ -14,7 +14,7 @@ namespace Bll
         public void Agregar(Caja caja)
         {
             caja.Id = _contadorId++;
-            caja.FechaRegistro = DateTime.Now;
+            caja.FechaCierre = DateTime.Now;
             caja.FechaApertura = DateTime.Now;
             _cajas.Add(caja);
         }

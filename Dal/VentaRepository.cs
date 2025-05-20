@@ -1,4 +1,5 @@
 ﻿using Entity;
+using Entity.Entity;
 using Oracle.ManagedDataAccess.Client;
 using Oracle.ManagedDataAccess.Types;
 using System;
@@ -19,134 +20,265 @@ namespace Dal
             _connectionString = connectionString;
         }
 
-        public bool Agregar(Venta entidad)
+        public bool Agregar(Venta venta)
         {
-            const string sql = @"
-                INSERT INTO ventas (fecha, total, id_cliente)
-                VALUES (SYSDATE, :total, :id_cliente)
-                RETURNING id_venta INTO :id_out";
-
-            using (var conn = new OracleConnection(_connectionString))
-            using (var cmd = new OracleCommand(sql, conn))
+            try
             {
-                cmd.BindByName = true;
-                cmd.Parameters.Add("total", OracleDbType.Decimal).Value = entidad.Total;
-                cmd.Parameters.Add("id_cliente", OracleDbType.Int32).Value = entidad.IdCliente;
+                using (var connection = new OracleConnection(_connectionString))
+                {
+                    connection.Open();
+                    using (var transaction = connection.BeginTransaction())
+                    {
+                        using (var cmd = connection.CreateCommand())
+                        {
+                            cmd.Transaction = transaction;
+                            cmd.CommandText = "INSERT INTO VENTA (FECHAVENTA, TOTAL, CEDULACLIENTE, NOMBRECLIENTE, TELEFONOCLIENTE) " +
+                                              "VALUES (:Fecha, :Total, :Cedula, :Nombre, :Telefono) RETURNING ID INTO :Id";
+                            cmd.Parameters.Add(":Fecha", OracleDbType.Date).Value = venta.FechaVenta;
+                            cmd.Parameters.Add(":Total", OracleDbType.Decimal).Value = venta.Total;
+                            cmd.Parameters.Add(":Cedula", OracleDbType.Varchar2).Value = venta.CedulaCliente;
+                            cmd.Parameters.Add(":Nombre", OracleDbType.Varchar2).Value = venta.NombreCliente;
+                            cmd.Parameters.Add(":Telefono", OracleDbType.Varchar2).Value = venta.TelefonoCliente;
+                            cmd.Parameters.Add(":Id", OracleDbType.Int32).Direction = ParameterDirection.Output;
+                            cmd.ExecuteNonQuery();
 
-                var pIdOut = cmd.Parameters.Add("id_out", OracleDbType.Decimal);
-                pIdOut.Direction = ParameterDirection.Output;
+                            venta.Id = Convert.ToInt32(cmd.Parameters[":Id"].Value);
+                        }
 
-                conn.Open();
-                var filas = cmd.ExecuteNonQuery();
-                entidad.Id = Convert.ToInt32(((OracleDecimal)pIdOut.Value).Value);
-                entidad.FechaRegistro = DateTime.Now;
+                        foreach (var detalle in venta.Detalles)
+                        {
+                            using (var cmd = connection.CreateCommand())
+                            {
+                                cmd.Transaction = transaction;
+                                cmd.CommandText = "INSERT INTO DETALLEVENTA (IDVENTA, IDPRODUCTO, CANTIDAD, PRECIOUNITARIO) " +
+                                                  "VALUES (:IdVenta, :IdProducto, :Cantidad, :Precio)";
+                                cmd.Parameters.Add(":IdVenta", OracleDbType.Int32).Value = venta.Id;
+                                cmd.Parameters.Add(":IdProducto", OracleDbType.Int32).Value = detalle.ProductoId;
+                                cmd.Parameters.Add(":Cantidad", OracleDbType.Int32).Value = detalle.Cantidad;
+                                cmd.Parameters.Add(":Precio", OracleDbType.Decimal).Value = detalle.PrecioUnitario;
+                                cmd.ExecuteNonQuery();
+                            }
+                        }
 
-                return filas > 0;
+                        transaction.Commit();
+                        return true;
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                // Aquí podrías loguear la excepción
+                return false;
             }
         }
 
         public Venta ObtenerPorId(int id)
         {
-            const string sql = @"
-                SELECT v.id_venta, v.fecha, v.total,
-                       v.id_cliente, c.nombre AS nombre_cliente
-                FROM ventas v
-                JOIN clientes c ON c.id_cliente = v.id_cliente
-                WHERE v.id_venta = :id";
+            Venta venta = null;
 
-            using (var conn = new OracleConnection(_connectionString))
-            using (var cmd = new OracleCommand(sql, conn))
+            try
             {
-                cmd.BindByName = true;
-                cmd.Parameters.Add("id", OracleDbType.Int32).Value = id;
-
-                conn.Open();
-                using (var reader = cmd.ExecuteReader())
+                using (var connection = new OracleConnection(_connectionString))
                 {
-                    if (reader.Read())
-                        return Map(reader);
+                    connection.Open();
+
+                    // Obtener datos de la venta
+                    using (var cmd = connection.CreateCommand())
+                    {
+                        cmd.CommandText = "SELECT ID, FECHAVENTA, TOTAL, CEDULACLIENTE, NOMBRECLIENTE, TELEFONOCLIENTE FROM VENTA WHERE ID = :Id";
+                        cmd.Parameters.Add(":Id", OracleDbType.Int32).Value = id;
+
+                        using (var reader = cmd.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                venta = new Venta
+                                {
+                                    Id = reader.GetInt32(0),
+                                    FechaVenta = reader.GetDateTime(1),
+                                    Total = reader.GetDecimal(2),
+                                    CedulaCliente = reader.GetString(3),
+                                    NombreCliente = reader.GetString(4),
+                                    TelefonoCliente = reader.GetString(5),
+                                    Detalles = new List<DetalleVenta>()
+                                };
+                            }
+                            else
+                            {
+                                return null; // No se encontró la venta
+                            }
+                        }
+                    }
+
+                    // Obtener detalles de la venta
+                    using (var cmd = connection.CreateCommand())
+                    {
+                        cmd.CommandText = "SELECT IDPRODUCTO, CANTIDAD, PRECIOUNITARIO FROM DETALLEVENTA WHERE IDVENTA = :IdVenta";
+                        cmd.Parameters.Add(":IdVenta", OracleDbType.Int32).Value = id;
+
+                        using (var reader = cmd.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                venta.Detalles.Add(new DetalleVenta
+                                {
+                                    ProductoId = reader.GetInt32(0),
+                                    Cantidad = reader.GetInt32(1),
+                                    PrecioUnitario = reader.GetDecimal(2)
+                                });
+                            }
+                        }
+                    }
                 }
             }
+            catch (Exception)
+            {
+                // Loguear error si quieres
+                return null;
+            }
 
-            return null;
+            return venta;
         }
 
         public List<Venta> ObtenerTodos()
         {
-            const string sql = @"
-                SELECT v.id_venta, v.fecha, v.total,
-                       v.id_cliente, c.nombre AS nombre_cliente
-                FROM ventas v
-                JOIN clientes c ON c.id_cliente = v.id_cliente
-                ORDER BY v.id_venta DESC";
+            var ventas = new List<Venta>();
 
-            var lista = new List<Venta>();
-
-            using (var conn = new OracleConnection(_connectionString))
-            using (var cmd = new OracleCommand(sql, conn))
+            try
             {
-                conn.Open();
-                using (var reader = cmd.ExecuteReader())
+                using (var connection = new OracleConnection(_connectionString))
                 {
-                    while (reader.Read())
-                        lista.Add(Map(reader));
+                    connection.Open();
+
+                    using (var cmd = connection.CreateCommand())
+                    {
+                        cmd.CommandText = "SELECT ID, FECHAVENTA, TOTAL, CEDULACLIENTE, NOMBRECLIENTE, TELEFONOCLIENTE FROM VENTA";
+
+                        using (var reader = cmd.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                ventas.Add(new Venta
+                                {
+                                    Id = reader.GetInt32(0),
+                                    FechaVenta = reader.GetDateTime(1),
+                                    Total = reader.GetDecimal(2),
+                                    CedulaCliente = reader.GetString(3),
+                                    NombreCliente = reader.GetString(4),
+                                    TelefonoCliente = reader.GetString(5),
+                                    Detalles = new List<DetalleVenta>() // Podrías cargar detalles aquí si quieres
+                                });
+                            }
+                        }
+                    }
                 }
             }
+            catch (Exception)
+            {
+                // Loguear error si quieres
+            }
 
-            return lista;
+            return ventas;
         }
 
-        public bool Actualizar(Venta entidad)
+        public bool Actualizar(Venta venta)
         {
-            const string sql = @"
-                UPDATE ventas
-                SET total = :total,
-                    id_cliente = :id_cliente
-                WHERE id_venta = :id_venta";
-
-            using (var conn = new OracleConnection(_connectionString))
-            using (var cmd = new OracleCommand(sql, conn))
+            try
             {
-                cmd.BindByName = true;
+                using (var connection = new OracleConnection(_connectionString))
+                {
+                    connection.Open();
+                    using (var transaction = connection.BeginTransaction())
+                    {
+                        // Actualizar tabla VENTA
+                        using (var cmd = connection.CreateCommand())
+                        {
+                            cmd.Transaction = transaction;
+                            cmd.CommandText = "UPDATE VENTA SET FECHAVENTA = :Fecha, TOTAL = :Total, CEDULACLIENTE = :Cedula, " +
+                                              "NOMBRECLIENTE = :Nombre, TELEFONOCLIENTE = :Telefono WHERE ID = :Id";
+                            cmd.Parameters.Add(":Fecha", OracleDbType.Date).Value = venta.FechaVenta;
+                            cmd.Parameters.Add(":Total", OracleDbType.Decimal).Value = venta.Total;
+                            cmd.Parameters.Add(":Cedula", OracleDbType.Varchar2).Value = venta.CedulaCliente;
+                            cmd.Parameters.Add(":Nombre", OracleDbType.Varchar2).Value = venta.NombreCliente;
+                            cmd.Parameters.Add(":Telefono", OracleDbType.Varchar2).Value = venta.TelefonoCliente;
+                            cmd.Parameters.Add(":Id", OracleDbType.Int32).Value = venta.Id;
+                            cmd.ExecuteNonQuery();
+                        }
 
-                cmd.Parameters.Add("total", OracleDbType.Decimal).Value = entidad.Total;
-                cmd.Parameters.Add("id_cliente", OracleDbType.Int32).Value = entidad.IdCliente;
-                cmd.Parameters.Add("id_venta", OracleDbType.Int32).Value = entidad.Id;
+                        // Eliminar detalles antiguos
+                        using (var cmd = connection.CreateCommand())
+                        {
+                            cmd.Transaction = transaction;
+                            cmd.CommandText = "DELETE FROM DETALLEVENTA WHERE IDVENTA = :IdVenta";
+                            cmd.Parameters.Add(":IdVenta", OracleDbType.Int32).Value = venta.Id;
+                            cmd.ExecuteNonQuery();
+                        }
 
-                conn.Open();
-                return cmd.ExecuteNonQuery() > 0;
+                        // Insertar detalles nuevos
+                        foreach (var detalle in venta.Detalles)
+                        {
+                            using (var cmd = connection.CreateCommand())
+                            {
+                                cmd.Transaction = transaction;
+                                cmd.CommandText = "INSERT INTO DETALLEVENTA (IDVENTA, IDPRODUCTO, CANTIDAD, PRECIOUNITARIO) " +
+                                                  "VALUES (:IdVenta, :IdProducto, :Cantidad, :Precio)";
+                                cmd.Parameters.Add(":IdVenta", OracleDbType.Int32).Value = venta.Id;
+                                cmd.Parameters.Add(":IdProducto", OracleDbType.Int32).Value = detalle.ProductoId;
+                                cmd.Parameters.Add(":Cantidad", OracleDbType.Int32).Value = detalle.Cantidad;
+                                cmd.Parameters.Add(":Precio", OracleDbType.Decimal).Value = detalle.PrecioUnitario;
+                                cmd.ExecuteNonQuery();
+                            }
+                        }
+
+                        transaction.Commit();
+                        return true;
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                // Loguear error
+                return false;
             }
         }
 
         public bool Eliminar(int id)
         {
-            const string sql = @"DELETE FROM ventas WHERE id_venta = :id";
-
-            using (var conn = new OracleConnection(_connectionString))
-            using (var cmd = new OracleCommand(sql, conn))
+            try
             {
-                cmd.BindByName = true;
-                cmd.Parameters.Add("id", OracleDbType.Int32).Value = id;
-
-                conn.Open();
-                return cmd.ExecuteNonQuery() > 0;
-            }
-        }
-
-        private Venta Map(OracleDataReader reader)
-        {
-            return new Venta
-            {
-                Id = reader.GetInt32(reader.GetOrdinal("id_venta")),
-                FechaRegistro = reader.GetDateTime(reader.GetOrdinal("fecha")),
-                Total = reader.GetDecimal(reader.GetOrdinal("total")),
-                IdCliente = reader.GetInt32(reader.GetOrdinal("id_cliente")),
-                Cliente = new Cliente
+                using (var connection = new OracleConnection(_connectionString))
                 {
-                    Id = reader.GetInt32(reader.GetOrdinal("id_cliente")),
-                    Nombre = reader.GetString(reader.GetOrdinal("nombre_cliente"))
+                    connection.Open();
+                    using (var transaction = connection.BeginTransaction())
+                    {
+                        // Eliminar detalles primero (por FK)
+                        using (var cmd = connection.CreateCommand())
+                        {
+                            cmd.Transaction = transaction;
+                            cmd.CommandText = "DELETE FROM DETALLEVENTA WHERE IDVENTA = :IdVenta";
+                            cmd.Parameters.Add(":IdVenta", OracleDbType.Int32).Value = id;
+                            cmd.ExecuteNonQuery();
+                        }
+
+                        // Eliminar venta
+                        using (var cmd = connection.CreateCommand())
+                        {
+                            cmd.Transaction = transaction;
+                            cmd.CommandText = "DELETE FROM VENTA WHERE ID = :Id";
+                            cmd.Parameters.Add(":Id", OracleDbType.Int32).Value = id;
+                            int filasAfectadas = cmd.ExecuteNonQuery();
+
+                            transaction.Commit();
+                            return filasAfectadas > 0;
+                        }
+                    }
                 }
-            };
+            }
+            catch (Exception)
+            {
+                // Loguear error
+                return false;
+            }
         }
     }
 }

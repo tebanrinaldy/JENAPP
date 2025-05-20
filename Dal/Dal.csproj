@@ -79,8 +79,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CategoriaRepository.cs" />
-    <Compile Include="ClienteRepository.cs" />
     <Compile Include="ConexionOracle.cs" />
+    <Compile Include="DetalleVentaRepository.cs" />
     <Compile Include="IRepository.cs" />
     <Compile Include="ProductoRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

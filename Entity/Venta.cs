@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Entity.Entity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,13 +9,14 @@ namespace Entity
 {
     public class Venta : EntidadBase
     {
-        public DateTime FechaRegistro { get; set; }
+        public DateTime FechaVenta { get; set; }
+
         public decimal Total { get; set; }
 
-        public int IdCliente { get; set; }
-        public Cliente Cliente { get; set; }
+        public string CedulaCliente { get; set; }
+        public string NombreCliente { get; set; }
+        public string TelefonoCliente { get; set; }
 
-        public int IdUsuario { get; set; }
-        public ICollection<DetalleVenta> Detalles { get; set; } 
+        public ICollection<DetalleVenta> Detalles { get; set; }
     }
 }

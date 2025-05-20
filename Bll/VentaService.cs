@@ -8,40 +8,69 @@ using System.Threading.Tasks;
 
 namespace Bll
 {
-    public class VentaService : IService<Venta>
+    using Entity;
+    using Dal;
+    using System;
+    using System.Collections.Generic;
+
+    namespace Bll
     {
-        private readonly IRepository<Venta> _ventaRepo;
-
-        public VentaService(IRepository<Venta> ventaRepo)
+        public class VentaService : IService<Venta>
         {
-            _ventaRepo = ventaRepo;
-        }
+            private readonly IRepository<Venta> _ventaRepository;
 
-        public void Agregar(Venta venta)
-        {
-            venta.FechaRegistro = DateTime.Now;
-            venta.Total = venta.Detalles?.Sum(d => d.Cantidad * d.PrecioUnitario) ?? 0;
-            _ventaRepo.Agregar(venta);
-        }
+            public VentaService(IRepository<Venta> ventaRepository)
+            {
+                _ventaRepository = ventaRepository;
+            }
 
-        public void Actualizar(Venta venta)
-        {
-            _ventaRepo.Actualizar(venta);
-        }
+            public void Agregar(Venta entidad)
+            {
+                if (entidad == null)
+                    throw new ArgumentNullException(nameof(entidad));
 
-        public void Eliminar(int id)
-        {
-            _ventaRepo.Eliminar(id);
-        }
+                if (entidad.Detalles == null || entidad.Detalles.Count == 0)
+                    throw new ArgumentException("La venta debe tener al menos un detalle.");
 
-        public Venta ObtenerPorId(int id)
-        {
-            return _ventaRepo.ObtenerPorId(id);
-        }
+                bool resultado = _ventaRepository.Agregar(entidad);
+                if (!resultado)
+                    throw new Exception("No se pudo agregar la venta.");
+            }
 
-        public List<Venta> Listar()
-        {
-            return _ventaRepo.ObtenerTodos();
+            public void Actualizar(Venta entidad)
+            {
+                if (entidad == null)
+                    throw new ArgumentNullException(nameof(entidad));
+                if (entidad.Id <= 0)
+                    throw new ArgumentException("El Id de la venta no es válido.");
+
+                bool resultado = _ventaRepository.Actualizar(entidad);
+                if (!resultado)
+                    throw new Exception("No se pudo actualizar la venta.");
+            }
+
+            public void Eliminar(int id)
+            {
+                if (id <= 0)
+                    throw new ArgumentException("El Id no es válido.");
+
+                bool resultado = _ventaRepository.Eliminar(id);
+                if (!resultado)
+                    throw new Exception("No se pudo eliminar la venta.");
+            }
+
+            public Venta ObtenerPorId(int id)
+            {
+                if (id <= 0)
+                    throw new ArgumentException("El Id no es válido.");
+
+                return _ventaRepository.ObtenerPorId(id);
+            }
+
+            public List<Venta> Listar()
+            {
+                return _ventaRepository.ObtenerTodos();
+            }
         }
     }
 }

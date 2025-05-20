@@ -43,11 +43,10 @@
   <ItemGroup>
     <Compile Include="CajaService.cs" />
     <Compile Include="CategoriaService.cs" />
-    <Compile Include="ClienteService.cs" />
+    <Compile Include="DetalleVentaService.cs" />
     <Compile Include="Iservice.cs" />
     <Compile Include="ProductoService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ReporteVentaService.cs" />
     <Compile Include="VentaService.cs" />
   </ItemGroup>
   <ItemGroup>
