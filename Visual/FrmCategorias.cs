@@ -26,6 +26,8 @@ namespace Visual
         {
             InitializeComponent();
             _categoriaRepository = new CategoriaRepository(connectionString);
+           CargarCategorias();  
+
         }
 
         private void FrmCategorias_Load(object sender, EventArgs e)
