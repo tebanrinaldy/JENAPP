@@ -14,24 +14,14 @@ namespace Dal
 {
     public class ProductoRepository : IRepository<Producto>
     {
-        /*-------------------------------------------------
-         *  F I E L D S
-         *------------------------------------------------*/
+
         private readonly string _connectionString;
 
-        /*-------------------------------------------------
-         *  C T O R
-         *------------------------------------------------*/
+
         public ProductoRepository(string connectionString)
         {
             _connectionString = connectionString;
         }
-
-        /*-------------------------------------------------
-         *  C R U D
-         *------------------------------------------------*/
-
-        // ------------- CREATE -------------
         public bool Agregar(Producto entidad)
         {
             const string sql = @"
@@ -45,28 +35,24 @@ namespace Dal
             {
                 cmd.BindByName = true;
 
-                // parámetros de entrada
                 cmd.Parameters.Add("nombre", OracleDbType.Varchar2).Value = entidad.Nombre;
                 cmd.Parameters.Add("descripcion", OracleDbType.Varchar2).Value = entidad.Descripcion;
                 cmd.Parameters.Add("precio", OracleDbType.Decimal).Value = entidad.Precio;
                 cmd.Parameters.Add("stock", OracleDbType.Int32).Value = entidad.Stock;
                 cmd.Parameters.Add("id_categoria", OracleDbType.Int32).Value = entidad.IdCategoria;
 
-                // parámetro de salida
                 var pIdOut = cmd.Parameters.Add("id_out", OracleDbType.Decimal);
                 pIdOut.Direction = ParameterDirection.Output;
 
                 conn.Open();
                 var filas = cmd.ExecuteNonQuery();
 
-                // conversión OracleDecimal → int
                 entidad.Id = Convert.ToInt32(((OracleDecimal)pIdOut.Value).Value);
 
                 return filas > 0;
             }
         }
 
-        // ------------- READ (por id) -------------
         public Producto ObtenerPorId(int id)
         {
             const string sql = @"
@@ -99,7 +85,6 @@ namespace Dal
             return null;
         }
 
-        // ------------- READ (todos) -------------
         public List<Producto> ObtenerTodos()
         {
             const string sql = @"
@@ -131,7 +116,6 @@ namespace Dal
             return lista;
         }
 
-        // ------------- UPDATE -------------
         public bool Actualizar(Producto entidad)
         {
             const string sql = @"
@@ -160,7 +144,6 @@ namespace Dal
             }
         }
 
-        // ------------- DELETE -------------
         public bool Eliminar(int id)
         {
             const string sql = @"
@@ -178,9 +161,6 @@ namespace Dal
             }
         }
 
-        /*-------------------------------------------------
-         *  H E L P E R
-         *------------------------------------------------*/
         private static Producto Map(OracleDataReader reader)
         {
             return new Producto

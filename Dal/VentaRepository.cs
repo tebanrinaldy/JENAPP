@@ -67,7 +67,7 @@ namespace Dal
             }
             catch (Exception)
             {
-                // Aquí podrías loguear la excepción
+
                 return false;
             }
         }
@@ -82,7 +82,7 @@ namespace Dal
                 {
                     connection.Open();
 
-                    // Obtener datos de la venta
+
                     using (var cmd = connection.CreateCommand())
                     {
                         cmd.CommandText = "SELECT ID, FECHAVENTA, TOTAL, CEDULACLIENTE, NOMBRECLIENTE, TELEFONOCLIENTE FROM VENTA WHERE ID = :Id";
@@ -105,12 +105,11 @@ namespace Dal
                             }
                             else
                             {
-                                return null; // No se encontró la venta
+                                return null; 
                             }
                         }
                     }
 
-                    // Obtener detalles de la venta
                     using (var cmd = connection.CreateCommand())
                     {
                         cmd.CommandText = "SELECT IDPRODUCTO, CANTIDAD, PRECIOUNITARIO FROM DETALLEVENTA WHERE IDVENTA = :IdVenta";
@@ -133,7 +132,7 @@ namespace Dal
             }
             catch (Exception)
             {
-                // Loguear error si quieres
+
                 return null;
             }
 
@@ -166,7 +165,7 @@ namespace Dal
                                     CedulaCliente = reader.GetString(3),
                                     NombreCliente = reader.GetString(4),
                                     TelefonoCliente = reader.GetString(5),
-                                    Detalles = new List<DetalleVenta>() // Podrías cargar detalles aquí si quieres
+                                    Detalles = new List<DetalleVenta>() 
                                 });
                             }
                         }
@@ -175,7 +174,7 @@ namespace Dal
             }
             catch (Exception)
             {
-                // Loguear error si quieres
+
             }
 
             return ventas;
@@ -205,7 +204,6 @@ namespace Dal
                             cmd.ExecuteNonQuery();
                         }
 
-                        // Eliminar detalles antiguos
                         using (var cmd = connection.CreateCommand())
                         {
                             cmd.Transaction = transaction;
@@ -214,7 +212,6 @@ namespace Dal
                             cmd.ExecuteNonQuery();
                         }
 
-                        // Insertar detalles nuevos
                         foreach (var detalle in venta.Detalles)
                         {
                             using (var cmd = connection.CreateCommand())
@@ -237,7 +234,7 @@ namespace Dal
             }
             catch (Exception)
             {
-                // Loguear error
+
                 return false;
             }
         }
@@ -251,7 +248,7 @@ namespace Dal
                     connection.Open();
                     using (var transaction = connection.BeginTransaction())
                     {
-                        // Eliminar detalles primero (por FK)
+
                         using (var cmd = connection.CreateCommand())
                         {
                             cmd.Transaction = transaction;
@@ -260,7 +257,7 @@ namespace Dal
                             cmd.ExecuteNonQuery();
                         }
 
-                        // Eliminar venta
+
                         using (var cmd = connection.CreateCommand())
                         {
                             cmd.Transaction = transaction;
@@ -276,7 +273,7 @@ namespace Dal
             }
             catch (Exception)
             {
-                // Loguear error
+
                 return false;
             }
         }

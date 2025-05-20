@@ -79,7 +79,7 @@ namespace Dal
             }
             catch (Exception)
             {
-                // Log o manejo del error
+
             }
 
             return detalle;
@@ -116,7 +116,7 @@ namespace Dal
             }
             catch (Exception)
             {
-                // Log
+                
             }
 
             return lista;

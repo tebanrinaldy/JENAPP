@@ -13,24 +13,15 @@ namespace Dal
 {
     public class CategoriaRepository : IRepository<Categoria>
     {
-        /*-------------------------------------------------
-         *  F I E L D S
-         *------------------------------------------------*/
+       
         private readonly string _connectionString;
 
-        /*-------------------------------------------------
-         *  C T O R
-         *------------------------------------------------*/
+        
         public CategoriaRepository(string connectionString)
         {
             _connectionString = connectionString;
-        }
+        }   
 
-        /*-------------------------------------------------
-         *  C R U D
-         *------------------------------------------------*/
-
-        // ------------ CREATE ------------
         public bool Agregar(Categoria entidad)
         {
             const string sql = @"
@@ -42,25 +33,17 @@ namespace Dal
             using (var cmd = new OracleCommand(sql, conn))
             {
                 cmd.BindByName = true;
-
-                // IN
                 cmd.Parameters.Add("nombre", OracleDbType.Varchar2).Value = entidad.Nombre;
-
-                // OUT
                 var pIdOut = cmd.Parameters.Add("id_out", OracleDbType.Decimal);
                 pIdOut.Direction = ParameterDirection.Output;
 
                 conn.Open();
                 var filas = cmd.ExecuteNonQuery();
-
-                // convertir OracleDecimal → int
                 entidad.Id = Convert.ToInt32(((OracleDecimal)pIdOut.Value).Value);
-
                 return filas > 0;
             }
         }
 
-        // ------------ READ (por id) ------------
         public Categoria ObtenerPorId(int id)
         {
             const string sql = @"
@@ -90,7 +73,6 @@ namespace Dal
             return null;
         }
 
-        // ------------ READ (todos) ------------
         public List<Categoria> ObtenerTodos()
         {
             var lista = new List<Categoria>();
@@ -119,7 +101,6 @@ namespace Dal
             return lista;
         }
 
-        // ------------ UPDATE ------------
         public bool Actualizar(Categoria entidad)
         {
             const string sql = @"
@@ -139,7 +120,6 @@ namespace Dal
             }
         }
 
-        // ------------ DELETE ------------
         public bool Eliminar(int id)
         {
             const string sql = @"

@@ -17,21 +17,16 @@ namespace Bll
         private readonly ProductoRepository _productoRepo;
         private readonly CategoriaRepository _categoriaRepo;
 
-        /// <param name="connectionString">
-        /// Cadena de conexión que comparten los repositorios.
-        /// </param>
         public ProductoService(string connectionString)
         {
             _productoRepo = new ProductoRepository(connectionString);
             _categoriaRepo = new CategoriaRepository(connectionString);
         }
 
-        /*-----------------------------------------------------------
-         *  Crear
-         *----------------------------------------------------------*/
+        //Crear o Insertar
         public void Agregar(Producto producto)
         {
-            // Regla de negocio – la categoría debe existir
+            //Validacion de categoria
             if (_categoriaRepo.ObtenerPorId(producto.IdCategoria) == null)
                 throw new Exception("La categoría especificada no existe.");
 
@@ -40,9 +35,7 @@ namespace Bll
                 throw new Exception("No se pudo insertar el producto en la base de datos.");
         }
 
-        /*-----------------------------------------------------------
-         *  Actualizar
-         *----------------------------------------------------------*/
+        //Modificar o Actualizar
         public void Actualizar(Producto producto)
         {
             if (_categoriaRepo.ObtenerPorId(producto.IdCategoria) == null)
@@ -52,18 +45,14 @@ namespace Bll
                 throw new Exception("No se pudo actualizar el producto.");
         }
 
-        /*-----------------------------------------------------------
-         *  Eliminar
-         *----------------------------------------------------------*/
+        //Eliminar
         public void Eliminar(int id)
         {
             if (!_productoRepo.Eliminar(id))
                 throw new Exception("No se pudo eliminar el producto.");
         }
 
-        /*-----------------------------------------------------------
-         *  Consultas
-         *----------------------------------------------------------*/
+        //Consulta por ID
         public Producto ObtenerPorId(int id) => _productoRepo.ObtenerPorId(id);
 
         public List<Producto> Listar() => _productoRepo.ObtenerTodos();
