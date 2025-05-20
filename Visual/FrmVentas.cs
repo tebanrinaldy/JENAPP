@@ -11,6 +11,8 @@ using System.Windows.Forms;
 using Entity;
 using Bll;
 using Entity.Entity;
+using System.Data.OracleClient;
+using Oracle.ManagedDataAccess.Client;
 
 
 
@@ -154,79 +156,30 @@ namespace Visual
 
         private void btnGuardarVenta_Click(object sender, EventArgs e)
         {
-            if (dgvVentas.Rows.Count == 0)
+            using (OracleConnection conn = new OracleConnection("DATA SOURCE=tu_oracle;USER ID=jenapp;PASSWORD=tu_contraseña"))
             {
-                MessageBox.Show("No hay productos para vender.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
-            try
-            {
-                // Crear el objeto venta y asignar datos  
-                Venta nuevaVenta = new Venta
+                try
                 {
-                    FechaVenta = DateTime.Now,
-                    Total = dgvVentas.Rows.Cast<DataGridViewRow>()
-                                .Sum(row => Convert.ToDecimal(row.Cells["colSubtotal"].Value)),
+                    conn.Open();
 
-                    CedulaCliente = txtCedula.Text.Trim(),
-                    NombreCliente = txtNombreCliente.Text.Trim(),
-                    TelefonoCliente = txtTelefono.Text.Trim(),
-
-                    DetalleVentas = new List<DetalleVenta>()
-                };
-
-                // Validar datos básicos de cliente  
-                if (string.IsNullOrEmpty(nuevaVenta.CedulaCliente) ||
-                    string.IsNullOrEmpty(nuevaVenta.NombreCliente))
-                {
-                    MessageBox.Show("Debe ingresar la cédula y nombre del cliente.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
-
-                // Agregar detalles de venta  
-                foreach (DataGridViewRow row in dgvVentas.Rows)
-                {
-                    if (row.IsNewRow) continue;
-
-                    DetalleVenta detalle = new DetalleVenta
+                    using (OracleCommand cmd = new OracleCommand())
                     {
-                        NombreProducto = row.Cells["colProducto"].Value.ToString(),
-                        PrecioUnitario = Convert.ToDecimal(row.Cells["colPrecio"].Value),
-                        Cantidad = Convert.ToInt32(row.Cells["colCantidad"].Value),
-                        Subtotal = Convert.ToDecimal(row.Cells["colSubtotal"].Value)
-                    };
+                        cmd.Connection = conn;
+                        cmd.CommandText = "INSERT INTO detalle_ventas (id_detalle, id_venta, id_producto, cantidad) VALUES (:id_detalle, :id_venta, :id_producto, :cantidad)";
 
-                    nuevaVenta.DetalleVentas.Add(detalle);
+                        // Suponiendo que tomas los valores de tus controles
+                        cmd.Parameters.Add("id_detalle", OracleDbType.Int32).Value = int.Parse(txtIdDetalle.Text);
+                        cmd.Parameters.Add("id_venta", OracleDbType.Int32).Value = int.Parse(txtIdVenta.Text);
+                        cmd.Parameters.Add("id_producto", OracleDbType.Int32).Value = int.Parse(txtIdProducto.Text);
+                        cmd.Parameters.Add("cantidad", OracleDbType.Int32).Value = int.Parse(txtCantidad.Text);
+
+                        cmd.ExecuteNonQuery();
+                        MessageBox.Show("Detalle de venta guardado correctamente.");
+                    }
                 }
-
-                // Guardar usando el repositorio  
-                bool guardado = ventaRepository.Agregar(nuevaVenta); // Cambiado para usar el método Agregar correctamente  
-
-                if (guardado)
+                catch (Exception ex)
                 {
-                    MessageBox.Show("Venta registrada correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    dgvVentas.Rows.Clear();
-                    lblTotal.Text = "Total: $0.00";
-
-                    // Opcional: limpiar campos cliente  
-                    txtCedula.Clear();
-                    txtNombreCliente.Clear();
-                    txtTelefono.Clear();
+                    MessageBox.Show("Error al guardar el detalle: " + ex.Message);
                 }
-                else
-                {
-                    MessageBox.Show("Error al registrar la venta.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error: " + ex.Message, "Excepción", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-    }
-    
-}
-        
-    
-
