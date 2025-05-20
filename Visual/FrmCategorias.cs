@@ -16,20 +16,30 @@ namespace Visual
 {
     public partial class FrmCategorias : Form
     {
+        // ← Conexión a Oracle
+        private const string connectionString =
+            "User Id=jenapp;Password=jen123;Data Source=192.168.1.38:1521/XEPDB1";
+
+        private readonly CategoriaRepository _categoriaRepository;
+
         public FrmCategorias()
         {
             InitializeComponent();
-            _categoriaService = new CategoriaService();
+            _categoriaRepository = new CategoriaRepository(connectionString);
+        }
+
+        private void FrmCategorias_Load(object sender, EventArgs e)
+        {
             CargarCategorias();
         }
 
-        private readonly CategoriaService _categoriaService = new CategoriaService();
-
         private void CargarCategorias()
         {
+            var categorias = _categoriaRepository.ObtenerTodos();
+
             listBox1.DataSource = null;
-            listBox1.DataSource = _categoriaService.Listar();
-            listBox1.DisplayMember = "Nombre"; // Mostrar solo el nombre en el ListBox   
+            listBox1.DataSource = categorias;
+            listBox1.DisplayMember = "Nombre"; // ← Asegúrate de que Categoria tenga esta propiedad
         }
 
         private void BtnGuardarProducto_Click(object sender, EventArgs e)
@@ -42,24 +52,22 @@ namespace Visual
                 return;
             }
 
-            Categoria nuevaCategoria = new Categoria { Nombre = nombre };
+            var nuevaCategoria = new Categoria { Nombre = nombre };
 
-            try
+            var exito = _categoriaRepository.Agregar(nuevaCategoria);
+
+            if (exito)
             {
-                _categoriaService.Agregar(nuevaCategoria); // Método Agregar no devuelve un valor
-                textBox1.Text = nuevaCategoria.Id.ToString();
+                textBox1.Text = nuevaCategoria.Id.ToString(); // Mostrar el ID generado
                 MessageBox.Show("Categoría guardada correctamente.");
+                CargarCategorias(); // Recargar lista
+                textBox1.Clear();
                 textBox2.Clear();
-                CargarCategorias(); // Opcional
             }
-            catch (Exception ex)
+            else
             {
-                MessageBox.Show($"Ocurrió un error al guardar en la base de datos: {ex.Message}");
+                MessageBox.Show("Error al guardar en la base de datos.");
             }
-        }
-        private void FrmCategorias_Load(object sender, EventArgs e)
-        {
-            CargarCategorias();
         }
     }
 }
