@@ -11,7 +11,6 @@ using System.Windows.Forms;
 using Entity;
 using Bll;
 using Entity.Entity;
-using System.Data.OracleClient;
 using Oracle.ManagedDataAccess.Client;
 
 
@@ -142,7 +141,7 @@ namespace Visual
 
         private void btnEliminar_Click(object sender, EventArgs e)
         {
-         
+
             if (dgvVentas.CurrentRow != null)
             {
                 dgvVentas.Rows.Remove(dgvVentas.CurrentRow);
@@ -183,3 +182,5 @@ namespace Visual
                 }
             }
         }
+    }
+}
