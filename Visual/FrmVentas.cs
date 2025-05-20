@@ -176,7 +176,7 @@ namespace Visual
                     DetalleVentas = new List<DetalleVenta>()
                 };
 
-                // Validar datos básicos de cliente  
+                // Validar datos básicos 
                 if (string.IsNullOrEmpty(nuevaVenta.CedulaCliente) ||
                     string.IsNullOrEmpty(nuevaVenta.NombreCliente))
                 {
