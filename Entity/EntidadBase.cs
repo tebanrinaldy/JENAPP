@@ -9,6 +9,6 @@ namespace Entity
    public abstract class EntidadBase
     {
         public int Id { get; set; }
-        public DateTime FechaRegistro { get; set; }
+        
     }
 }

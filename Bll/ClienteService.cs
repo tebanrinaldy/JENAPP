@@ -14,7 +14,6 @@ namespace Bll
         public void Agregar(Cliente cliente)
         {
             cliente.Id = _clientes.Count + 1;
-            cliente.FechaRegistro = DateTime.Now;
             _clientes.Add(cliente);
         }
 

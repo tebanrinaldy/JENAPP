@@ -8,11 +8,13 @@ namespace Entity
 {
     public class Venta : EntidadBase
     {
+        public DateTime FechaRegistro { get; set; }
+        public decimal Total { get; set; }
+
         public int IdCliente { get; set; }
         public Cliente Cliente { get; set; }
+
         public int IdUsuario { get; set; }
-        public Usuario Usuario { get; set; }
-        public decimal Total { get; set; }
-        public ICollection<DetalleVenta> Detalles { get; set; }
+        public ICollection<DetalleVenta> Detalles { get; set; } 
     }
 }
