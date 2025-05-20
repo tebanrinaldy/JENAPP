@@ -45,13 +45,13 @@
             this.minimizar = new System.Windows.Forms.PictureBox();
             this.BtnMinimizar = new System.Windows.Forms.PictureBox();
             this.BtnCerrar = new System.Windows.Forms.PictureBox();
-            this.listBox1 = new System.Windows.Forms.ListBox();
             this.BtnGuardarProducto = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.listBox1 = new System.Windows.Forms.ListBox();
             this.MenuVertical.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.panel2.SuspendLayout();
@@ -258,15 +258,6 @@
             this.BtnCerrar.TabIndex = 0;
             this.BtnCerrar.TabStop = false;
             // 
-            // listBox1
-            // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.ItemHeight = 16;
-            this.listBox1.Location = new System.Drawing.Point(815, 116);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(359, 340);
-            this.listBox1.TabIndex = 40;
-            // 
             // BtnGuardarProducto
             // 
             this.BtnGuardarProducto.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
@@ -330,6 +321,15 @@
             this.label1.TabIndex = 26;
             this.label1.Text = "CATEGORIAS";
             // 
+            // listBox1
+            // 
+            this.listBox1.FormattingEnabled = true;
+            this.listBox1.ItemHeight = 16;
+            this.listBox1.Location = new System.Drawing.Point(842, 120);
+            this.listBox1.Name = "listBox1";
+            this.listBox1.Size = new System.Drawing.Size(277, 308);
+            this.listBox1.TabIndex = 34;
+            // 
             // FrmCategorias
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -383,12 +383,12 @@
         private System.Windows.Forms.PictureBox minimizar;
         private System.Windows.Forms.PictureBox BtnMinimizar;
         private System.Windows.Forms.PictureBox BtnCerrar;
-        private System.Windows.Forms.ListBox listBox1;
         private System.Windows.Forms.Button BtnGuardarProducto;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ListBox listBox1;
     }
 }

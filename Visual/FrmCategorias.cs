@@ -27,9 +27,9 @@ namespace Visual
 
         private void CargarCategorias()
         {
-            listBox1.DataSource = null;
-            listBox1.DataSource = _categoriaService.Listar();
-            listBox1.DisplayMember = "Nombre"; // Mostrar solo el nombre en el ListBox
+            listboxcategorias.DataSource = null;
+            listboxcategorias.DataSource = _categoriaService.Listar();
+            listboxcategorias.DisplayMember = "Nombre"; // Mostrar solo el nombre en el ListBox
         }
 
         private void BtnGuardarProducto_Click(object sender, EventArgs e)
