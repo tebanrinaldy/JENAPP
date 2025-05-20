@@ -35,7 +35,6 @@ namespace Bll
             if (_categoriaRepo.ObtenerPorId(producto.IdCategoria) == null)
                 throw new Exception("La categoría especificada no existe.");
 
-            producto.FechaRegistro = DateTime.Now;
 
             if (!_productoRepo.Agregar(producto))
                 throw new Exception("No se pudo insertar el producto en la base de datos.");

@@ -23,7 +23,6 @@ namespace Bll
                 .Select(v => new ReporteVenta
                 {
                     Fecha = v.FechaRegistro,
-                    Usuario = $"{v.Usuario.Nombre} {v.Usuario.Apellido}",
                     Cliente = $"{v.Cliente.Nombre} {v.Cliente.Apellido}",
                     Total = v.Total
                 })
