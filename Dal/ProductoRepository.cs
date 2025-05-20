@@ -76,7 +76,7 @@ namespace Dal
                         p.precio,
                         p.stock,
                         p.id_categoria,
-                        c.nombre AS nom_categoria,
+                        c.nombre AS nom_categoria
                 FROM    productos p
                 JOIN    categorias c ON c.id_categoria = p.id_categoria
                 WHERE   p.id_producto = :id";
