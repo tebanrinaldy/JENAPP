@@ -26,7 +26,7 @@ namespace Visual
             ConfigurarColumnasDataProducto();
             ConfigurarColumnasVenta();
             CargarTodosLosProductos();
-
+            //proba
             DataProducto.CellDoubleClick += DataProducto_CellDoubleClick;
         }
 
