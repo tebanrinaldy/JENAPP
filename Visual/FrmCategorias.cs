@@ -19,6 +19,7 @@ namespace Visual
         public FrmCategorias()
         {
             InitializeComponent();
+            _categoriaService = new CategoriaService();
             CargarCategorias();
         }
 

@@ -15,8 +15,7 @@ namespace Dal
         // ⚠️ Reemplaza estos valores por los de tu entorno.
         // Ejemplo típico para XE 18c con PDB XEPDB1 en localhost.
         private const string Cadena =
-            "User Id=jenapp;Password=jen123;Data Source=localhost/XEPDB1;";
-
+         "User Id=jenapp;Password=jen123;Data Source=192.168.1.38:1521/XEPDB1;";
         /// <summary>
         /// Devuelve una conexión abierta. Lanza excepción si falla.
         /// </summary>

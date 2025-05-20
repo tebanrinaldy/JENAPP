@@ -11,7 +11,7 @@ namespace TestCnx
     internal class Program
     {
         private const string connectionString =
-            "User Id=jenapp;Password=jen123;Data Source=localhost:1521/XEPDB1;";
+            "User Id=jenapp;Password=jen123;Data Source=192.168.1.38:1521/XEPDB1;";
 
         private static CategoriaRepository categoriaRepo = new CategoriaRepository(connectionString);
         private static ProductoRepository productoRepo = new ProductoRepository(connectionString);
