@@ -61,7 +61,6 @@ namespace Dal
 
                 // conversión OracleDecimal → int
                 entidad.Id = Convert.ToInt32(((OracleDecimal)pIdOut.Value).Value);
-                entidad.FechaRegistro = DateTime.Now;
 
                 return filas > 0;
             }
@@ -196,7 +195,6 @@ namespace Dal
                 Precio = reader.GetDecimal(reader.GetOrdinal("precio")),
                 Stock = reader.GetInt32(reader.GetOrdinal("stock")),
                 IdCategoria = reader.GetInt32(reader.GetOrdinal("id_categoria")),
-                FechaRegistro = reader.GetDateTime(reader.GetOrdinal("fecha_registro")),
                 Categoria = new Categoria
                 {
                     Id = reader.GetInt32(reader.GetOrdinal("id_categoria")),
