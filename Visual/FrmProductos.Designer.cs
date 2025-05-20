@@ -30,11 +30,8 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmProductos));
             this.BtnGuardarProducto = new System.Windows.Forms.Button();
-            this.txtCategoria = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.txtNombre = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.txtId = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.label4 = new System.Windows.Forms.Label();
@@ -64,6 +61,7 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.button1 = new System.Windows.Forms.Button();
             this.ListaProducto = new System.Windows.Forms.ListBox();
+            this.comboBoxCategoria = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.BarraTitulo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.cerrar)).BeginInit();
@@ -91,21 +89,13 @@
             this.BtnGuardarProducto.UseVisualStyleBackColor = false;
             this.BtnGuardarProducto.Click += new System.EventHandler(this.BtnGuardarProducto_Click);
             // 
-            // txtCategoria
-            // 
-            this.txtCategoria.Location = new System.Drawing.Point(502, 221);
-            this.txtCategoria.Name = "txtCategoria";
-            this.txtCategoria.Size = new System.Drawing.Size(259, 22);
-            this.txtCategoria.TabIndex = 13;
-            this.txtCategoria.TextChanged += new System.EventHandler(this.textBox3_TextChanged);
-            // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.BackColor = System.Drawing.Color.Transparent;
             this.label3.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.White;
-            this.label3.Location = new System.Drawing.Point(376, 172);
+            this.label3.Location = new System.Drawing.Point(334, 172);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(93, 23);
             this.label3.TabIndex = 12;
@@ -118,33 +108,13 @@
             this.txtNombre.Size = new System.Drawing.Size(259, 22);
             this.txtNombre.TabIndex = 11;
             // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.BackColor = System.Drawing.Color.Transparent;
-            this.label2.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(407, 126);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(30, 23);
-            this.label2.TabIndex = 10;
-            this.label2.Text = "ID";
-            this.label2.Click += new System.EventHandler(this.label2_Click);
-            // 
-            // txtId
-            // 
-            this.txtId.Location = new System.Drawing.Point(502, 129);
-            this.txtId.Name = "txtId";
-            this.txtId.Size = new System.Drawing.Size(259, 22);
-            this.txtId.TabIndex = 9;
-            // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(563, 83);
+            this.label1.Location = new System.Drawing.Point(562, 126);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(130, 23);
             this.label1.TabIndex = 8;
@@ -166,7 +136,7 @@
             this.label4.BackColor = System.Drawing.Color.Transparent;
             this.label4.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.White;
-            this.label4.Location = new System.Drawing.Point(352, 218);
+            this.label4.Location = new System.Drawing.Point(334, 217);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(126, 23);
             this.label4.TabIndex = 14;
@@ -178,7 +148,7 @@
             this.label5.BackColor = System.Drawing.Color.Transparent;
             this.label5.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.White;
-            this.label5.Location = new System.Drawing.Point(381, 267);
+            this.label5.Location = new System.Drawing.Point(334, 267);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(83, 23);
             this.label5.TabIndex = 19;
@@ -197,11 +167,12 @@
             this.label6.BackColor = System.Drawing.Color.Transparent;
             this.label6.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.Color.White;
-            this.label6.Location = new System.Drawing.Point(381, 313);
+            this.label6.Location = new System.Drawing.Point(334, 313);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(73, 23);
             this.label6.TabIndex = 21;
             this.label6.Text = "STOCK";
+            this.label6.Click += new System.EventHandler(this.label6_Click);
             // 
             // txtStock
             // 
@@ -217,7 +188,7 @@
             this.label7.BackColor = System.Drawing.Color.Transparent;
             this.label7.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.ForeColor = System.Drawing.Color.White;
-            this.label7.Location = new System.Drawing.Point(352, 363);
+            this.label7.Location = new System.Drawing.Point(334, 361);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(144, 23);
             this.label7.TabIndex = 23;
@@ -461,11 +432,20 @@
             // 
             this.ListaProducto.FormattingEnabled = true;
             this.ListaProducto.ItemHeight = 16;
-            this.ListaProducto.Location = new System.Drawing.Point(819, 126);
+            this.ListaProducto.Location = new System.Drawing.Point(815, 46);
             this.ListaProducto.Name = "ListaProducto";
-            this.ListaProducto.Size = new System.Drawing.Size(359, 340);
+            this.ListaProducto.Size = new System.Drawing.Size(482, 292);
             this.ListaProducto.TabIndex = 25;
             this.ListaProducto.SelectedIndexChanged += new System.EventHandler(this.ListaProducto_SelectedIndexChanged);
+            // 
+            // comboBoxCategoria
+            // 
+            this.comboBoxCategoria.FormattingEnabled = true;
+            this.comboBoxCategoria.Location = new System.Drawing.Point(502, 220);
+            this.comboBoxCategoria.Name = "comboBoxCategoria";
+            this.comboBoxCategoria.Size = new System.Drawing.Size(259, 24);
+            this.comboBoxCategoria.TabIndex = 26;
+            this.comboBoxCategoria.SelectedIndexChanged += new System.EventHandler(this.comboBoxCategoria_SelectedIndexChanged);
             // 
             // FrmProductos
             // 
@@ -473,6 +453,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(66)))), ((int)(((byte)(82)))));
             this.ClientSize = new System.Drawing.Size(1300, 650);
+            this.Controls.Add(this.comboBoxCategoria);
             this.Controls.Add(this.ListaProducto);
             this.Controls.Add(this.BarraTitulo);
             this.Controls.Add(this.label7);
@@ -484,11 +465,8 @@
             this.Controls.Add(this.MenuVertical);
             this.Controls.Add(this.BtnGuardarProducto);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.txtCategoria);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.txtNombre);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.txtId);
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -516,11 +494,8 @@
         #endregion
 
         private System.Windows.Forms.Button BtnGuardarProducto;
-        private System.Windows.Forms.TextBox txtCategoria;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox txtNombre;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox txtId;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.Label label4;
@@ -550,5 +525,6 @@
         private System.Windows.Forms.Button btnproductos;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.ComboBox comboBoxCategoria;
     }
 }

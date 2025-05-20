@@ -25,6 +25,7 @@ namespace Visual
 
 
         }
+        CategoriaRepository _categoriaRepository = new CategoriaRepository(" User Id=jenapp;Password=jen123;Data Source=192.168.1.38:1521/XEPDB1");
         ProductoRepository _productoRepository = new ProductoRepository("User Id=jenapp;Password=jen123;Data Source=192.168.1.38:1521/XEPDB1");
         public void Minimizar()
         {
@@ -74,6 +75,9 @@ namespace Visual
 
         private void FrmProductos_Load(object sender, EventArgs e)
         {
+            CargarCategorias();
+            CargarProductos();
+
 
         }
 
@@ -110,8 +114,8 @@ namespace Visual
                 string descripcion = txtDescripcion.Text.Trim();
                 decimal precio = decimal.Parse(txtPrecio.Text.Trim());
                 int stock = int.Parse(txtStock.Text.Trim());
-                int idCategoria = int.Parse(txtCategoria.Text.Trim()); // Debes ingresar un ID numérico válido
-
+               
+                int idCategoria = (int)comboBoxCategoria.SelectedValue;
                 // Crear objeto Producto
                 var producto = new Producto
                 {
@@ -119,6 +123,7 @@ namespace Visual
                     Descripcion = descripcion,
                     Precio = precio,
                     Stock = stock,
+
                     IdCategoria = idCategoria
                 };
 
@@ -147,10 +152,38 @@ namespace Visual
             txtDescripcion.Clear();
             txtPrecio.Clear();
             txtStock.Clear();
-            txtCategoria.Clear();
+           
         }
 
         private void ListaProducto_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+        private void CargarCategorias()
+        {
+            var categorias = _categoriaRepository.ObtenerTodos();
+
+            comboBoxCategoria.DataSource = null;
+            comboBoxCategoria.DataSource = categorias;
+            comboBoxCategoria.DisplayMember = "Nombre";   // Lo que se muestra
+            comboBoxCategoria.ValueMember = "Id";         // El valor real
+        }
+
+        private void CargarProductos()
+        {
+            var productos = _productoRepository.ObtenerTodos(); // Asegúrate que este método exista
+
+            ListaProducto.DataSource = null;
+            ListaProducto.DataSource = productos;
+            ListaProducto.DisplayMember = "Nombre"; // Puedes cambiar esto para mostrar otra propiedad
+           
+        }
+        private void comboBoxCategoria_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label6_Click(object sender, EventArgs e)
         {
 
         }
