@@ -25,8 +25,8 @@ namespace Visual
 
 
         }
-        CategoriaRepository _categoriaRepository = new CategoriaRepository(" User Id=jenapp;Password=jen123;Data Source=192.168.1.38:1521/XEPDB1");
-        ProductoRepository _productoRepository = new ProductoRepository("User Id=jenapp;Password=jen123;Data Source=192.168.1.38:1521/XEPDB1");
+        CategoriaRepository _categoriaRepository = new CategoriaRepository(" User Id=jenapp;Password=jen123;Data Source=192.168.1.25:1521/XEPDB1");
+        ProductoRepository _productoRepository = new ProductoRepository("User Id=jenapp;Password=jen123;Data Source=192.168.1.25:1521/XEPDB1");
         public void Minimizar()
         {
             this.WindowState = FormWindowState.Minimized;
