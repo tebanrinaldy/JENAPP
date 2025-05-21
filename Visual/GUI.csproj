@@ -107,6 +107,12 @@
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="Properties\DataSources\Dal.CategoriaRepository.datasource" />
+    <None Include="Properties\DataSources\Dal.Conexion.datasource" />
+    <None Include="Properties\DataSources\Dal.DetalleVentaRepository.datasource" />
+    <None Include="Properties\DataSources\Dal.ProductoRepository.datasource" />
+    <None Include="Properties\DataSources\Dal.ReporteRepository.datasource" />
+    <None Include="Properties\DataSources\Dal.VentaRepository.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -165,6 +171,9 @@
       <Project>{e095de6a-2266-4b9d-9a73-e06bb5c038e3}</Project>
       <Name>Entity</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
