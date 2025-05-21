@@ -50,7 +50,7 @@ namespace Visual
             var productos = _productoRepository.ObtenerTodos(); // Método que retorna List<Producto>
             var categorias = _categoriaRepository.ObtenerTodos(); // Necesario para mapear el ID al nombre
 
-            DataProducto.Rows.Clear();
+            //DataProducto.Rows.Clear();
 
             foreach (var producto in productos)
             {
