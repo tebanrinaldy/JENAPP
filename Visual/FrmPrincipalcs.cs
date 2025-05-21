@@ -85,13 +85,8 @@ namespace Visual
 
         private void btnproductos_Click(object sender, EventArgs e)
         {
-            Abrirformularioproductos(new FrmProductos());
-            FrmProductos frm = new FrmProductos();
-            frm.Show();
-            frm.FormClosed += (s, args) => this.Show(); // Vuelve a mostrar FrmPrincipal al cerrar FrmProductos
-            this.Hide(); // Oculta FrmPrincipal al abrir FrmProductos
-           
-         
+            AbrirFormularioEnPanel(new FrmProductos());
+
 
         }
         private void Abrirformularioventas(object formventas)
@@ -161,6 +156,20 @@ namespace Visual
             frm.FormClosed += (s, args) => this.Show(); // Vuelve a mostrar FrmPrincipal al cerrar FrmCategorias
             this.Hide(); // Oculta FrmPrincipal al abrir FrmCategorias
         }
+
+        private void AbrirFormularioEnPanel(Form formulario)
+        {
+            if (this.panelContenedor.Controls.Count > 0)
+                this.panelContenedor.Controls.RemoveAt(0);
+
+            formulario.TopLevel = false;
+            formulario.Dock = DockStyle.Fill;
+            this.panelContenedor.Controls.Add(formulario);
+            this.panelContenedor.Tag = formulario;
+            formulario.Show();
+        }
+
+
 
         private void panelContenedor_Paint(object sender, PaintEventArgs e)
         {
