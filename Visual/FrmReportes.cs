@@ -21,7 +21,7 @@ namespace Visual
         {
             InitializeComponent();
 
-            _ventaRepository = new VentaRepository("User Id=jenapp;Password=jen123;Data Source=192.168.221.244:1521/XEPDB1");
+            _ventaRepository = new VentaRepository("User Id=jenapp;Password=jen123;Data Source=192.168.1.25:1521/XEPDB1");
         }
 
 
