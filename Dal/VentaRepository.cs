@@ -31,9 +31,11 @@ namespace Dal
                     {
                         using (var cmd = connection.CreateCommand())
                         {
+                            //habian errores con los nombres de los atributos de la tabla, faltban los guiones bajos
+                            //en la base de datos faltaban los disparadores que agregaban el id automaticamente a las tablas ventas y detalles
                             cmd.Transaction = transaction;
-                            cmd.CommandText = "INSERT INTO VENTA (FECHAVENTA, TOTAL, CEDULACLIENTE, NOMBRECLIENTE, TELEFONOCLIENTE) " +
-                                              "VALUES (:Fecha, :Total, :Cedula, :Nombre, :Telefono) RETURNING ID INTO :Id";
+                            cmd.CommandText = "INSERT INTO VENTAS (FECHA_VENTA, TOTAL, CEDULA_CLIENTE, NOMBRE_CLIENTE, TELEFONO_CLIENTE) " +
+                                              "VALUES (:Fecha, :Total, :Cedula, :Nombre, :Telefono) RETURNING ID_VENTA INTO :Id";
                             cmd.Parameters.Add(":Fecha", OracleDbType.Date).Value = venta.FechaVenta;
                             cmd.Parameters.Add(":Total", OracleDbType.Decimal).Value = venta.Total;
                             cmd.Parameters.Add(":Cedula", OracleDbType.Varchar2).Value = venta.CedulaCliente;
@@ -42,15 +44,21 @@ namespace Dal
                             cmd.Parameters.Add(":Id", OracleDbType.Int32).Direction = ParameterDirection.Output;
                             cmd.ExecuteNonQuery();
 
-                            venta.Id = Convert.ToInt32(cmd.Parameters[":Id"].Value);
+                            //venta.Id = Convert.ToInt32(cmd.Parameters[":Id"].Value);
+                            // no estaban recuperando el id de la venta correctamente
+                            var idOracleDecimal = (Oracle.ManagedDataAccess.Types.OracleDecimal)cmd.Parameters[":Id"].Value;
+                            venta.Id = idOracleDecimal.ToInt32();
+
                         }
 
-                        foreach (var detalle in venta.Detalles)
+                        //en el for estaban usando venta.Detalles en vez de venta.DetalleVentas 
+                        //¿por qué le declararon dos listas de detalles en la entidad venta boludo?
+                        foreach (var detalle in venta.DetalleVentas)
                         {
                             using (var cmd = connection.CreateCommand())
                             {
                                 cmd.Transaction = transaction;
-                                cmd.CommandText = "INSERT INTO DETALLEVENTA (IDVENTA, IDPRODUCTO, CANTIDAD, PRECIOUNITARIO) " +
+                                cmd.CommandText = "INSERT INTO DETALLE_VENTAS (ID_VENTA, ID_PRODUCTO, CANTIDAD, PRECIOUNITARIO) " +
                                                   "VALUES (:IdVenta, :IdProducto, :Cantidad, :Precio)";
                                 cmd.Parameters.Add(":IdVenta", OracleDbType.Int32).Value = venta.Id;
                                 cmd.Parameters.Add(":IdProducto", OracleDbType.Int32).Value = detalle.ProductoId;
@@ -65,9 +73,9 @@ namespace Dal
                     }
                 }
             }
-            catch (Exception)
+            catch (Exception e)
             {
-
+                Console.WriteLine($"Error al agregar la venta: {e.Message}");
                 return false;
             }
         }

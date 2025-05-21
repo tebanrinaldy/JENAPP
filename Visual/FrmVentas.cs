@@ -95,6 +95,8 @@ namespace Visual
         private void ConfigurarColumnasVenta()
         {
             dgvVentas.Columns.Clear();
+            dgvVentas.Columns.Add("IdProducto", "IdProducto"); // <- Agrega esta línea
+           // dgvVentas.Columns["IdProducto"].Visible = false;   // <- Oculta la columna
             dgvVentas.Columns.Add("colProducto", "Producto");
             dgvVentas.Columns.Add("colPrecio", "Precio");
             dgvVentas.Columns.Add("colCantidad", "Cantidad");
@@ -113,8 +115,12 @@ namespace Visual
                 int cantidad = 1;
                 decimal subtotal = precio * cantidad;
 
-                // Agregar a dgvVentas
+                // Buscar el producto original en la lista (opcional si no tienes referencia directa)
+                var producto = _productoRepository.ObtenerTodos()
+                                .FirstOrDefault(p => p.Nombre == nombre);
+
                 int filaVenta = dgvVentas.Rows.Add();
+                dgvVentas.Rows[filaVenta].Cells["IdProducto"].Value = producto?.Id; // Aquí se guarda el ID
                 dgvVentas.Rows[filaVenta].Cells["colProducto"].Value = nombre;
                 dgvVentas.Rows[filaVenta].Cells["colPrecio"].Value = precio;
                 dgvVentas.Rows[filaVenta].Cells["colCantidad"].Value = cantidad;
@@ -164,6 +170,7 @@ namespace Visual
             try
             {
                 // Crear el objeto venta y asignar datos  
+                
                 Venta nuevaVenta = new Venta
                 {
                     FechaVenta = DateTime.Now,
@@ -174,7 +181,7 @@ namespace Visual
                     NombreCliente = txtNombreCliente.Text.Trim(),
                     TelefonoCliente = txtTelefono.Text.Trim(),
 
-                    DetalleVentas = new List<DetalleVenta>()
+                   
                 };
 
                 // Validar datos básicos 
@@ -186,12 +193,15 @@ namespace Visual
                 }
 
                 // Agregar detalles de venta  
+                nuevaVenta.DetalleVentas = new List<DetalleVenta>();
                 foreach (DataGridViewRow row in dgvVentas.Rows)
                 {
+                  
                     if (row.IsNewRow) continue;
 
                     DetalleVenta detalle = new DetalleVenta
                     {
+                        ProductoId = Convert.ToInt32(row.Cells["IdProducto"].Value),
                         NombreProducto = row.Cells["colProducto"].Value.ToString(),
                         PrecioUnitario = Convert.ToDecimal(row.Cells["colPrecio"].Value),
                         Cantidad = Convert.ToInt32(row.Cells["colCantidad"].Value),
@@ -199,8 +209,11 @@ namespace Visual
                     };
 
                     nuevaVenta.DetalleVentas.Add(detalle);
+                    
                 }
-                bool guardado = ventaRepository.Agregar(nuevaVenta);
+
+
+                    bool guardado = ventaRepository.Agregar(nuevaVenta);
                 if (guardado)
                 {
                     MessageBox.Show("Venta registrada correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);

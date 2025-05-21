@@ -18,6 +18,6 @@ namespace Entity
         public string TelefonoCliente { get; set; }
 
         public ICollection<DetalleVenta> Detalles { get; set; }
-        public List<DetalleVenta> DetalleVentas { get; set; }
+        public List<DetalleVenta> DetalleVentas { get; set; } = new List<DetalleVenta>();
     }
 }
