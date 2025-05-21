@@ -19,7 +19,7 @@ namespace Bll
 
         public void Agregar(Reportes entidad)
         {
-            // No se implementa porque los reportes no se agregan manualmente
+            _repository.Agregar(entidad);
         }
 
         public void Actualizar(Reportes entidad)
@@ -35,11 +35,6 @@ namespace Bll
         public Reportes ObtenerPorId(int id)
         {
             return _repository.ObtenerPorId(id);
-        }
-
-        public List<Reportes> ObtenerTodos()
-        {
-            return _repository.ObtenerTodos();
         }
 
         public List<Reportes> Listar()

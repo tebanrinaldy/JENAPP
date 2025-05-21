@@ -10,169 +10,153 @@ namespace Dal
 {
     public class ReporteRepository : IRepository<Reportes>
     {
-        private readonly string _connectionString;
+        private readonly string _conexion;
 
-        public ReporteRepository(string connectionString)
+        public ReporteRepository(string conexion)
         {
-            _connectionString = connectionString;
+            _conexion = conexion;
         }
 
-        public bool Actualizar(Reportes reporte)
+        public bool Agregar(Reportes entidad)
         {
-            try
+            using (var conexion = new OracleConnection(_conexion))
             {
-                using (var connection = new OracleConnection(_connectionString))
+                conexion.Open();
+                string sql = @"INSERT INTO reportes (
+                                id_reporte,
+                                fecha_venta,
+                                total,
+                                cedula_cliente,
+                                nombre_cliente,
+                                telefono_cliente
+                            ) VALUES (
+                                :id_reporte,
+                                :fecha_venta,
+                                :total,
+                                :cedula_cliente,
+                                :nombre_cliente,
+                                :telefono_cliente
+                            )";
+
+                using (var comando = new OracleCommand(sql, conexion))
                 {
-                    connection.Open();
-                    using (var cmd = connection.CreateCommand())
-                    {
-                        cmd.CommandText = @"
-                            UPDATE DETALLEVENTA
-                            SET NOMBREPRODUCTO = :NombreProducto,
-                                CANTIDAD = :Cantidad,
-                                PRECIOUNITARIO = :PrecioUnitario,
-                                SUBTOTAL = :Subtotal
-                            WHERE IDDETALLE = :IdDetalle";
+                    comando.Parameters.Add(":id_reporte", entidad.Id);
+                    comando.Parameters.Add(":fecha_venta", entidad.FechaVenta);
+                    comando.Parameters.Add(":total", entidad.Total);
+                    comando.Parameters.Add(":cedula_cliente", entidad.CedulaCliente);
+                    comando.Parameters.Add(":nombre_cliente", entidad.NombreCliente);
+                    comando.Parameters.Add(":telefono_cliente", entidad.TelefonoCliente);
 
-                        cmd.Parameters.Add(":NombreProducto", OracleDbType.Varchar2).Value = reporte.NombreProducto;
-                        cmd.Parameters.Add(":Cantidad", OracleDbType.Int32).Value = reporte.Cantidad;
-                        cmd.Parameters.Add(":PrecioUnitario", OracleDbType.Decimal).Value = reporte.PrecioUnitario;
-                        cmd.Parameters.Add(":Subtotal", OracleDbType.Decimal).Value = reporte.Subtotal;
-                        cmd.Parameters.Add(":IdDetalle", OracleDbType.Int32).Value = reporte.IdDetalle;
-
-                        return cmd.ExecuteNonQuery() > 0;
-                    }
+                    int filasAfectadas = comando.ExecuteNonQuery();
+                    return filasAfectadas > 0;
                 }
             }
-            catch
-            {
-                return false;
-            }
         }
 
-        public bool Eliminar(int idDetalle)
+        public bool Actualizar(Reportes entidad)
         {
-            try
+            using (var conexion = new OracleConnection(_conexion))
             {
-                using (var connection = new OracleConnection(_connectionString))
-                {
-                    connection.Open();
-                    using (var cmd = connection.CreateCommand())
-                    {
-                        cmd.CommandText = "DELETE FROM DETALLEVENTA WHERE IDDETALLE = :Id";
-                        cmd.Parameters.Add(":Id", OracleDbType.Int32).Value = idDetalle;
+                conexion.Open();
+                string sql = @"UPDATE reportes SET
+                                fecha_venta = :fecha_venta,
+                                total = :total,
+                                cedula_cliente = :cedula_cliente,
+                                nombre_cliente = :nombre_cliente,
+                                telefono_cliente = :telefono_cliente
+                            WHERE id_reporte = :id_reporte";
 
-                        return cmd.ExecuteNonQuery() > 0;
-                    }
+                using (var comando = new OracleCommand(sql, conexion))
+                {
+                    comando.Parameters.Add(":fecha_venta", entidad.FechaVenta);
+                    comando.Parameters.Add(":total", entidad.Total);
+                    comando.Parameters.Add(":cedula_cliente", entidad.CedulaCliente);
+                    comando.Parameters.Add(":nombre_cliente", entidad.NombreCliente);
+                    comando.Parameters.Add(":telefono_cliente", entidad.TelefonoCliente);
+                    comando.Parameters.Add(":id_reporte", entidad.Id);
+
+                    int filasAfectadas = comando.ExecuteNonQuery();
+                    return filasAfectadas > 0;
                 }
             }
-            catch
+        }
+
+        public bool Eliminar(int id)
+        {
+            using (var conexion = new OracleConnection(_conexion))
             {
-                return false;
+                conexion.Open();
+                string sql = "DELETE FROM reportes WHERE id_reporte = :id_reporte";
+
+                using (var comando = new OracleCommand(sql, conexion))
+                {
+                    comando.Parameters.Add(":id_reporte", id);
+                    int filasAfectadas = comando.ExecuteNonQuery();
+                    return filasAfectadas > 0;
+                }
             }
         }
 
-        public Reportes ObtenerPorId(int idDetalle)
+        public Reportes ObtenerPorId(int id)
         {
-            Reportes reporte = null;
-
-            try
+            using (var conexion = new OracleConnection(_conexion))
             {
-                using (var connection = new OracleConnection(_connectionString))
+                conexion.Open();
+                string sql = "SELECT * FROM reportes WHERE id_reporte = :id_reporte";
+
+                using (var comando = new OracleCommand(sql, conexion))
                 {
-                    connection.Open();
-                    using (var cmd = connection.CreateCommand())
+                    comando.Parameters.Add(":id_reporte", id);
+                    using (var lector = comando.ExecuteReader())
                     {
-                        cmd.CommandText = @"
-                            SELECT v.FECHAVENTA, v.TOTAL, v.CEDULACLIENTE, v.NOMBRECLIENTE, v.TELEFONOCLIENTE,
-                                   d.IDDETALLE, d.NOMBREPRODUCTO, d.CANTIDAD, d.PRECIOUNITARIO, d.SUBTOTAL
-                            FROM VENTAS v
-                            INNER JOIN DETALLEVENTA d ON v.IDVENTA = d.IDVENTA
-                            WHERE d.IDDETALLE = :Id";
-
-                        cmd.Parameters.Add(":Id", OracleDbType.Int32).Value = idDetalle;
-
-                        using (var reader = cmd.ExecuteReader())
+                        if (lector.Read())
                         {
-                            if (reader.Read())
+                            return new Reportes
                             {
-                                reporte = new Reportes
-                                {
-                                    FechaVenta = reader.GetDateTime(0),
-                                    Total = reader.GetDecimal(1),
-                                    CedulaCliente = reader.GetString(2),
-                                    NombreCliente = reader.GetString(3),
-                                    TelefonoCliente = reader.GetString(4),
-                                    IdDetalle = reader.GetInt32(5),
-                                    NombreProducto = reader.GetString(6),
-                                    Cantidad = reader.GetInt32(7),
-                                    PrecioUnitario = reader.GetDecimal(8),
-                                    Subtotal = reader.GetDecimal(9)
-                                };
-                            }
+                                Id = Convert.ToInt32(lector["id_reporte"]),
+                                FechaVenta = Convert.ToDateTime(lector["fecha_venta"]),
+                                Total = Convert.ToDecimal(lector["total"]),
+                                CedulaCliente = lector["cedula_cliente"].ToString(),
+                                NombreCliente = lector["nombre_cliente"].ToString(),
+                                TelefonoCliente = lector["telefono_cliente"].ToString()
+                            };
                         }
                     }
                 }
             }
-            catch
-            {
-                // manejo de error
-            }
-
-            return reporte;
+            return null;
         }
 
         public List<Reportes> ObtenerTodos()
         {
             var lista = new List<Reportes>();
 
-            try
+            using (var conexion = new OracleConnection(_conexion))
             {
-                using (var connection = new OracleConnection(_connectionString))
-                {
-                    connection.Open();
-                    using (var cmd = connection.CreateCommand())
-                    {
-                        cmd.CommandText = @"
-                            SELECT v.FECHAVENTA, v.TOTAL, v.CEDULACLIENTE, v.NOMBRECLIENTE, v.TELEFONOCLIENTE,
-                                   d.IDDETALLE, d.NOMBREPRODUCTO, d.CANTIDAD, d.PRECIOUNITARIO, d.SUBTOTAL
-                            FROM VENTAS v
-                            INNER JOIN DETALLEVENTA d ON v.IDVENTA = d.IDVENTA";
+                conexion.Open();
+                string sql = "SELECT * FROM reportes";
 
-                        using (var reader = cmd.ExecuteReader())
+                using (var comando = new OracleCommand(sql, conexion))
+                {
+                    using (var lector = comando.ExecuteReader())
+                    {
+                        while (lector.Read())
                         {
-                            while (reader.Read())
+                            lista.Add(new Reportes
                             {
-                                lista.Add(new Reportes
-                                {
-                                    FechaVenta = reader.GetDateTime(0),
-                                    Total = reader.GetDecimal(1),
-                                    CedulaCliente = reader.GetString(2),
-                                    NombreCliente = reader.GetString(3),
-                                    TelefonoCliente = reader.GetString(4),
-                                    IdDetalle = reader.GetInt32(5),
-                                    NombreProducto = reader.GetString(6),
-                                    Cantidad = reader.GetInt32(7),
-                                    PrecioUnitario = reader.GetDecimal(8),
-                                    Subtotal = reader.GetDecimal(9)
-                                });
-                            }
+                                Id = Convert.ToInt32(lector["id_reporte"]),
+                                FechaVenta = Convert.ToDateTime(lector["fecha_venta"]),
+                                Total = Convert.ToDecimal(lector["total"]),
+                                CedulaCliente = lector["cedula_cliente"].ToString(),
+                                NombreCliente = lector["nombre_cliente"].ToString(),
+                                TelefonoCliente = lector["telefono_cliente"].ToString()
+                            });
                         }
                     }
                 }
             }
-            catch
-            {
-                // manejo de error
-            }
 
             return lista;
-        }
-
-        // No implementamos Agregar porque los reportes provienen de las ventas ya registradas.
-        public bool Agregar(Reportes entidad)
-        {
-            throw new NotImplementedException();
         }
     }
 }
