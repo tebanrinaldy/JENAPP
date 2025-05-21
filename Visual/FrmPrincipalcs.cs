@@ -67,22 +67,6 @@ namespace Visual
         }
 
         
-        private void Abrirformularioproductos(object formproductos)
-        {
-            if (this.panelContenedor.Controls.Count > 0)
-                this.panelContenedor.Controls.RemoveAt(0);
-            Form fh = formproductos as Form;
-            fh.TopLevel = false;
-            fh.FormBorderStyle = FormBorderStyle.None;
-            fh.Dock = DockStyle.Fill;
-            panelContenedor.Controls.Add(fh);
-            panelContenedor.Tag = fh;
-         
-            
-      
-
-        }
-
         private void btnproductos_Click(object sender, EventArgs e)
         {
             AbrirFormularioEnPanel(new FrmProductos());

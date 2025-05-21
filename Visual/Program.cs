@@ -19,7 +19,7 @@ namespace Visual
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FrmPrincipalcs());
+            Application.Run(new FrmLogin());
         }
     }
 }

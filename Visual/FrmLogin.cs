@@ -54,8 +54,26 @@ namespace Visual
 
         private void button1_Click(object sender, EventArgs e)
         {
+            string usuario = TextUsuario.Text.Trim();
+            string contraseña = TextContraseña.Text;
 
+            if (usuario == "Admin" && contraseña == "Admin123")
+            {
+                FrmPrincipalcs principal = new FrmPrincipalcs();
+                principal.Show();
+                this.Hide(); // oculta el login
+            }
+            else
+            {
+                MessageBox.Show("Usuario o contraseña incorrectos", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                TextContraseña.Text = "";
+                TextContraseña.UseSystemPasswordChar = false;
+                TextContraseña.ForeColor = Color.DimGray;
+                TextContraseña.Text = "CONTRASEÑA:";
+            }
         }
+
+        
 
         private void TextUsuario_Enter(object sender, EventArgs e)
         {
