@@ -31,10 +31,10 @@ namespace Visual
             DataProducto.CellDoubleClick += DataProducto_CellDoubleClick;
         }
 
-        CategoriaRepository _categoriaRepository = new CategoriaRepository(" User Id=jenapp;Password=jen123;Data Source=192.168.1.38:1521/XEPDB1");
-        ProductoRepository _productoRepository = new ProductoRepository("User Id=jenapp;Password=jen123;Data Source=192.168.1.38:1521/XEPDB1");
-        VentaRepository ventaRepository = new VentaRepository("User Id=jenapp;Password=jen123;Data Source=192.168.1.38:1521/XEPDB1");
-        DetalleVentaRepository detalleVentaRepository = new DetalleVentaRepository("User Id=jenapp;Password=jen123;Data Source=192.168.1.38:1521/XEPDB1");
+        CategoriaRepository _categoriaRepository = new CategoriaRepository(" User Id=jenapp;Password=jen123;Data Source=192.168.1.25:1521/XEPDB1");
+        ProductoRepository _productoRepository = new ProductoRepository("User Id=jenapp;Password=jen123;Data Source=192.168.1.25:1521/XEPDB1");
+        VentaRepository ventaRepository = new VentaRepository("User Id=jenapp;Password=jen123;Data Source=192.168.1.25:1521/XEPDB1");
+        DetalleVentaRepository detalleVentaRepository = new DetalleVentaRepository("User Id=jenapp;Password=jen123;Data Source=192.168.1.25:1521/XEPDB1");
         private void panelContenedor_Paint(object sender, PaintEventArgs e)
         {
 
