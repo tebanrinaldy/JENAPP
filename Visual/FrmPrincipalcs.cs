@@ -161,5 +161,10 @@ namespace Visual
             frm.FormClosed += (s, args) => this.Show(); // Vuelve a mostrar FrmPrincipal al cerrar FrmCategorias
             this.Hide(); // Oculta FrmPrincipal al abrir FrmCategorias
         }
+
+        private void panelContenedor_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }
