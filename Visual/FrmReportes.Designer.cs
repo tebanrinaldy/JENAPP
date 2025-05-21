@@ -39,8 +39,9 @@
             this.colCedula = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colNombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colTelefono = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ventaRepositoryBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.btnExcel = new System.Windows.Forms.Button();
+            this.ventaRepositoryBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dgvVentas)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ventaRepositoryBindingSource)).BeginInit();
             this.SuspendLayout();
@@ -136,25 +137,44 @@
             this.colTelefono.Name = "colTelefono";
             this.colTelefono.Width = 125;
             // 
-            // ventaRepositoryBindingSource
+            // textBox1
             // 
-            this.ventaRepositoryBindingSource.DataSource = typeof(Dal.VentaRepository);
+            this.textBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(80)))));
+            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 28.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox1.ForeColor = System.Drawing.Color.White;
+            this.textBox1.Location = new System.Drawing.Point(160, 7);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(533, 61);
+            this.textBox1.TabIndex = 48;
+            this.textBox1.Text = "REPORTE DE VENTAS ";
             // 
             // btnExcel
             // 
-            this.btnExcel.Location = new System.Drawing.Point(819, 13);
+            this.btnExcel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(80)))));
+            this.btnExcel.BackgroundImage = global::Visual.Properties.Resources.Microsoft_excel;
+            this.btnExcel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnExcel.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnExcel.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnExcel.Location = new System.Drawing.Point(874, 2);
             this.btnExcel.Name = "btnExcel";
-            this.btnExcel.Size = new System.Drawing.Size(136, 52);
+            this.btnExcel.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.btnExcel.Size = new System.Drawing.Size(206, 66);
             this.btnExcel.TabIndex = 47;
-            this.btnExcel.Text = "Exportar";
-            this.btnExcel.UseVisualStyleBackColor = true;
+            this.btnExcel.Text = "EXPORTAR";
+            this.btnExcel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnExcel.UseVisualStyleBackColor = false;
             this.btnExcel.Click += new System.EventHandler(this.btnExcel_Click);
+            // 
+            // ventaRepositoryBindingSource
+            // 
+            this.ventaRepositoryBindingSource.DataSource = typeof(Dal.VentaRepository);
             // 
             // FrmReportes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1080, 615);
+            this.Controls.Add(this.textBox1);
             this.Controls.Add(this.btnExcel);
             this.Controls.Add(this.dgvVentas);
             this.Controls.Add(this.label12);
@@ -185,5 +205,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn colNombre;
         private System.Windows.Forms.DataGridViewTextBoxColumn colTelefono;
         private System.Windows.Forms.Button btnExcel;
+        private System.Windows.Forms.TextBox textBox1;
     }
 }

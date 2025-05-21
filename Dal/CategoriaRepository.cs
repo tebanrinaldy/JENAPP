@@ -85,7 +85,7 @@ namespace Dal
             using (var conn = new OracleConnection(_connectionString))
             using (var cmd = new OracleCommand(sql, conn))
             {
-                conn.Open();
+                    conn.Open();
                 using (var reader = cmd.ExecuteReader())
                 {
                     while (reader.Read())

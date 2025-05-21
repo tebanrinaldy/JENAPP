@@ -191,9 +191,12 @@
     <None Include="Resources\BTNguardar.png" />
     <None Include="Resources\LogoEmpleado.png" />
     <None Include="Resources\compras1.png" />
+    <None Include="Resources\Excel-microsoft.png" />
+    <None Include="Resources\Excel-microsoft1.png" />
     <Content Include="Resources\LogoIcono.ico" />
     <Content Include="Resources\Logo.jpeg" />
     <None Include="Resources\user_SinFondo.png" />
+    <None Include="Resources\Microsoft-excel.png" />
     <Content Include="Resources\PictureUsuario.png" />
     <None Include="Resources\PictureUsuario1.png" />
   </ItemGroup>

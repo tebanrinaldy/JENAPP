@@ -133,6 +133,26 @@ namespace Visual.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Excel_microsoft {
+            get {
+                object obj = ResourceManager.GetObject("Excel-microsoft", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Excel_microsoft1 {
+            get {
+                object obj = ResourceManager.GetObject("Excel-microsoft1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap IconoMaximizar {
             get {
                 object obj = ResourceManager.GetObject("IconoMaximizar", resourceCulture);
@@ -166,6 +186,16 @@ namespace Visual.Properties {
         internal static System.Drawing.Bitmap MaximizarBlanco {
             get {
                 object obj = ResourceManager.GetObject("MaximizarBlanco", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Microsoft_excel {
+            get {
+                object obj = ResourceManager.GetObject("Microsoft-excel", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
