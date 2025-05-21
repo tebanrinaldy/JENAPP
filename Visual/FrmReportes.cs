@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Entity;
+using ClosedXML.Excel;
 
 namespace Visual
 {
@@ -62,6 +63,45 @@ namespace Visual
                     MessageBox.Show("Error al cargar ventas: " + ex.Message);
                 }
             }
+        }
+
+        private void ExportarAExcel(DataGridView dgv)
+        {
+            using (SaveFileDialog sfd = new SaveFileDialog()
+            {
+                Filter = "Archivo Excel|*.xlsx",
+                Title = "Guardar como Excel"
+            })
+            {
+                if (sfd.ShowDialog() == DialogResult.OK)
+                {
+                    var wb = new XLWorkbook();
+                    var ws = wb.Worksheets.Add("Reporte");
+
+                    // Escribir encabezados
+                    for (int i = 0; i < dgv.Columns.Count; i++)
+                    {
+                        ws.Cell(1, i + 1).Value = dgv.Columns[i].HeaderText;
+                    }
+
+                    // Escribir filas
+                    for (int i = 0; i < dgv.Rows.Count; i++)
+                    {
+                        for (int j = 0; j < dgv.Columns.Count; j++)
+                        {
+                            ws.Cell(i + 2, j + 1).Value = dgv.Rows[i].Cells[j].Value?.ToString();
+                        }
+                    }
+
+                    wb.SaveAs(sfd.FileName);
+                    MessageBox.Show("¡Exportado exitosamente!", "Excel", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+        }
+
+        private void btnExcel_Click(object sender, EventArgs e)
+        {
+            ExportarAExcel(dgvVentas);
         }
     }
 }

@@ -40,6 +40,7 @@
             this.colNombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colTelefono = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ventaRepositoryBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.btnExcel = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvVentas)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ventaRepositoryBindingSource)).BeginInit();
             this.SuspendLayout();
@@ -139,11 +140,22 @@
             // 
             this.ventaRepositoryBindingSource.DataSource = typeof(Dal.VentaRepository);
             // 
+            // btnExcel
+            // 
+            this.btnExcel.Location = new System.Drawing.Point(819, 13);
+            this.btnExcel.Name = "btnExcel";
+            this.btnExcel.Size = new System.Drawing.Size(136, 52);
+            this.btnExcel.TabIndex = 47;
+            this.btnExcel.Text = "Exportar";
+            this.btnExcel.UseVisualStyleBackColor = true;
+            this.btnExcel.Click += new System.EventHandler(this.btnExcel_Click);
+            // 
             // FrmReportes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1080, 615);
+            this.Controls.Add(this.btnExcel);
             this.Controls.Add(this.dgvVentas);
             this.Controls.Add(this.label12);
             this.Controls.Add(this.label2);
@@ -172,5 +184,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn colCedula;
         private System.Windows.Forms.DataGridViewTextBoxColumn colNombre;
         private System.Windows.Forms.DataGridViewTextBoxColumn colTelefono;
+        private System.Windows.Forms.Button btnExcel;
     }
 }
