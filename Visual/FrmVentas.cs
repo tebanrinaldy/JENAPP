@@ -170,7 +170,7 @@ namespace Visual
             try
             {
                 // Crear el objeto venta y asignar datos  
-                
+
                 Venta nuevaVenta = new Venta
                 {
                     FechaVenta = DateTime.Now,
@@ -181,7 +181,7 @@ namespace Visual
                     NombreCliente = txtNombreCliente.Text.Trim(),
                     TelefonoCliente = txtTelefono.Text.Trim(),
 
-                   
+
                 };
 
                 // Validar datos básicos 
@@ -196,7 +196,7 @@ namespace Visual
                 nuevaVenta.DetalleVentas = new List<DetalleVenta>();
                 foreach (DataGridViewRow row in dgvVentas.Rows)
                 {
-                  
+
                     if (row.IsNewRow) continue;
 
                     DetalleVenta detalle = new DetalleVenta
@@ -209,11 +209,11 @@ namespace Visual
                     };
 
                     nuevaVenta.DetalleVentas.Add(detalle);
-                    
+
                 }
 
 
-                    bool guardado = ventaRepository.Agregar(nuevaVenta);
+                bool guardado = ventaRepository.Agregar(nuevaVenta);
                 if (guardado)
                 {
                     MessageBox.Show("Venta registrada correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);

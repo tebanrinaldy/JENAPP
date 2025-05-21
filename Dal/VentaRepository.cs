@@ -159,7 +159,9 @@ namespace Dal
 
                     using (var cmd = connection.CreateCommand())
                     {
-                        cmd.CommandText = "SELECT ID, FECHAVENTA, TOTAL, CEDULACLIENTE, NOMBRECLIENTE, TELEFONOCLIENTE FROM VENTA";
+                        cmd.CommandText = @"SELECT ID_VENTA, FECHA_VENTA, TOTAL, 
+                                           CEDULA_CLIENTE, NOMBRE_CLIENTE, TELEFONO_CLIENTE 
+                                    FROM VENTAS";
 
                         using (var reader = cmd.ExecuteReader())
                         {
@@ -167,26 +169,28 @@ namespace Dal
                             {
                                 ventas.Add(new Venta
                                 {
-                                    Id = reader.GetInt32(0),
-                                    FechaVenta = reader.GetDateTime(1),
-                                    Total = reader.GetDecimal(2),
-                                    CedulaCliente = reader.GetString(3),
-                                    NombreCliente = reader.GetString(4),
-                                    TelefonoCliente = reader.GetString(5),
-                                    Detalles = new List<DetalleVenta>() 
+                                    Id = Convert.ToInt32(reader.GetDecimal(0)), // ID_VENTA: NUMBER
+                                    FechaVenta = reader.GetDateTime(1),         // FECHA_VENTA: DATE
+                                    Total = reader.GetDecimal(2),               // TOTAL: NUMBER(10,2)
+                                    CedulaCliente = reader.IsDBNull(3) ? "" : reader.GetString(3),       // VARCHAR2(15)
+                                    NombreCliente = reader.IsDBNull(4) ? "" : reader.GetString(4),       // VARCHAR2(40)
+                                    TelefonoCliente = reader.IsDBNull(5) ? "" : reader.GetString(5),     // VARCHAR2(15)
+                                    Detalles = new List<DetalleVenta>()
                                 });
                             }
                         }
                     }
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
+                throw new Exception("Error al obtener las ventas", ex);
             }
 
             return ventas;
         }
+
+
 
         public bool Actualizar(Venta venta)
         {

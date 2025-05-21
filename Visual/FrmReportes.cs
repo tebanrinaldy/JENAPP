@@ -15,23 +15,56 @@ namespace Visual
 {
     public partial class FrmReportes : Form
     {
-       private readonly ReporteRepository _reporteRepository = new ReporteRepository("User Id=jenapp;Password=jen123;Data Source=192.168.1.25:1521/XEPDB1");
+        private readonly VentaRepository _ventaRepository;
         public FrmReportes()
         {
             InitializeComponent();
-            this.Load += FrmReportes_Load;
+
+            _ventaRepository = new VentaRepository("User Id=jenapp;Password=jen123;Data Source=192.168.1.25:1521/XEPDB1");
         }
+
+
+
         private void FrmReportes_Load(object sender, EventArgs e)
         {
-            try
+
+            CargarVentas();
+        }
+
+        private void CargarVentas()
+        {
             {
-                List<Reportes> reportes = _reporteRepository.ObtenerTodos();
-                dvgReportes.DataSource = reportes;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error al cargar reportes: " + ex.Message);
+                try
+                {
+                    dgvVentas.Rows.Clear(); // Limpia el contenido anterior
+
+                    var ventas = _ventaRepository.ObtenerTodos();
+
+                    if (ventas.Count == 0)
+                    {
+                        MessageBox.Show("No hay ventas registradas.");
+                        return;
+                    }
+
+                    foreach (var venta in ventas)
+                    {
+                        int index = dgvVentas.Rows.Add();
+                        dgvVentas.Rows[index].Cells["colId"].Value = venta.Id;
+                        dgvVentas.Rows[index].Cells["colFecha"].Value = venta.FechaVenta.ToShortDateString();
+                        dgvVentas.Rows[index].Cells["colTotal"].Value = venta.Total;
+                        dgvVentas.Rows[index].Cells["colCedula"].Value = venta.CedulaCliente;
+                        dgvVentas.Rows[index].Cells["colNombre"].Value = venta.NombreCliente;
+                        dgvVentas.Rows[index].Cells["colTelefono"].Value = venta.TelefonoCliente;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error al cargar ventas: " + ex.Message);
+                }
             }
         }
     }
 }
+    
+    
+

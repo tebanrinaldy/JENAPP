@@ -89,46 +89,18 @@ namespace Visual
 
 
         }
-        private void Abrirformularioventas(object formventas)
-        {
-            if (this.panelContenedor.Controls.Count > 0)
-                this.panelContenedor.Controls.RemoveAt(0);
-            Form fh = formventas as Form;
-            fh.TopLevel = false;
-            fh.FormBorderStyle = FormBorderStyle.None;
-            fh.Dock = DockStyle.Fill;
-            panelContenedor.Controls.Add(fh);
-            panelContenedor.Tag = fh;
-            
-      
 
-        }
 
         private void btnventas_Click(object sender, EventArgs e)
         {
-            Abrirformularioventas(new FrmVentas());
-            FrmVentas frm = new FrmVentas();
-            frm.Show();
-            frm.FormClosed += (s, args) => this.Show(); // Vuelve a mostrar FrmPrincipal al cerrar FrmVentas
-            this.Hide(); // Oculta FrmPrincipal al abrir FrmVentas  
+            AbrirFormularioEnPanel(new FrmVentas());
         }
 
-        private void Abrirformularioreportes(object formreportes)
-        {
-            if (this.panelContenedor.Controls.Count > 0)
-                this.panelContenedor.Controls.RemoveAt(0);
-            Form fh = formreportes as Form;
-            fh.TopLevel = false;
-            fh.FormBorderStyle = FormBorderStyle.None;
-            fh.Dock = DockStyle.Fill;
-            panelContenedor.Controls.Add(fh);
-            panelContenedor.Tag = fh;
-            fh.Show();
-        }
+    
 
         private void btnreportes_Click(object sender, EventArgs e)
         {
-            Abrirformularioreportes(new FrmReportes());
+            AbrirFormularioEnPanel(new FrmReportes());
         }
 
         private void MenuVertical_Paint(object sender, PaintEventArgs e)
@@ -136,25 +108,10 @@ namespace Visual
 
         }
 
-        private void Abrirformulariocategorias(object formcategorias)
-        {
-            if (this.panelContenedor.Controls.Count > 0)
-                this.panelContenedor.Controls.RemoveAt(0);
-            Form fh = formcategorias as Form;
-            fh.TopLevel = false;
-            fh.FormBorderStyle = FormBorderStyle.None;
-            fh.Dock = DockStyle.Fill;
-            panelContenedor.Controls.Add(fh);
-            panelContenedor.Tag = fh;
 
-        }
         private void btncategorias_Click(object sender, EventArgs e)
         {
-            Abrirformulariocategorias(new FrmCategorias());
-            FrmCategorias frm = new FrmCategorias();
-            frm.Show();
-            frm.FormClosed += (s, args) => this.Show(); // Vuelve a mostrar FrmPrincipal al cerrar FrmCategorias
-            this.Hide(); // Oculta FrmPrincipal al abrir FrmCategorias
+            AbrirFormularioEnPanel(new FrmCategorias());
         }
 
         private void AbrirFormularioEnPanel(Form formulario)
