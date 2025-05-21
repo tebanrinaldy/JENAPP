@@ -9,7 +9,7 @@ namespace Dal
 {
     public static class Conexion
     {
-        private static readonly string connectionString = "User Id=jenapp;Password=jen123;Data Source=192.168.1.25:1521/XEPDB1";
+        private static readonly string connectionString = "User Id=jenapp;Password=jen123;Data Source=192.168.221.244:1521/XEPDB1";
         public static string ConnectionString => connectionString;
 
         public static OracleConnection ObtenerConexion()
