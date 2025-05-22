@@ -20,6 +20,7 @@
             base.Dispose(disposing);
         }
 
+
         #region Windows Form Designer generated code
 
         /// <summary>
@@ -73,9 +74,12 @@
             // 
             // txtNombre
             // 
+            this.txtNombre.BackColor = System.Drawing.SystemColors.InactiveBorder;
+            this.txtNombre.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtNombre.Location = new System.Drawing.Point(255, 173);
             this.txtNombre.Name = "txtNombre";
-            this.txtNombre.Size = new System.Drawing.Size(259, 22);
+            this.txtNombre.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.txtNombre.Size = new System.Drawing.Size(259, 15);
             this.txtNombre.TabIndex = 11;
             // 
             // label1
@@ -211,7 +215,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(66)))), ((int)(((byte)(82)))));
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(44)))), ((int)(((byte)(52)))));
             this.ClientSize = new System.Drawing.Size(1080, 615);
             this.Controls.Add(this.btnEliminarProductos);
             this.Controls.Add(this.btnActualizarProducto);
@@ -256,5 +260,6 @@
         private System.Windows.Forms.ComboBox comboBoxCategoria;
         private System.Windows.Forms.Button btnActualizarProducto;
         private System.Windows.Forms.Button btnEliminarProductos;
+
     }
 }
