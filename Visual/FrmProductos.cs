@@ -239,6 +239,82 @@ namespace Visual
         {
 
         }
+
+        private void btnActualizarProducto_Click_1(object sender, EventArgs e)
+        {
+            if (ListaProducto.SelectedItem is Producto producto)
+            {
+                try
+                {
+                    // Leer valores actualizados
+                    producto.Nombre = txtNombre.Text.Trim();
+                    producto.Descripcion = txtDescripcion.Text.Trim();
+                    producto.Precio = decimal.Parse(txtPrecio.Text.Trim());
+                    producto.Stock = int.Parse(txtStock.Text.Trim());
+                    producto.IdCategoria = (int)comboBoxCategoria.SelectedValue;
+
+                    bool exito = _productoRepository.Actualizar(producto);
+
+                    if (exito)
+                    {
+                        MessageBox.Show("Producto actualizado correctamente.");
+                        CargarProductos(); // Refresca lista
+                        LimpiarCampos();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Error al actualizar el producto.");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Ocurrió un error: " + ex.Message);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Seleccione un producto de la lista para actualizar.");
+            }
+
+        }
+
+        private void btnEliminarProductos_Click(object sender, EventArgs e)
+        {
+            if (ListaProducto.SelectedItem is Producto productoSeleccionado)
+            {
+                var confirmar = MessageBox.Show($"¿Está seguro de eliminar el producto \"{productoSeleccionado.Nombre}\"?",
+                                                "Confirmar eliminación",
+                                                MessageBoxButtons.YesNo,
+                                                MessageBoxIcon.Warning);
+
+                if (confirmar == DialogResult.Yes)
+                {
+                    try
+                    {
+                        bool eliminado = _productoRepository.Eliminar(productoSeleccionado.Id);
+
+                        if (eliminado)
+                        {
+                            MessageBox.Show("Producto eliminado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            CargarProductos(); // recarga el ListBox o DataGridView
+                            LimpiarCampos();   // opcional: limpia los campos de entrada
+                        }
+                        else
+                        {
+                            MessageBox.Show("No se pudo eliminar el producto.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Error al eliminar el producto: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Seleccione un producto de la lista para eliminar.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
     }
 }
 

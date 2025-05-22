@@ -43,6 +43,7 @@
             this.ListaProducto = new System.Windows.Forms.ListBox();
             this.comboBoxCategoria = new System.Windows.Forms.ComboBox();
             this.btnActualizarProducto = new System.Windows.Forms.Button();
+            this.btnEliminarProductos = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // BtnGuardarProducto
@@ -50,7 +51,7 @@
             this.BtnGuardarProducto.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
             this.BtnGuardarProducto.FlatAppearance.BorderSize = 0;
             this.BtnGuardarProducto.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnGuardarProducto.Location = new System.Drawing.Point(280, 493);
+            this.BtnGuardarProducto.Location = new System.Drawing.Point(344, 493);
             this.BtnGuardarProducto.Name = "BtnGuardarProducto";
             this.BtnGuardarProducto.Size = new System.Drawing.Size(204, 35);
             this.BtnGuardarProducto.TabIndex = 15;
@@ -83,7 +84,7 @@
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(418, 106);
+            this.label1.Location = new System.Drawing.Point(309, 79);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(130, 23);
             this.label1.TabIndex = 8;
@@ -185,12 +186,26 @@
             this.btnActualizarProducto.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
             this.btnActualizarProducto.FlatAppearance.BorderSize = 0;
             this.btnActualizarProducto.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnActualizarProducto.Location = new System.Drawing.Point(569, 493);
+            this.btnActualizarProducto.Location = new System.Drawing.Point(578, 493);
             this.btnActualizarProducto.Name = "btnActualizarProducto";
             this.btnActualizarProducto.Size = new System.Drawing.Size(204, 35);
             this.btnActualizarProducto.TabIndex = 27;
             this.btnActualizarProducto.Text = "Actualizar";
             this.btnActualizarProducto.UseVisualStyleBackColor = false;
+            this.btnActualizarProducto.Click += new System.EventHandler(this.btnActualizarProducto_Click_1);
+            // 
+            // btnEliminarProductos
+            // 
+            this.btnEliminarProductos.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.btnEliminarProductos.FlatAppearance.BorderSize = 0;
+            this.btnEliminarProductos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnEliminarProductos.Location = new System.Drawing.Point(115, 493);
+            this.btnEliminarProductos.Name = "btnEliminarProductos";
+            this.btnEliminarProductos.Size = new System.Drawing.Size(204, 35);
+            this.btnEliminarProductos.TabIndex = 28;
+            this.btnEliminarProductos.Text = "Eliminar";
+            this.btnEliminarProductos.UseVisualStyleBackColor = false;
+            this.btnEliminarProductos.Click += new System.EventHandler(this.btnEliminarProductos_Click);
             // 
             // FrmProductos
             // 
@@ -198,6 +213,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(66)))), ((int)(((byte)(82)))));
             this.ClientSize = new System.Drawing.Size(1080, 615);
+            this.Controls.Add(this.btnEliminarProductos);
             this.Controls.Add(this.btnActualizarProducto);
             this.Controls.Add(this.comboBoxCategoria);
             this.Controls.Add(this.ListaProducto);
@@ -239,5 +255,6 @@
         private System.Windows.Forms.ListBox ListaProducto;
         private System.Windows.Forms.ComboBox comboBoxCategoria;
         private System.Windows.Forms.Button btnActualizarProducto;
+        private System.Windows.Forms.Button btnEliminarProductos;
     }
 }
