@@ -18,7 +18,7 @@ namespace Visual
     {
         // ← Conexión a Oracle
         private const string connectionString =
-           "User Id=jenapp;Password=jen123;Data Source=192.168.1.25:1521/XEPDB1";
+           "User Id=jenapp;Password=jen123;Data Source=localhost:1521/XEPDB1";
 
         private readonly CategoriaRepository _categoriaRepository;
 
