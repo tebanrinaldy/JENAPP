@@ -40,18 +40,9 @@
             this.txtStock = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.txtDescripcion = new System.Windows.Forms.TextBox();
-            this.BarraTitulo = new System.Windows.Forms.Panel();
-            this.cerrar = new System.Windows.Forms.PictureBox();
-            this.minimizar = new System.Windows.Forms.PictureBox();
-            this.BtnMinimizar = new System.Windows.Forms.PictureBox();
-            this.BtnCerrar = new System.Windows.Forms.PictureBox();
             this.ListaProducto = new System.Windows.Forms.ListBox();
             this.comboBoxCategoria = new System.Windows.Forms.ComboBox();
-            this.BarraTitulo.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.cerrar)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.minimizar)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.BtnMinimizar)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.BtnCerrar)).BeginInit();
+            this.btnActualizarProducto = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // BtnGuardarProducto
@@ -59,7 +50,7 @@
             this.BtnGuardarProducto.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
             this.BtnGuardarProducto.FlatAppearance.BorderSize = 0;
             this.BtnGuardarProducto.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnGuardarProducto.Location = new System.Drawing.Point(520, 493);
+            this.BtnGuardarProducto.Location = new System.Drawing.Point(280, 493);
             this.BtnGuardarProducto.Name = "BtnGuardarProducto";
             this.BtnGuardarProducto.Size = new System.Drawing.Size(204, 35);
             this.BtnGuardarProducto.TabIndex = 15;
@@ -170,68 +161,13 @@
             this.txtDescripcion.Size = new System.Drawing.Size(259, 110);
             this.txtDescripcion.TabIndex = 22;
             // 
-            // BarraTitulo
-            // 
-            this.BarraTitulo.BackColor = System.Drawing.Color.Navy;
-            this.BarraTitulo.Controls.Add(this.cerrar);
-            this.BarraTitulo.Controls.Add(this.minimizar);
-            this.BarraTitulo.Controls.Add(this.BtnMinimizar);
-            this.BarraTitulo.Controls.Add(this.BtnCerrar);
-            this.BarraTitulo.Dock = System.Windows.Forms.DockStyle.Top;
-            this.BarraTitulo.Location = new System.Drawing.Point(0, 0);
-            this.BarraTitulo.Name = "BarraTitulo";
-            this.BarraTitulo.Size = new System.Drawing.Size(1080, 35);
-            this.BarraTitulo.TabIndex = 24;
-            // 
-            // cerrar
-            // 
-            this.cerrar.Image = global::Visual.Properties.Resources.X_SinFondo;
-            this.cerrar.Location = new System.Drawing.Point(1042, -2);
-            this.cerrar.Name = "cerrar";
-            this.cerrar.Size = new System.Drawing.Size(35, 40);
-            this.cerrar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.cerrar.TabIndex = 25;
-            this.cerrar.TabStop = false;
-            this.cerrar.Click += new System.EventHandler(this.pictureBox5_Click);
-            // 
-            // minimizar
-            // 
-            this.minimizar.Image = global::Visual.Properties.Resources._Blanco;
-            this.minimizar.Location = new System.Drawing.Point(975, -2);
-            this.minimizar.Name = "minimizar";
-            this.minimizar.Size = new System.Drawing.Size(35, 40);
-            this.minimizar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.minimizar.TabIndex = 2;
-            this.minimizar.TabStop = false;
-            this.minimizar.Click += new System.EventHandler(this.minimizar_Click);
-            // 
-            // BtnMinimizar
-            // 
-            this.BtnMinimizar.Image = global::Visual.Properties.Resources._Blanco;
-            this.BtnMinimizar.Location = new System.Drawing.Point(1206, -2);
-            this.BtnMinimizar.Name = "BtnMinimizar";
-            this.BtnMinimizar.Size = new System.Drawing.Size(35, 40);
-            this.BtnMinimizar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.BtnMinimizar.TabIndex = 1;
-            this.BtnMinimizar.TabStop = false;
-            // 
-            // BtnCerrar
-            // 
-            this.BtnCerrar.Image = global::Visual.Properties.Resources.X_SinFondo;
-            this.BtnCerrar.Location = new System.Drawing.Point(1264, -2);
-            this.BtnCerrar.Name = "BtnCerrar";
-            this.BtnCerrar.Size = new System.Drawing.Size(35, 40);
-            this.BtnCerrar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.BtnCerrar.TabIndex = 0;
-            this.BtnCerrar.TabStop = false;
-            // 
             // ListaProducto
             // 
             this.ListaProducto.FormattingEnabled = true;
             this.ListaProducto.ItemHeight = 16;
-            this.ListaProducto.Location = new System.Drawing.Point(586, 126);
+            this.ListaProducto.Location = new System.Drawing.Point(569, 193);
             this.ListaProducto.Name = "ListaProducto";
-            this.ListaProducto.Size = new System.Drawing.Size(469, 260);
+            this.ListaProducto.Size = new System.Drawing.Size(384, 228);
             this.ListaProducto.TabIndex = 25;
             this.ListaProducto.SelectedIndexChanged += new System.EventHandler(this.ListaProducto_SelectedIndexChanged);
             // 
@@ -244,15 +180,27 @@
             this.comboBoxCategoria.TabIndex = 26;
             this.comboBoxCategoria.SelectedIndexChanged += new System.EventHandler(this.comboBoxCategoria_SelectedIndexChanged);
             // 
+            // btnActualizarProducto
+            // 
+            this.btnActualizarProducto.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.btnActualizarProducto.FlatAppearance.BorderSize = 0;
+            this.btnActualizarProducto.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnActualizarProducto.Location = new System.Drawing.Point(569, 493);
+            this.btnActualizarProducto.Name = "btnActualizarProducto";
+            this.btnActualizarProducto.Size = new System.Drawing.Size(204, 35);
+            this.btnActualizarProducto.TabIndex = 27;
+            this.btnActualizarProducto.Text = "Actualizar";
+            this.btnActualizarProducto.UseVisualStyleBackColor = false;
+            // 
             // FrmProductos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(66)))), ((int)(((byte)(82)))));
             this.ClientSize = new System.Drawing.Size(1080, 615);
+            this.Controls.Add(this.btnActualizarProducto);
             this.Controls.Add(this.comboBoxCategoria);
             this.Controls.Add(this.ListaProducto);
-            this.Controls.Add(this.BarraTitulo);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.txtDescripcion);
             this.Controls.Add(this.label6);
@@ -270,11 +218,6 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "   ";
             this.Load += new System.EventHandler(this.FrmProductos_Load);
-            this.BarraTitulo.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.cerrar)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.minimizar)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.BtnMinimizar)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.BtnCerrar)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -293,12 +236,8 @@
         private System.Windows.Forms.TextBox txtStock;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox txtDescripcion;
-        private System.Windows.Forms.Panel BarraTitulo;
-        private System.Windows.Forms.PictureBox BtnMinimizar;
-        private System.Windows.Forms.PictureBox BtnCerrar;
-        private System.Windows.Forms.PictureBox cerrar;
-        private System.Windows.Forms.PictureBox minimizar;
         private System.Windows.Forms.ListBox ListaProducto;
         private System.Windows.Forms.ComboBox comboBoxCategoria;
+        private System.Windows.Forms.Button btnActualizarProducto;
     }
 }

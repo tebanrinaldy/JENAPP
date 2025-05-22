@@ -77,6 +77,7 @@ namespace Visual
         {
             CargarCategorias();
             CargarProductos();
+            ListaProducto.SelectedIndexChanged += ListaProducto_SelectedIndexChanged;
 
 
         }
@@ -157,7 +158,14 @@ namespace Visual
 
         private void ListaProducto_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            if (ListaProducto.SelectedItem is Producto producto)
+            {
+                txtNombre.Text = producto.Nombre;
+                txtDescripcion.Text = producto.Descripcion;
+                txtPrecio.Text = producto.Precio.ToString("F2");
+                txtStock.Text = producto.Stock.ToString();
+                comboBoxCategoria.SelectedValue = producto.IdCategoria;
+            }
         }
         private void CargarCategorias()
         {
@@ -180,9 +188,53 @@ namespace Visual
         }
         private void comboBoxCategoria_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            if (ListaProducto.SelectedItem is Producto producto)
+            {
+                txtNombre.Text = producto.Nombre;
+                txtDescripcion.Text = producto.Descripcion;
+                txtPrecio.Text = producto.Precio.ToString("F2");
+                txtStock.Text = producto.Stock.ToString();
+                comboBoxCategoria.SelectedValue = producto.IdCategoria;
+            }
         }
 
+
+        private void BtnActualizarProducto_Click(object sender, EventArgs e)
+        {
+            if (ListaProducto.SelectedItem is Producto producto)
+            {
+                try
+                {
+                    // Leer valores actualizados
+                    producto.Nombre = txtNombre.Text.Trim();
+                    producto.Descripcion = txtDescripcion.Text.Trim();
+                    producto.Precio = decimal.Parse(txtPrecio.Text.Trim());
+                    producto.Stock = int.Parse(txtStock.Text.Trim());
+                    producto.IdCategoria = (int)comboBoxCategoria.SelectedValue;
+
+                    bool exito = _productoRepository.Actualizar(producto);
+
+                    if (exito)
+                    {
+                        MessageBox.Show("Producto actualizado correctamente.");
+                        CargarProductos(); // Refresca lista
+                        LimpiarCampos();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Error al actualizar el producto.");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Ocurrió un error: " + ex.Message);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Seleccione un producto de la lista para actualizar.");
+            }
+        }
         private void label6_Click(object sender, EventArgs e)
         {
 
