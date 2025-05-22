@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Entity;
 using ClosedXML.Excel;
+using System.Drawing.Drawing2D;
 
 namespace Visual
 {
@@ -19,6 +20,7 @@ namespace Visual
         private readonly VentaRepository _ventaRepository;
         public FrmReportes()
         {
+            
             InitializeComponent();
             AplicarEstiloControles(this);
             _ventaRepository = new VentaRepository("User Id=jenapp;Password=jen123;Data Source=localhost:1521/XEPDB1");
@@ -64,7 +66,9 @@ namespace Visual
                 }
             }
         }
+     
 
+        
         private void ExportarAExcel(DataGridView dgv)
         {
             using (SaveFileDialog sfd = new SaveFileDialog()

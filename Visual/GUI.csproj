@@ -209,6 +209,7 @@
     <Content Include="Resources\Logo.jpeg" />
     <None Include="Resources\user_SinFondo.png" />
     <None Include="Resources\Microsoft-excel.png" />
+    <None Include="Resources\logo_excel_moderno.png" />
     <Content Include="Resources\PictureUsuario.png" />
     <None Include="Resources\PictureUsuario1.png" />
   </ItemGroup>
