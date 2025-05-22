@@ -14,13 +14,13 @@ using ClosedXML.Excel;
 
 namespace Visual
 {
-    public partial class FrmReportes : Form
+    public partial class FrmReportes : FrmBase
     {
         private readonly VentaRepository _ventaRepository;
         public FrmReportes()
         {
             InitializeComponent();
-
+            AplicarEstiloControles(this);
             _ventaRepository = new VentaRepository("User Id=jenapp;Password=jen123;Data Source=localhost:1521/XEPDB1");
         }
 

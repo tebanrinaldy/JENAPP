@@ -11,12 +11,12 @@ using System.Runtime.InteropServices;
 
 namespace Visual
 {
-    public partial class FrmPrincipalcs: Form
+    public partial class FrmPrincipalcs: FrmBase
     {
         public FrmPrincipalcs()
         {
             InitializeComponent();
-
+            AplicarEstiloControles(this);
         }
 
 

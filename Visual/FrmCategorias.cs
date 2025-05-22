@@ -14,7 +14,7 @@ using Bll;
 
 namespace Visual
 {
-    public partial class FrmCategorias : Form
+    public partial class FrmCategorias : FrmBase
     {
         // ← Conexión a Oracle
         private const string connectionString =
@@ -26,7 +26,8 @@ namespace Visual
         {
             InitializeComponent();
             _categoriaRepository = new CategoriaRepository(connectionString);
-           CargarCategorias();  
+           CargarCategorias();
+            AplicarEstiloControles(this);
 
         }
 

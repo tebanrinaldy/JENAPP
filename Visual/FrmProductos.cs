@@ -13,7 +13,7 @@ using System.Windows.Forms;
 
 namespace Visual
 {
-    public partial class FrmProductos : Form
+    public partial class FrmProductos : FrmBase
     {
         // ← Conexión a Oracle
         private const string connectionString =
@@ -21,7 +21,7 @@ namespace Visual
         public FrmProductos()
         {
             InitializeComponent();
-            AplicarEstilos();
+            AplicarEstiloControles(this);
         }
         CategoriaRepository _categoriaRepository = new CategoriaRepository(" User Id=jenapp;Password=jen123;Data Source=localhost:1521/XEPDB1");
         ProductoRepository _productoRepository = new ProductoRepository("User Id=jenapp;Password=jen123;Data Source=localhost:1521/XEPDB1");
@@ -92,97 +92,7 @@ namespace Visual
 
 
 
-        public void AplicarEstilos()
-        {
-            EstilizarTextBoxes(this);
-            EstilizarBotones(this);
-            EstilizarComboBoxes(this);
-            EstilizarListBoxes(this);
-        }
-      #region Estilo moderno para controles
-
-
-
-        private void EstilizarTextBoxes(Control parent)
-        {
-            foreach (Control control in parent.Controls)
-            {
-                if (control is TextBox textBox)
-                {
-                    textBox.BackColor = Color.FromArgb(60, 63, 65);
-                    textBox.ForeColor = Color.White;
-                    textBox.BorderStyle = BorderStyle.FixedSingle;
-                    textBox.Font = new Font("Segoe UI", 10, FontStyle.Regular);
-                }
-
-                if (control.HasChildren)
-                {
-                    EstilizarTextBoxes(control);
-                }
-            }
-        }
-
-        private void EstilizarBotones(Control parent)
-        {
-            foreach (Control control in parent.Controls)
-            {
-                if (control is Button btn)
-                {
-                    btn.BackColor = Color.FromArgb(58, 123, 213);
-                    btn.ForeColor = Color.White;
-                    btn.FlatStyle = FlatStyle.Flat;
-                    btn.FlatAppearance.BorderSize = 0;
-                    btn.Font = new Font("Segoe UI", 10, FontStyle.Regular);
-                    btn.Cursor = Cursors.Hand;
-                }
-
-                if (control.HasChildren)
-                {
-                    EstilizarBotones(control);
-                }
-            }
-        }
-
-        private void EstilizarComboBoxes(Control parent)
-        {
-            foreach (Control control in parent.Controls)
-            {
-                if (control is ComboBox combo)
-                {
-                    combo.BackColor = Color.FromArgb(60, 63, 65);
-                    combo.ForeColor = Color.White;
-                    combo.FlatStyle = FlatStyle.Flat;
-                    combo.Font = new Font("Segoe UI", 10, FontStyle.Regular);
-                }
-
-                if (control.HasChildren)
-                {
-                    EstilizarComboBoxes(control);
-                }
-            }
-        }
-
-        private void EstilizarListBoxes(Control parent)
-        {
-            foreach (Control control in parent.Controls)
-            {
-                if (control is ListBox listBox)
-                {
-                    listBox.BackColor = Color.FromArgb(60, 63, 65);
-                    listBox.ForeColor = Color.White;
-                    listBox.BorderStyle = BorderStyle.FixedSingle;
-                    listBox.Font = new Font("Segoe UI", 10, FontStyle.Regular);
-                }
-
-                if (control.HasChildren)
-                {
-                    EstilizarListBoxes(control);
-                }
-            }
-        }
-
-        #endregion
-
+     
 
 
         private void btncategorias_Click(object sender, EventArgs e)
