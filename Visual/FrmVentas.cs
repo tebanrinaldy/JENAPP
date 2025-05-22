@@ -19,7 +19,7 @@ using Bll.Bll;
 
 namespace Visual
 {
-    public partial class FrmVentas : Form
+    public partial class FrmVentas : FrmBase
     {
         public FrmVentas()
         {
@@ -27,6 +27,7 @@ namespace Visual
             ConfigurarColumnasDataProducto();
             ConfigurarColumnasVenta();
             CargarTodosLosProductos();
+            AplicarEstiloControles(this);
 
             DataProducto.CellDoubleClick += DataProducto_CellDoubleClick;
         }
@@ -113,20 +114,43 @@ namespace Visual
                 string nombre = filaSeleccionada.Cells["colNombre"].Value?.ToString();
                 decimal precio = Convert.ToDecimal(filaSeleccionada.Cells["colPrecio"].Value);
                 int cantidad = 1;
-                decimal subtotal = precio * cantidad;
 
-                // Buscar el producto original en la lista (opcional si no tienes referencia directa)
+                // Buscar el producto original en la lista para obtener el Id
                 var producto = _productoRepository.ObtenerTodos()
                                 .FirstOrDefault(p => p.Nombre == nombre);
 
-                int filaVenta = dgvVentas.Rows.Add();
-                dgvVentas.Rows[filaVenta].Cells["IdProducto"].Value = producto?.Id; // Aquí se guarda el ID
-                dgvVentas.Rows[filaVenta].Cells["colProducto"].Value = nombre;
-                dgvVentas.Rows[filaVenta].Cells["colPrecio"].Value = precio;
-                dgvVentas.Rows[filaVenta].Cells["colCantidad"].Value = cantidad;
-                dgvVentas.Rows[filaVenta].Cells["colSubtotal"].Value = subtotal;
+                if (producto == null)
+                    return; // no encontrado, salir
+
+                // Buscar si ya existe en dgvVentas por IdProducto
+                foreach (DataGridViewRow filaVenta in dgvVentas.Rows)
+                {
+                    if (filaVenta.Cells["IdProducto"].Value != null &&
+                        filaVenta.Cells["IdProducto"].Value.Equals(producto.Id))
+                    {
+                        // Ya existe: incrementar cantidad y actualizar subtotal
+                        int cantidadActual = Convert.ToInt32(filaVenta.Cells["colCantidad"].Value);
+                        cantidadActual += 1;
+                        filaVenta.Cells["colCantidad"].Value = cantidadActual;
+
+                        decimal subtotalNuevo = cantidadActual * precio;
+                        filaVenta.Cells["colSubtotal"].Value = subtotalNuevo;
+
+                        CalcularTotal();
+                        return; // Ya actualizado, salir
+                    }
+                }
+
+                // No existe: agregar nuevo
+                int filaNueva = dgvVentas.Rows.Add();
+                dgvVentas.Rows[filaNueva].Cells["IdProducto"].Value = producto.Id;
+                dgvVentas.Rows[filaNueva].Cells["colProducto"].Value = nombre;
+                dgvVentas.Rows[filaNueva].Cells["colPrecio"].Value = precio;
+                dgvVentas.Rows[filaNueva].Cells["colCantidad"].Value = cantidad;
+                dgvVentas.Rows[filaNueva].Cells["colSubtotal"].Value = precio * cantidad;
+
+                CalcularTotal();
             }
-            CalcularTotal();
         }
 
         private void CalcularTotal()
@@ -147,11 +171,32 @@ namespace Visual
 
         private void btnEliminar_Click(object sender, EventArgs e)
         {
-         
             if (dgvVentas.CurrentRow != null)
             {
-                dgvVentas.Rows.Remove(dgvVentas.CurrentRow);
-                CalcularTotal(); // Recalcula el total después de eliminar
+                var fila = dgvVentas.CurrentRow;
+
+                if (fila.Cells["colCantidad"].Value != null &&
+                    int.TryParse(fila.Cells["colCantidad"].Value.ToString(), out int cantidadActual))
+                {
+                    if (cantidadActual > 1)
+                    {
+                        // Restar 1 a la cantidad
+                        cantidadActual--;
+                        fila.Cells["colCantidad"].Value = cantidadActual;
+
+                        // Recalcular subtotal
+                        if (decimal.TryParse(fila.Cells["colPrecio"].Value?.ToString(), out decimal precio))
+                        {
+                            fila.Cells["colSubtotal"].Value = precio * cantidadActual;
+                        }
+                    }
+                    else
+                    {
+                        // Si queda 1, eliminar la fila
+                        dgvVentas.Rows.Remove(fila);
+                    }
+                    CalcularTotal(); // Recalcular total después de cambiar cantidad o eliminar
+                }
             }
             else
             {

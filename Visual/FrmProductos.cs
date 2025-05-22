@@ -163,7 +163,7 @@ namespace Visual
                 txtDescripcion.Text = producto.Descripcion;
                 txtPrecio.Text = producto.Precio.ToString("F2");
                 txtStock.Text = producto.Stock.ToString();
-                comboBoxCategoria.SelectedValue = producto.IdCategoria;
+                comboBoxCategoria.SelectedValue = producto.IdCategoria; // aquí sí asignas la categoría
             }
         }
         private void CargarCategorias()
@@ -187,14 +187,7 @@ namespace Visual
         }
         private void comboBoxCategoria_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (ListaProducto.SelectedItem is Producto producto)
-            {
-                txtNombre.Text = producto.Nombre;
-                txtDescripcion.Text = producto.Descripcion;
-                txtPrecio.Text = producto.Precio.ToString("F2");
-                txtStock.Text = producto.Stock.ToString();
-                comboBoxCategoria.SelectedValue = producto.IdCategoria;
-            }
+       
         }
 
 
