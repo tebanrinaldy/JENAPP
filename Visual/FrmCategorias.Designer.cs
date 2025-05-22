@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.BarraTitulo = new System.Windows.Forms.Panel();
             this.BtnGuardarProducto = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.textBox2 = new System.Windows.Forms.TextBox();
@@ -37,15 +36,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.SuspendLayout();
-            // 
-            // BarraTitulo
-            // 
-            this.BarraTitulo.BackColor = System.Drawing.Color.Navy;
-            this.BarraTitulo.Dock = System.Windows.Forms.DockStyle.Top;
-            this.BarraTitulo.Location = new System.Drawing.Point(0, 0);
-            this.BarraTitulo.Name = "BarraTitulo";
-            this.BarraTitulo.Size = new System.Drawing.Size(1080, 35);
-            this.BarraTitulo.TabIndex = 25;
             // 
             // BtnGuardarProducto
             // 
@@ -123,7 +113,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(66)))), ((int)(((byte)(82)))));
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(44)))), ((int)(((byte)(52)))));
             this.ClientSize = new System.Drawing.Size(1080, 615);
             this.Controls.Add(this.listBox1);
             this.Controls.Add(this.BtnGuardarProducto);
@@ -132,7 +122,6 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.BarraTitulo);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FrmCategorias";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -143,7 +132,6 @@
         }
 
         #endregion
-        private System.Windows.Forms.Panel BarraTitulo;
         private System.Windows.Forms.Button BtnGuardarProducto;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox textBox2;

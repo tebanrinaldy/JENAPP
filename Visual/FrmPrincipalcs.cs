@@ -16,7 +16,10 @@ namespace Visual
         public FrmPrincipalcs()
         {
             InitializeComponent();
+
         }
+
+
     public void cerrar()
         {
             Application.Exit();
