@@ -24,10 +24,18 @@ namespace Visual
 
         public FrmCategorias()
         {
+
             InitializeComponent();
             _categoriaRepository = new CategoriaRepository(connectionString);
            CargarCategorias();
             AplicarEstiloControles(this);
+
+
+
+            listBox1.SelectedIndexChanged += listBox1_SelectedIndexChanged;
+            BtnActualizar.Click += BtnActualizar_Click;
+            BtnEliminarCategoria.Click += BtnEliminarCategoria_Click;
+
 
         }
 
@@ -72,6 +80,14 @@ namespace Visual
                 MessageBox.Show("Error al guardar en la base de datos.");
             }
         }
+        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (listBox1.SelectedItem is Categoria categoria)
+            {
+                textBox1.Text = categoria.Id.ToString();
+                textBox2.Text = categoria.Nombre;
+            }
+        }
 
         private void cerrar_Click(object sender, EventArgs e)
         {
@@ -96,34 +112,76 @@ namespace Visual
             this.Close();
 
         }
-    }
-}
-/*private void BtnEliminar_Click(object sender, EventArgs e)
-{
-    if (listBox1.SelectedItem is Categoria categoriaSeleccionada)
-    {
-        var confirmResult = MessageBox.Show(
-            "¿Estás seguro de que deseas eliminar esta categoría?",
-            "Confirmar eliminación",
-            MessageBoxButtons.YesNo,
-            MessageBoxIcon.Warning);
-        if (confirmResult == DialogResult.Yes)
+
+        private void BtnEliminarCategoria_Click(object sender, EventArgs e)
         {
-            var exito = _categoriaRepository.Eliminar(categoriaSeleccionada.Id);
-            if (exito)
+            if (int.TryParse(textBox1.Text, out int id))
             {
-                MessageBox.Show("Categoría eliminada correctamente.");
-                CargarCategorias(); // Recargar lista
+                var confirmar = MessageBox.Show("¿Está seguro que desea eliminar esta categoría?",
+                                               "Confirmar eliminación",
+                                               MessageBoxButtons.YesNo,
+                                               MessageBoxIcon.Warning);
+
+                if (confirmar == DialogResult.Yes)
+                {
+                    bool exito = _categoriaRepository.Eliminar(id);
+                    if (exito)
+                    {
+                        MessageBox.Show("Categoría eliminada correctamente.");
+                        CargarCategorias();
+                        LimpiarCampos();
+                    }
+                    else
+                    {
+                        MessageBox.Show("No se pudo eliminar la categoría.");
+                    }
+                }
             }
             else
             {
-                MessageBox.Show("Error al eliminar la categoría.");
+                MessageBox.Show("Selecciona una categoría válida para eliminar.");
+            }
+        }
+        private void LimpiarCampos()
+        {
+            textBox1.Clear();
+            textBox2.Clear();
+        }
+
+        private void BtnActualizar_Click(object sender, EventArgs e)
+        {
+            if (int.TryParse(textBox1.Text, out int id))
+            {
+                string nombre = textBox2.Text.Trim();
+
+                if (string.IsNullOrEmpty(nombre))
+                {
+                    MessageBox.Show("Por favor ingresa un nombre.");
+                    return;
+                }
+
+                var categoria = new Categoria
+                {
+                    Id = id,
+                    Nombre = nombre
+                };
+
+                bool exito = _categoriaRepository.Actualizar(categoria);
+                if (exito)
+                {
+                    MessageBox.Show("Categoría actualizada correctamente.");
+                    CargarCategorias();
+                    LimpiarCampos();
+                }
+                else
+                {
+                    MessageBox.Show("Error al actualizar la categoría.");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Selecciona una categoría válida para actualizar.");
             }
         }
     }
-    else
-    {
-        MessageBox.Show("Por favor selecciona una categoría para eliminar.");
-    }
 }
-*/
