@@ -154,6 +154,7 @@ namespace Visual
             this.DataProducto.Location = new System.Drawing.Point(3, 4);
             this.DataProducto.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.DataProducto.Name = "DataProducto";
+            this.DataProducto.ReadOnly = true;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(66)))), ((int)(((byte)(91)))));
             dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 10F);
@@ -173,6 +174,7 @@ namespace Visual
             this.colCategorias.HeaderText = "Categoria";
             this.colCategorias.MinimumWidth = 6;
             this.colCategorias.Name = "colCategorias";
+            this.colCategorias.ReadOnly = true;
             this.colCategorias.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.colCategorias.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.colCategorias.Width = 125;
@@ -182,6 +184,7 @@ namespace Visual
             this.IDProducto.HeaderText = "Id";
             this.IDProducto.MinimumWidth = 6;
             this.IDProducto.Name = "IDProducto";
+            this.IDProducto.ReadOnly = true;
             this.IDProducto.Width = 60;
             // 
             // NombreProducto
@@ -189,6 +192,7 @@ namespace Visual
             this.NombreProducto.HeaderText = "Nombre";
             this.NombreProducto.MinimumWidth = 6;
             this.NombreProducto.Name = "NombreProducto";
+            this.NombreProducto.ReadOnly = true;
             this.NombreProducto.Width = 125;
             // 
             // PrecioProducto
@@ -196,6 +200,7 @@ namespace Visual
             this.PrecioProducto.HeaderText = "Precio";
             this.PrecioProducto.MinimumWidth = 6;
             this.PrecioProducto.Name = "PrecioProducto";
+            this.PrecioProducto.ReadOnly = true;
             this.PrecioProducto.Width = 125;
             // 
             // StockProducto
@@ -203,6 +208,7 @@ namespace Visual
             this.StockProducto.HeaderText = "Stock";
             this.StockProducto.MinimumWidth = 6;
             this.StockProducto.Name = "StockProducto";
+            this.StockProducto.ReadOnly = true;
             this.StockProducto.Width = 80;
             // 
             // dgvVentas

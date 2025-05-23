@@ -16,11 +16,11 @@ using Bll.Bll;
 
 
 
-
 namespace Visual
 {
     public partial class FrmVentas : FrmBase
     {
+
         public FrmVentas()
         {
             InitializeComponent();
@@ -31,6 +31,7 @@ namespace Visual
 
             DataProducto.CellDoubleClick += DataProducto_CellDoubleClick;
         }
+        private readonly InventarioLogica inventarioLogica = new InventarioLogica();
 
         CategoriaRepository _categoriaRepository = new CategoriaRepository(" User Id=jenapp;Password=jen123;Data Source=localhost:1521/XEPDB1");
         ProductoRepository _productoRepository = new ProductoRepository("User Id=jenapp;Password=jen123;Data Source=localhost/XEPDB1");
@@ -48,10 +49,11 @@ namespace Visual
 
         private void CargarTodosLosProductos()
         {
-            var productos = _productoRepository.ObtenerTodos(); // Método que retorna List<Producto>
-            var categorias = _categoriaRepository.ObtenerTodos(); // Necesario para mapear el ID al nombre
+            DataProducto.Rows.Clear();
+            DataProducto.AllowUserToAddRows = false;
 
-            //DataProducto.Rows.Clear();
+            var productos = _productoRepository.ObtenerTodos();
+            var categorias = _categoriaRepository.ObtenerTodos();
 
             foreach (var producto in productos)
             {
@@ -111,24 +113,28 @@ namespace Visual
             {
                 var filaSeleccionada = DataProducto.Rows[e.RowIndex];
 
+                int stock = Convert.ToInt32(filaSeleccionada.Cells["colStock"].Value);
+                if (stock <= 0)
+                {
+                    MessageBox.Show("Este producto no tiene stock disponible.", "Sin stock", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
                 string nombre = filaSeleccionada.Cells["colNombre"].Value?.ToString();
                 decimal precio = Convert.ToDecimal(filaSeleccionada.Cells["colPrecio"].Value);
                 int cantidad = 1;
 
-                // Buscar el producto original en la lista para obtener el Id
                 var producto = _productoRepository.ObtenerTodos()
                                 .FirstOrDefault(p => p.Nombre == nombre);
 
                 if (producto == null)
-                    return; // no encontrado, salir
+                    return;
 
-                // Buscar si ya existe en dgvVentas por IdProducto
                 foreach (DataGridViewRow filaVenta in dgvVentas.Rows)
                 {
                     if (filaVenta.Cells["IdProducto"].Value != null &&
                         filaVenta.Cells["IdProducto"].Value.Equals(producto.Id))
                     {
-                        // Ya existe: incrementar cantidad y actualizar subtotal
                         int cantidadActual = Convert.ToInt32(filaVenta.Cells["colCantidad"].Value);
                         cantidadActual += 1;
                         filaVenta.Cells["colCantidad"].Value = cantidadActual;
@@ -137,11 +143,10 @@ namespace Visual
                         filaVenta.Cells["colSubtotal"].Value = subtotalNuevo;
 
                         CalcularTotal();
-                        return; // Ya actualizado, salir
+                        return;
                     }
                 }
 
-                // No existe: agregar nuevo
                 int filaNueva = dgvVentas.Rows.Add();
                 dgvVentas.Rows[filaNueva].Cells["IdProducto"].Value = producto.Id;
                 dgvVentas.Rows[filaNueva].Cells["colProducto"].Value = nombre;
@@ -261,18 +266,30 @@ namespace Visual
                 bool guardado = ventaRepository.Agregar(nuevaVenta);
                 if (guardado)
                 {
+                    // ✅ Descontar stock
+                    foreach (var detalle in nuevaVenta.DetalleVentas)
+                    {
+                        var movimiento = new MovimientoInventario
+                        {
+                            IdProducto = detalle.ProductoId,
+                            Tipo = "Salida",
+                            Cantidad = detalle.Cantidad,
+                            Fecha = DateTime.Now
+                        };
+
+                        inventarioLogica.ProcesarMovimiento(movimiento);
+                    }
+
                     MessageBox.Show("Venta registrada correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
                     dgvVentas.Rows.Clear();
                     lblTotal.Text = "Total: $0.00";
 
-                    // Opcional: limpiar campos cliente  
                     txtCedula.Clear();
                     txtNombreCliente.Clear();
                     txtTelefono.Clear();
-                }
-                else
-                {
-                    MessageBox.Show("Error al registrar la venta.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                    CargarTodosLosProductos();
                 }
             }
             catch (Exception ex)
@@ -281,6 +298,7 @@ namespace Visual
             }
 
         }
+
     }
     
 }
