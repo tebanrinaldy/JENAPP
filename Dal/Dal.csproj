@@ -82,6 +82,7 @@
     <Compile Include="Conexion.cs" />
     <Compile Include="DetalleVentaRepository.cs" />
     <Compile Include="IRepository.cs" />
+    <Compile Include="MovimientoInventarioDAO.cs" />
     <Compile Include="ProductoRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReporteRepository.cs" />

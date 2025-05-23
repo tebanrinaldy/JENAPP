@@ -102,6 +102,12 @@
     <Compile Include="FrmCategorias.Designer.cs">
       <DependentUpon>FrmCategorias.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmInventario.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmInventario.Designer.cs">
+      <DependentUpon>FrmInventario.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmProductos.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -136,6 +142,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="FrmCategorias.resx">
       <DependentUpon>FrmCategorias.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmInventario.resx">
+      <DependentUpon>FrmInventario.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmProductos.resx">
       <DependentUpon>FrmProductos.cs</DependentUpon>

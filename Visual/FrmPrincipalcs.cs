@@ -119,5 +119,10 @@ namespace Visual
         {
 
         }
+
+        private void btnInventario_Click(object sender, EventArgs e)
+        {
+            AbrirFormularioEnPanel(new FrmInventario());
+        }
     }
 }
