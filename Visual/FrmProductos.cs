@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 
-namespace Visual
+namespace GUI
 {
     public partial class FrmProductos : FrmBase
     {

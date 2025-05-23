@@ -1,4 +1,4 @@
-﻿namespace Visual
+﻿namespace GUI
 {
     partial class FrmReportes
     {
@@ -118,7 +118,7 @@
             // btnExcel
             // 
             this.btnExcel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(80)))));
-            this.btnExcel.BackgroundImage = global::Visual.Properties.Resources.logo_excel_moderno;
+            this.btnExcel.BackgroundImage = global::GUI.Properties.Resources.logo_excel_moderno;
             this.btnExcel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnExcel.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnExcel.Location = new System.Drawing.Point(1120, 3);

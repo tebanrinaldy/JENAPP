@@ -1,4 +1,4 @@
-﻿namespace Visual
+﻿namespace GUI
 {
     partial class FrmBase
     {

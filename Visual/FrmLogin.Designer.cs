@@ -1,4 +1,4 @@
-﻿namespace Visual
+﻿namespace GUI
 {
     partial class FrmLogin
     {
@@ -148,7 +148,7 @@
             // 
             // pictureBox4
             // 
-            this.pictureBox4.Image = global::Visual.Properties.Resources.@__SinFondo;
+            this.pictureBox4.Image = global::GUI.Properties.Resources.@__SinFondo;
             this.pictureBox4.Location = new System.Drawing.Point(721, 0);
             this.pictureBox4.Name = "pictureBox4";
             this.pictureBox4.Size = new System.Drawing.Size(22, 24);
@@ -159,7 +159,7 @@
             // 
             // BtnCerrar
             // 
-            this.BtnCerrar.Image = global::Visual.Properties.Resources.X_SinFondo;
+            this.BtnCerrar.Image = global::GUI.Properties.Resources.X_SinFondo;
             this.BtnCerrar.Location = new System.Drawing.Point(748, 0);
             this.BtnCerrar.Name = "BtnCerrar";
             this.BtnCerrar.Size = new System.Drawing.Size(30, 24);
@@ -180,7 +180,7 @@
             // 
             // pictureUsuario
             // 
-            this.pictureUsuario.Image = global::Visual.Properties.Resources.user_SinFondo;
+            this.pictureUsuario.Image = global::GUI.Properties.Resources.user_SinFondo;
             this.pictureUsuario.Location = new System.Drawing.Point(284, 83);
             this.pictureUsuario.Name = "pictureUsuario";
             this.pictureUsuario.Size = new System.Drawing.Size(39, 35);
@@ -191,7 +191,7 @@
             // 
             // pictureBox2
             // 
-            this.pictureBox2.Image = global::Visual.Properties.Resources.LogoJenapp_SinFondo;
+            this.pictureBox2.Image = global::GUI.Properties.Resources.LogoJenapp_SinFondo;
             this.pictureBox2.Location = new System.Drawing.Point(0, 58);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(247, 206);

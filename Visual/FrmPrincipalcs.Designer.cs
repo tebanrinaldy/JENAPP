@@ -1,4 +1,4 @@
-﻿namespace Visual
+﻿namespace GUI
 {
     partial class FrmPrincipalcs
     {
@@ -194,7 +194,7 @@
             this.btncategorias.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Navy;
             this.btncategorias.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btncategorias.Font = new System.Drawing.Font("Century Gothic", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btncategorias.Image = global::Visual.Properties.Resources.compras1;
+            this.btncategorias.Image = global::GUI.Properties.Resources.compras1;
             this.btncategorias.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btncategorias.Location = new System.Drawing.Point(8, 179);
             this.btncategorias.Name = "btncategorias";
@@ -213,7 +213,7 @@
             this.btnventas.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Navy;
             this.btnventas.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnventas.Font = new System.Drawing.Font("Century Gothic", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnventas.Image = global::Visual.Properties.Resources.venta;
+            this.btnventas.Image = global::GUI.Properties.Resources.venta;
             this.btnventas.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnventas.Location = new System.Drawing.Point(8, 270);
             this.btnventas.Name = "btnventas";
@@ -230,7 +230,7 @@
             this.btnreportes.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Navy;
             this.btnreportes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnreportes.Font = new System.Drawing.Font("Century Gothic", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnreportes.Image = global::Visual.Properties.Resources.reportes;
+            this.btnreportes.Image = global::GUI.Properties.Resources.reportes;
             this.btnreportes.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnreportes.Location = new System.Drawing.Point(8, 315);
             this.btnreportes.Name = "btnreportes";
@@ -248,7 +248,7 @@
             this.btnproductos.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Navy;
             this.btnproductos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnproductos.Font = new System.Drawing.Font("Century Gothic", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnproductos.Image = global::Visual.Properties.Resources.producto1;
+            this.btnproductos.Image = global::GUI.Properties.Resources.producto1;
             this.btnproductos.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnproductos.Location = new System.Drawing.Point(8, 221);
             this.btnproductos.Name = "btnproductos";
@@ -260,7 +260,7 @@
             // 
             // pictureBox2
             // 
-            this.pictureBox2.Image = global::Visual.Properties.Resources.LogoJenapp_SinFondo;
+            this.pictureBox2.Image = global::GUI.Properties.Resources.LogoJenapp_SinFondo;
             this.pictureBox2.Location = new System.Drawing.Point(0, -5);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(220, 174);
@@ -270,7 +270,7 @@
             // 
             // BtnMinimizar
             // 
-            this.BtnMinimizar.Image = global::Visual.Properties.Resources._Blanco;
+            this.BtnMinimizar.Image = global::GUI.Properties.Resources._Blanco;
             this.BtnMinimizar.Location = new System.Drawing.Point(1206, -2);
             this.BtnMinimizar.Name = "BtnMinimizar";
             this.BtnMinimizar.Size = new System.Drawing.Size(35, 40);
@@ -281,7 +281,7 @@
             // 
             // BtnCerrar
             // 
-            this.BtnCerrar.Image = global::Visual.Properties.Resources.X_SinFondo;
+            this.BtnCerrar.Image = global::GUI.Properties.Resources.X_SinFondo;
             this.BtnCerrar.Location = new System.Drawing.Point(1264, -2);
             this.BtnCerrar.Name = "BtnCerrar";
             this.BtnCerrar.Size = new System.Drawing.Size(35, 40);

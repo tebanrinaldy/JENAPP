@@ -13,7 +13,7 @@ using Entity;
 using ClosedXML.Excel;
 using System.Drawing.Drawing2D;
 
-namespace Visual
+namespace GUI
 {
     public partial class FrmReportes : FrmBase
     {

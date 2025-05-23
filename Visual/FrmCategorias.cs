@@ -12,7 +12,7 @@ using System.Windows.Forms;
 using Dal;
 using Bll;
 
-namespace Visual
+namespace GUI
 {
     public partial class FrmCategorias : FrmBase
     {

@@ -9,8 +9,9 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
 
-namespace Visual
+namespace GUI
 {
+
     public partial class FrmPrincipalcs: FrmBase
     {
         public FrmPrincipalcs()

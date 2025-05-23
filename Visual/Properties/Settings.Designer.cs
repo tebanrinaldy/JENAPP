@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Visual.Properties
+namespace GUI.Properties
 {
 
 

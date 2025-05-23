@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Visual
+namespace GUI
 {
     partial class FrmVentas
     {
@@ -321,7 +321,7 @@ namespace Visual
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Image = global::Visual.Properties.Resources.LogoEmpleado;
+            this.pictureBox1.Image = global::GUI.Properties.Resources.LogoEmpleado;
             this.pictureBox1.Location = new System.Drawing.Point(14, 27);
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.pictureBox1.Name = "pictureBox1";
