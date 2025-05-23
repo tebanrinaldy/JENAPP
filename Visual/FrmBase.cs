@@ -146,7 +146,7 @@ namespace Visual
 
         // Función para interpolar colores suavemente
         private Color InterpolarColor(Color colorActual, Color colorObjetivo, float paso)
-        {
+        {   
             int r = (int)(colorActual.R + (colorObjetivo.R - colorActual.R) * paso);
             int g = (int)(colorActual.G + (colorObjetivo.G - colorActual.G) * paso);
             int b = (int)(colorActual.B + (colorObjetivo.B - colorActual.B) * paso);

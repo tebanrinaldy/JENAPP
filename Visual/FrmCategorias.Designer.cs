@@ -59,7 +59,7 @@
             this.label3.BackColor = System.Drawing.Color.Transparent;
             this.label3.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.White;
-            this.label3.Location = new System.Drawing.Point(253, 341);
+            this.label3.Location = new System.Drawing.Point(159, 290);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(93, 23);
             this.label3.TabIndex = 30;
@@ -67,7 +67,7 @@
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(410, 341);
+            this.textBox2.Location = new System.Drawing.Point(343, 283);
             this.textBox2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(291, 30);
@@ -79,7 +79,7 @@
             this.label2.BackColor = System.Drawing.Color.Transparent;
             this.label2.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(253, 273);
+            this.label2.Location = new System.Drawing.Point(159, 158);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(30, 23);
             this.label2.TabIndex = 28;
@@ -87,7 +87,7 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(410, 277);
+            this.textBox1.Location = new System.Drawing.Point(343, 151);
             this.textBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(291, 30);
@@ -97,11 +97,11 @@
             // 
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Font = new System.Drawing.Font("Century Gothic", 24F);
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(530, 144);
+            this.label1.Location = new System.Drawing.Point(506, 9);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(136, 23);
+            this.label1.Size = new System.Drawing.Size(271, 49);
             this.label1.TabIndex = 26;
             this.label1.Text = "CATEGORIAS";
             // 
@@ -109,7 +109,7 @@
             // 
             this.listBox1.FormattingEnabled = true;
             this.listBox1.ItemHeight = 23;
-            this.listBox1.Location = new System.Drawing.Point(834, 121);
+            this.listBox1.Location = new System.Drawing.Point(834, 62);
             this.listBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.listBox1.Name = "listBox1";
             this.listBox1.Size = new System.Drawing.Size(353, 372);
