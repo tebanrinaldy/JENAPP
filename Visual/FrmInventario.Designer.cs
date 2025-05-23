@@ -43,7 +43,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(578, 77);
+            this.label1.Location = new System.Drawing.Point(21, 163);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(77, 16);
             this.label1.TabIndex = 0;
@@ -51,7 +51,7 @@
             // 
             // txtIdProducto
             // 
-            this.txtIdProducto.Location = new System.Drawing.Point(674, 71);
+            this.txtIdProducto.Location = new System.Drawing.Point(153, 160);
             this.txtIdProducto.Name = "txtIdProducto";
             this.txtIdProducto.Size = new System.Drawing.Size(100, 22);
             this.txtIdProducto.TabIndex = 1;
@@ -59,7 +59,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(57, 58);
+            this.label2.Location = new System.Drawing.Point(21, 80);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(126, 16);
             this.label2.TabIndex = 2;
@@ -68,7 +68,7 @@
             // cmbTipo
             // 
             this.cmbTipo.FormattingEnabled = true;
-            this.cmbTipo.Location = new System.Drawing.Point(62, 90);
+            this.cmbTipo.Location = new System.Drawing.Point(153, 77);
             this.cmbTipo.Name = "cmbTipo";
             this.cmbTipo.Size = new System.Drawing.Size(121, 24);
             this.cmbTipo.TabIndex = 4;
@@ -76,7 +76,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(317, 39);
+            this.label3.Location = new System.Drawing.Point(21, 127);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(61, 16);
             this.label3.TabIndex = 5;
@@ -84,14 +84,14 @@
             // 
             // txtCantidad
             // 
-            this.txtCantidad.Location = new System.Drawing.Point(303, 90);
+            this.txtCantidad.Location = new System.Drawing.Point(153, 121);
             this.txtCantidad.Name = "txtCantidad";
             this.txtCantidad.Size = new System.Drawing.Size(100, 22);
             this.txtCantidad.TabIndex = 6;
             // 
             // btnRegistrar
             // 
-            this.btnRegistrar.Location = new System.Drawing.Point(107, 238);
+            this.btnRegistrar.Location = new System.Drawing.Point(24, 241);
             this.btnRegistrar.Name = "btnRegistrar";
             this.btnRegistrar.Size = new System.Drawing.Size(202, 23);
             this.btnRegistrar.TabIndex = 7;
@@ -103,19 +103,19 @@
             // 
             this.dgvProductos.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvProductos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvProductos.Location = new System.Drawing.Point(400, 153);
+            this.dgvProductos.Location = new System.Drawing.Point(326, 77);
             this.dgvProductos.Name = "dgvProductos";
             this.dgvProductos.ReadOnly = true;
             this.dgvProductos.RowHeadersWidth = 51;
             this.dgvProductos.RowTemplate.Height = 24;
             this.dgvProductos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvProductos.Size = new System.Drawing.Size(376, 247);
+            this.dgvProductos.Size = new System.Drawing.Size(462, 247);
             this.dgvProductos.TabIndex = 8;
             // 
             // lblStock
             // 
             this.lblStock.AutoSize = true;
-            this.lblStock.Location = new System.Drawing.Point(578, 114);
+            this.lblStock.Location = new System.Drawing.Point(21, 199);
             this.lblStock.Name = "lblStock";
             this.lblStock.Size = new System.Drawing.Size(100, 16);
             this.lblStock.TabIndex = 9;
@@ -135,6 +135,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.txtIdProducto);
             this.Controls.Add(this.label1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FrmInventario";
             this.Text = "FrmInventario";
             ((System.ComponentModel.ISupportInitialize)(this.dgvProductos)).EndInit();

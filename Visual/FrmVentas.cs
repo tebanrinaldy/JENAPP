@@ -16,6 +16,7 @@ using Bll.Bll;
 
 
 
+
 namespace Visual
 {
     public partial class FrmVentas : FrmBase

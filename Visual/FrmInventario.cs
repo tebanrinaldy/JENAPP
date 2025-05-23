@@ -15,16 +15,19 @@ using DocumentFormat.OpenXml.Office2010.Excel;
 
 namespace Visual
 {
-    public partial class FrmInventario: Form
+    public partial class FrmInventario: FrmBase
 
     {
+
         private readonly MovimientoInventarioDAO _movDao = new MovimientoInventarioDAO();
 
         private readonly InventarioLogica logica = new InventarioLogica();
         private readonly ProductoRepository _productoRepo;
         public FrmInventario()
         {
+            
             InitializeComponent();
+            AplicarEstiloControles(this);
             _productoRepo = new ProductoRepository("User Id = jenapp; Password = jen123; Data Source = localhost:1521 / XEPDB1");
             cmbTipo.Items.AddRange(new string[] { "Entrada", "Salida" });
             cmbTipo.SelectedIndex = 0;
