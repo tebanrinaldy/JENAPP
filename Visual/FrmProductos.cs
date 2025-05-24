@@ -65,7 +65,7 @@ namespace GUI
         {
             this.Close();
         }
-
+        //er
         private void BtnCerrar_Click(object sender, EventArgs e)
         {
             this.Close();
