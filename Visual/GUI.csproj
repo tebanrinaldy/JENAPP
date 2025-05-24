@@ -192,6 +192,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\venta1.png" />
     <None Include="Resources\salir.png" />
     <None Include="Resources\reportes.png" />
     <None Include="Resources\venta.png" />
@@ -214,11 +215,13 @@
     <None Include="Resources\compras1.png" />
     <None Include="Resources\Excel-microsoft.png" />
     <None Include="Resources\Excel-microsoft1.png" />
+    <None Include="Resources\compras2.png" />
     <Content Include="Resources\LogoIcono.ico" />
     <Content Include="Resources\Logo.jpeg" />
     <None Include="Resources\user_SinFondo.png" />
     <None Include="Resources\Microsoft-excel.png" />
     <None Include="Resources\logo_excel_moderno.png" />
+    <None Include="Resources\pagos.png" />
     <Content Include="Resources\PictureUsuario.png" />
     <None Include="Resources\PictureUsuario1.png" />
   </ItemGroup>

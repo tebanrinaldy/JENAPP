@@ -133,6 +133,16 @@ namespace Visual.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap compras2 {
+            get {
+                object obj = ResourceManager.GetObject("compras2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Excel_microsoft {
             get {
                 object obj = ResourceManager.GetObject("Excel-microsoft", resourceCulture);
@@ -206,6 +216,16 @@ namespace Visual.Properties {
         internal static System.Drawing.Bitmap Microsoft_excel {
             get {
                 object obj = ResourceManager.GetObject("Microsoft-excel", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap pagos {
+            get {
+                object obj = ResourceManager.GetObject("pagos", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -306,6 +326,16 @@ namespace Visual.Properties {
         internal static System.Drawing.Bitmap venta {
             get {
                 object obj = ResourceManager.GetObject("venta", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap venta1 {
+            get {
+                object obj = ResourceManager.GetObject("venta1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
