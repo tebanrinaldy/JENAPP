@@ -80,68 +80,67 @@ namespace Dal
             }
         }
 
-        public Venta ObtenerPorId(int id)
+     public Venta ObtenerPorId(int id)
         {
             Venta venta = null;
 
-            try
+            using (var connection = new OracleConnection(_connectionString))
             {
-                using (var connection = new OracleConnection(_connectionString))
+                connection.Open();
+
+                using (var cmd = connection.CreateCommand())
                 {
-                    connection.Open();
+                    cmd.CommandText = @"SELECT ID_VENTA, FECHA_VENTA, TOTAL, CEDULA_CLIENTE, NOMBRE_CLIENTE, TELEFONO_CLIENTE 
+                                FROM VENTAS 
+                                WHERE ID_VENTA = :Id";
 
+                    cmd.Parameters.Add(":Id", OracleDbType.Int32).Value = id;
 
-                    using (var cmd = connection.CreateCommand())
+                    using (var reader = cmd.ExecuteReader())
                     {
-                        cmd.CommandText = "SELECT ID, FECHAVENTA, TOTAL, CEDULACLIENTE, NOMBRECLIENTE, TELEFONOCLIENTE FROM VENTA WHERE ID = :Id";
-                        cmd.Parameters.Add(":Id", OracleDbType.Int32).Value = id;
-
-                        using (var reader = cmd.ExecuteReader())
+                        if (reader.Read())
                         {
-                            if (reader.Read())
+                            venta = new Venta
                             {
-                                venta = new Venta
-                                {
-                                    Id = reader.GetInt32(0),
-                                    FechaVenta = reader.GetDateTime(1),
-                                    Total = reader.GetDecimal(2),
-                                    CedulaCliente = reader.GetString(3),
-                                    NombreCliente = reader.GetString(4),
-                                    TelefonoCliente = reader.GetString(5),
-                                    Detalles = new List<DetalleVenta>()
-                                };
-                            }
-                            else
-                            {
-                                return null; 
-                            }
+                                Id = reader.GetInt32(0),
+                                FechaVenta = reader.GetDateTime(1),
+                                Total = reader.GetDecimal(2),
+                                CedulaCliente = reader.GetString(3),
+                                NombreCliente = reader.GetString(4),
+                                TelefonoCliente = reader.GetString(5),
+                                DetalleVentas = new List<DetalleVenta>()
+                            };
                         }
                     }
+                }
 
+                if (venta != null)
+                {
+                    // cargar detalles
                     using (var cmd = connection.CreateCommand())
                     {
-                        cmd.CommandText = "SELECT IDPRODUCTO, CANTIDAD, PRECIOUNITARIO FROM DETALLEVENTA WHERE IDVENTA = :IdVenta";
+                        cmd.CommandText = @"SELECT D.ID_PRODUCTO, P.NOMBRE, D.CANTIDAD, D.PRECIOUNITARIO
+                    FROM DETALLE_VENTAS D
+                    JOIN PRODUCTOS P ON D.ID_PRODUCTO = P.ID_PRODUCTO
+                    WHERE D.ID_VENTA = :IdVenta";
+
                         cmd.Parameters.Add(":IdVenta", OracleDbType.Int32).Value = id;
 
                         using (var reader = cmd.ExecuteReader())
                         {
                             while (reader.Read())
                             {
-                                venta.Detalles.Add(new DetalleVenta
+                                venta.DetalleVentas.Add(new DetalleVenta
                                 {
                                     ProductoId = reader.GetInt32(0),
-                                    Cantidad = reader.GetInt32(1),
-                                    PrecioUnitario = reader.GetDecimal(2)
+                                    NombreProducto = reader.GetString(1),
+                                    Cantidad = reader.GetInt32(2),
+                                    PrecioUnitario = reader.GetDecimal(3)
                                 });
                             }
                         }
                     }
                 }
-            }
-            catch (Exception)
-            {
-
-                return null;
             }
 
             return venta;
