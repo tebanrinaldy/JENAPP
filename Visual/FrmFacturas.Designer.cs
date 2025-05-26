@@ -91,7 +91,7 @@
             // 
             // FrmFacturas
             // 
-            this.ClientSize = new System.Drawing.Size(1197, 837);
+            this.ClientSize = new System.Drawing.Size(1215, 884);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtCorreoCliente);
             this.Controls.Add(this.lblTitulo);
