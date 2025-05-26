@@ -231,6 +231,9 @@
     <None Include="Resources\Excel-microsoft.png" />
     <None Include="Resources\Excel-microsoft1.png" />
     <None Include="Resources\compras2.png" />
+    <None Include="Resources\InventarioImagen_50x50.png" />
+    <None Include="Resources\IconoInventario_Blanco_50x50.png" />
+    <None Include="Resources\IconoFactura_Final_50x50.png" />
     <Content Include="Resources\LogoIcono.ico" />
     <Content Include="Resources\Logo.jpeg" />
     <None Include="Resources\user_SinFondo.png" />

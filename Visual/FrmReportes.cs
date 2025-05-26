@@ -106,7 +106,50 @@ namespace Visual
         private void btnExcel_Click(object sender, EventArgs e)
         {
             ExportarAExcel(dgvVentas);
-        } 
+        }
+
+        private void Buscar_Click(object sender, EventArgs e)
+        {
+            BuscarPorFecha();
+        }
+        private void BuscarPorFecha()
+        {
+            try
+            {
+                dgvVentas.Rows.Clear(); // Limpia los datos anteriores
+
+                DateTime desde = dtpDesde.Value.Date;
+                DateTime hasta = dtpHasta.Value.Date.AddDays(1).AddTicks(-1); // Incluye toda la fecha de 'hasta'
+
+                var ventas = _ventaRepository.ObtenerPorRangoFechas(desde, hasta); // Asegúrate de tener este método en tu repositorio
+
+                if (ventas.Count == 0)
+                {
+                    MessageBox.Show("No se encontraron ventas en el rango seleccionado.");
+                    return;
+                }
+
+                foreach (var venta in ventas)
+                {
+                    int index = dgvVentas.Rows.Add();
+                    dgvVentas.Rows[index].Cells["colId"].Value = venta.Id;
+                    dgvVentas.Rows[index].Cells["colFecha"].Value = venta.FechaVenta.ToShortDateString();
+                    dgvVentas.Rows[index].Cells["colTotal"].Value = venta.Total;
+                    dgvVentas.Rows[index].Cells["colCedula"].Value = venta.CedulaCliente;
+                    dgvVentas.Rows[index].Cells["colNombre"].Value = venta.NombreCliente;
+                    dgvVentas.Rows[index].Cells["colTelefono"].Value = venta.TelefonoCliente;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al buscar ventas: " + ex.Message);
+            }
+        }
+
+        private void btnBuscarVentas_Click(object sender, EventArgs e)
+        {
+            BuscarPorFecha();
+        }
     }
 }
     

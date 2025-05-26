@@ -1,4 +1,6 @@
-﻿namespace Visual
+﻿using System.Windows.Forms;
+
+namespace Visual
 {
     partial class FrmFacturas
     {
@@ -8,6 +10,9 @@
         private System.ComponentModel.IContainer components = null;
         private System.Windows.Forms.Label lblTitulo;
         private System.Windows.Forms.DataGridView dgvVentasDia;
+        private System.Windows.Forms.DateTimePicker dtpDesde;
+        private System.Windows.Forms.DateTimePicker dtpHasta;
+        private System.Windows.Forms.Button btnBuscarVentas;
         private System.Windows.Forms.Button btnGenerarFactura;
         /// <summary>
         /// Clean up any resources being used.
@@ -37,6 +42,11 @@
             this.btnGenerarFactura = new System.Windows.Forms.Button();
             this.txtCorreoCliente = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.dtpDesde = new System.Windows.Forms.DateTimePicker();
+            this.dtpHasta = new System.Windows.Forms.DateTimePicker();
+            this.btnBuscarVentas = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvVentasDia)).BeginInit();
             this.SuspendLayout();
             // 
@@ -47,14 +57,12 @@
             this.lblTitulo.Name = "lblTitulo";
             this.lblTitulo.Size = new System.Drawing.Size(500, 30);
             this.lblTitulo.TabIndex = 0;
-            this.lblTitulo.Text = "Ventas del Día";
+            this.lblTitulo.Text = "Facturacion de Ventas";
             // 
             // dgvVentasDia
             // 
-            this.dgvVentasDia.AllowUserToAddRows = false;
-            this.dgvVentasDia.AllowUserToDeleteRows = false;
-            this.dgvVentasDia.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvVentasDia.Location = new System.Drawing.Point(12, 50);
+            this.dgvVentasDia.ColumnHeadersHeight = 29;
+            this.dgvVentasDia.Location = new System.Drawing.Point(12, 228);
             this.dgvVentasDia.Name = "dgvVentasDia";
             this.dgvVentasDia.ReadOnly = true;
             this.dgvVentasDia.RowHeadersWidth = 51;
@@ -64,18 +72,16 @@
             // 
             // btnGenerarFactura
             // 
-            this.btnGenerarFactura.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
-            this.btnGenerarFactura.Location = new System.Drawing.Point(12, 370);
+            this.btnGenerarFactura.Location = new System.Drawing.Point(12, 566);
             this.btnGenerarFactura.Name = "btnGenerarFactura";
             this.btnGenerarFactura.Size = new System.Drawing.Size(180, 40);
             this.btnGenerarFactura.TabIndex = 2;
             this.btnGenerarFactura.Text = "Generar Factura PDF";
-            this.btnGenerarFactura.UseVisualStyleBackColor = true;
             this.btnGenerarFactura.Click += new System.EventHandler(this.btnGenerarFactura_Click);
             // 
             // txtCorreoCliente
             // 
-            this.txtCorreoCliente.Location = new System.Drawing.Point(659, 102);
+            this.txtCorreoCliente.Location = new System.Drawing.Point(695, 166);
             this.txtCorreoCliente.Name = "txtCorreoCliente";
             this.txtCorreoCliente.Size = new System.Drawing.Size(495, 30);
             this.txtCorreoCliente.TabIndex = 3;
@@ -83,23 +89,70 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(665, 65);
+            this.label1.Location = new System.Drawing.Point(691, 119);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(145, 23);
             this.label1.TabIndex = 4;
             this.label1.Text = "Correo del cliente";
             // 
+            // dtpDesde
+            // 
+            this.dtpDesde.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpDesde.Location = new System.Drawing.Point(18, 163);
+            this.dtpDesde.Name = "dtpDesde";
+            this.dtpDesde.Size = new System.Drawing.Size(120, 30);
+            this.dtpDesde.TabIndex = 5;
+            // 
+            // dtpHasta
+            // 
+            this.dtpHasta.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpHasta.Location = new System.Drawing.Point(177, 163);
+            this.dtpHasta.Name = "dtpHasta";
+            this.dtpHasta.Size = new System.Drawing.Size(120, 30);
+            this.dtpHasta.TabIndex = 6;
+            // 
+            // btnBuscarVentas
+            // 
+            this.btnBuscarVentas.Location = new System.Drawing.Point(389, 162);
+            this.btnBuscarVentas.Name = "btnBuscarVentas";
+            this.btnBuscarVentas.Size = new System.Drawing.Size(85, 34);
+            this.btnBuscarVentas.TabIndex = 7;
+            this.btnBuscarVentas.Text = "Buscar";
+            this.btnBuscarVentas.Click += new System.EventHandler(this.btnBuscarVentas_Click);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(14, 119);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(57, 23);
+            this.label2.TabIndex = 8;
+            this.label2.Text = "Desde";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(173, 119);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(53, 23);
+            this.label3.TabIndex = 9;
+            this.label3.Text = "Hasta";
+            // 
             // FrmFacturas
             // 
             this.ClientSize = new System.Drawing.Size(1215, 884);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.txtCorreoCliente);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.lblTitulo);
             this.Controls.Add(this.dgvVentasDia);
             this.Controls.Add(this.btnGenerarFactura);
+            this.Controls.Add(this.txtCorreoCliente);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.dtpDesde);
+            this.Controls.Add(this.dtpHasta);
+            this.Controls.Add(this.btnBuscarVentas);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FrmFacturas";
-            this.Text = "Facturación";
             this.Load += new System.EventHandler(this.FrmFacturas_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvVentasDia)).EndInit();
             this.ResumeLayout(false);
@@ -111,5 +164,7 @@
 
         private System.Windows.Forms.TextBox txtCorreoCliente;
         private System.Windows.Forms.Label label1;
+        private Label label2;
+        private Label label3;
     }
 }

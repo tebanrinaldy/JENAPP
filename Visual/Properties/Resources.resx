@@ -124,9 +124,6 @@
   <data name="cerrar" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\cerrar.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="LogoJenapp_SinFondo" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\LogoJenapp_SinFondo3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="PictureUsuario" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\PictureUsuario.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
@@ -141,6 +138,9 @@
   </data>
   <data name="Password_SinFondo1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Password_SinFondo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="pagos" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\pagos.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="MaximizarBlanco" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\MaximizarBlanco.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -157,6 +157,9 @@
   <data name="reportes" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\reportes.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="user_SinFondo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\user_SinFondo1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="compras" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\compras.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -171,6 +174,9 @@
   </data>
   <data name="Excel-microsoft1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Excel-microsoft1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="IconoInventario_Blanco_50x50" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\IconoInventario_Blanco_50x50.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Excel-microsoft" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Excel-microsoft.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -190,19 +196,22 @@
   <data name="X_SinFondo" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\X_SinFondo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="InventarioImagen_50x50" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\InventarioImagen_50x50.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="logo_excel_moderno" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\logo_excel_moderno.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Password_SinFondo" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Password_SinFondo.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="user_SinFondo" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\user_SinFondo1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="LogoJenapp_SinFondo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\LogoJenapp_SinFondo3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="-_SinFondo" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\-_SinFondo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="pagos" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\pagos.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="IconoFactura_Final_50x50" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\IconoFactura_Final_50x50.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

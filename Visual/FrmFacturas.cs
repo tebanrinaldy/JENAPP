@@ -30,6 +30,8 @@ namespace Visual
 
         private void FrmFacturas_Load(object sender, EventArgs e)
         {
+            dtpDesde.Value = DateTime.Today;
+            dtpHasta.Value = DateTime.Today;
             CargarVentasDelDia();
         }
 
@@ -45,8 +47,9 @@ namespace Visual
             dgvVentasDia.Columns.Add("Total", "Total");
 
             ventasDelDia = _ventaRepo.ObtenerTodos()
-                .Where(v => v.FechaVenta.Date == DateTime.Today.Date)
-                .ToList();
+     .Where(v => v.FechaVenta.Date == DateTime.Today.Date &&
+                 !string.IsNullOrWhiteSpace(v.TelefonoCliente))
+     .ToList();
 
             foreach (var venta in ventasDelDia)
             {
@@ -128,7 +131,8 @@ namespace Visual
             doc.Add(new Paragraph($"Fecha: {venta.FechaVenta:dd/MM/yyyy HH:mm}", fontBody));
             doc.Add(new Paragraph($"Cliente: {venta.NombreCliente}", fontBody));
             doc.Add(new Paragraph($"Cédula: {venta.CedulaCliente}", fontBody));
-            doc.Add(new Paragraph($"Teléfono: {venta.TelefonoCliente}", fontBody));
+            string telefono = string.IsNullOrWhiteSpace(venta.TelefonoCliente) ? "No registrado" : venta.TelefonoCliente;
+            doc.Add(new Paragraph($"Teléfono: {telefono}", fontBody));
             doc.Add(new Paragraph(" "));
 
             // Tabla de productos
@@ -216,5 +220,31 @@ namespace Visual
                 MessageBox.Show("Error al enviar el correo: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+        private void btnBuscarVentas_Click(object sender, EventArgs e)
+        {
+            DateTime desde = dtpDesde.Value.Date;
+            DateTime hasta = dtpHasta.Value.Date;
+
+            dgvVentasDia.Rows.Clear();
+            dgvVentasDia.Columns.Clear();
+
+            dgvVentasDia.Columns.Add("Id", "ID");
+            dgvVentasDia.Columns.Add("NombreCliente", "Cliente");
+            dgvVentasDia.Columns.Add("FechaVenta", "Fecha");
+            dgvVentasDia.Columns.Add("Total", "Total");
+
+            ventasDelDia = _ventaRepo.ObtenerTodos()
+                .Where(v => v.FechaVenta.Date >= desde &&
+                            v.FechaVenta.Date <= hasta &&
+                            !string.IsNullOrWhiteSpace(v.TelefonoCliente))
+                .ToList();
+
+            foreach (var venta in ventasDelDia)
+            {
+                dgvVentasDia.Rows.Add(venta.Id, venta.NombreCliente,
+                    venta.FechaVenta.ToString("dd/MM/yyyy HH:mm"), $"${venta.Total:F2}");
+            }
+        }
+       
     }
 }

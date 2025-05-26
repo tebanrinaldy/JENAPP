@@ -163,9 +163,39 @@ namespace Visual.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap IconoFactura_Final_50x50 {
+            get {
+                object obj = ResourceManager.GetObject("IconoFactura_Final_50x50", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap IconoInventario_Blanco_50x50 {
+            get {
+                object obj = ResourceManager.GetObject("IconoInventario_Blanco_50x50", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap IconoMaximizar {
             get {
                 object obj = ResourceManager.GetObject("IconoMaximizar", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap InventarioImagen_50x50 {
+            get {
+                object obj = ResourceManager.GetObject("InventarioImagen_50x50", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

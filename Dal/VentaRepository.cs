@@ -288,5 +288,40 @@ namespace Dal
                 return false;
             }
         }
+        public List<Venta> ObtenerPorRangoFechas(DateTime desde, DateTime hasta)
+        {
+            List<Venta> lista = new List<Venta>();
+            using (var conn = new OracleConnection(_connectionString))
+            {
+                conn.Open();
+                string query = @"SELECT ID_VENTA, FECHA_VENTA, TOTAL, CEDULA_CLIENTE, NOMBRE_CLIENTE, TELEFONO_CLIENTE 
+                         FROM VENTAS 
+                         WHERE FECHA_VENTA BETWEEN :desde AND :hasta 
+                         ORDER BY FECHA_VENTA";
+
+                using (var cmd = new OracleCommand(query, conn))
+                {
+                    cmd.Parameters.Add(":desde", OracleDbType.Date).Value = desde;
+                    cmd.Parameters.Add(":hasta", OracleDbType.Date).Value = hasta;
+
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            lista.Add(new Venta
+                            {
+                                Id = Convert.ToInt32(reader["ID_VENTA"]),
+                                FechaVenta = Convert.ToDateTime(reader["FECHA_VENTA"]),
+                                Total = Convert.ToDecimal(reader["TOTAL"]),
+                                CedulaCliente = reader["CEDULA_CLIENTE"].ToString(),
+                                NombreCliente = reader["NOMBRE_CLIENTE"].ToString(),
+                                TelefonoCliente = reader["TELEFONO_CLIENTE"].ToString()
+                            });
+                        }
+                    }
+                }
+            }
+            return lista;
+        }
     }
 }

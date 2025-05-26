@@ -32,6 +32,9 @@
             this.panelContenedor = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.MenuVertical = new System.Windows.Forms.Panel();
+            this.panel6 = new System.Windows.Forms.Panel();
+            this.button7 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
             this.panel5 = new System.Windows.Forms.Panel();
             this.button5 = new System.Windows.Forms.Button();
             this.btnInventario = new System.Windows.Forms.Button();
@@ -51,9 +54,9 @@
             this.BarraTitulo = new System.Windows.Forms.Panel();
             this.BtnMinimizar = new System.Windows.Forms.PictureBox();
             this.BtnCerrar = new System.Windows.Forms.PictureBox();
-            this.button2 = new System.Windows.Forms.Button();
             this.panelContenedor.SuspendLayout();
             this.MenuVertical.SuspendLayout();
+            this.panel6.SuspendLayout();
             this.panel5.SuspendLayout();
             this.panel4.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -92,6 +95,7 @@
             // MenuVertical
             // 
             this.MenuVertical.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(118)))), ((int)(((byte)(210)))));
+            this.MenuVertical.Controls.Add(this.panel6);
             this.MenuVertical.Controls.Add(this.button2);
             this.MenuVertical.Controls.Add(this.panel5);
             this.MenuVertical.Controls.Add(this.btnInventario);
@@ -111,6 +115,44 @@
             this.MenuVertical.Size = new System.Drawing.Size(248, 884);
             this.MenuVertical.TabIndex = 1;
             this.MenuVertical.Paint += new System.Windows.Forms.PaintEventHandler(this.MenuVertical_Paint);
+            // 
+            // panel6
+            // 
+            this.panel6.BackColor = System.Drawing.Color.White;
+            this.panel6.Controls.Add(this.button7);
+            this.panel6.Location = new System.Drawing.Point(0, 590);
+            this.panel6.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.panel6.Name = "panel6";
+            this.panel6.Size = new System.Drawing.Size(11, 43);
+            this.panel6.TabIndex = 9;
+            // 
+            // button7
+            // 
+            this.button7.Location = new System.Drawing.Point(9, 4);
+            this.button7.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(225, 55);
+            this.button7.TabIndex = 0;
+            this.button7.Text = "button7";
+            this.button7.UseVisualStyleBackColor = true;
+            // 
+            // button2
+            // 
+            this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(118)))), ((int)(((byte)(210)))));
+            this.button2.FlatAppearance.BorderSize = 0;
+            this.button2.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Navy;
+            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button2.Font = new System.Drawing.Font("Century Gothic", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button2.Image = global::Visual.Properties.Resources.IconoFactura_Final_50x50;
+            this.button2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button2.Location = new System.Drawing.Point(12, 456);
+            this.button2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(237, 43);
+            this.button2.TabIndex = 14;
+            this.button2.Text = "Facturas";
+            this.button2.UseVisualStyleBackColor = false;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // panel5
             // 
@@ -139,9 +181,9 @@
             this.btnInventario.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Navy;
             this.btnInventario.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnInventario.Font = new System.Drawing.Font("Century Gothic", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnInventario.Image = global::Visual.Properties.Resources.compras2;
+            this.btnInventario.Image = global::Visual.Properties.Resources.IconoInventario_Blanco_50x50;
             this.btnInventario.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnInventario.Location = new System.Drawing.Point(5, 523);
+            this.btnInventario.Location = new System.Drawing.Point(11, 523);
             this.btnInventario.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnInventario.Name = "btnInventario";
             this.btnInventario.Size = new System.Drawing.Size(237, 43);
@@ -159,7 +201,7 @@
             this.btncategorias.Font = new System.Drawing.Font("Century Gothic", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btncategorias.Image = global::Visual.Properties.Resources.compras1;
             this.btncategorias.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btncategorias.Location = new System.Drawing.Point(9, 257);
+            this.btncategorias.Location = new System.Drawing.Point(12, 260);
             this.btncategorias.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btncategorias.Name = "btncategorias";
             this.btncategorias.Size = new System.Drawing.Size(237, 43);
@@ -198,7 +240,7 @@
             this.btnventas.Font = new System.Drawing.Font("Century Gothic", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnventas.Image = global::Visual.Properties.Resources.pagos;
             this.btnventas.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnventas.Location = new System.Drawing.Point(9, 388);
+            this.btnventas.Location = new System.Drawing.Point(12, 391);
             this.btnventas.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnventas.Name = "btnventas";
             this.btnventas.Size = new System.Drawing.Size(237, 43);
@@ -236,7 +278,7 @@
             this.btnreportes.Font = new System.Drawing.Font("Century Gothic", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnreportes.Image = global::Visual.Properties.Resources.reportes;
             this.btnreportes.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnreportes.Location = new System.Drawing.Point(9, 453);
+            this.btnreportes.Location = new System.Drawing.Point(11, 590);
             this.btnreportes.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnreportes.Name = "btnreportes";
             this.btnreportes.Size = new System.Drawing.Size(237, 43);
@@ -274,7 +316,7 @@
             this.btnproductos.Font = new System.Drawing.Font("Century Gothic", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnproductos.Image = global::Visual.Properties.Resources.venta1;
             this.btnproductos.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnproductos.Location = new System.Drawing.Point(9, 318);
+            this.btnproductos.Location = new System.Drawing.Point(12, 321);
             this.btnproductos.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnproductos.Name = "btnproductos";
             this.btnproductos.Size = new System.Drawing.Size(237, 43);
@@ -313,6 +355,7 @@
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox2.TabIndex = 1;
             this.pictureBox2.TabStop = false;
+            this.pictureBox2.Click += new System.EventHandler(this.pictureBox2_Click);
             // 
             // BarraTitulo
             // 
@@ -351,24 +394,6 @@
             this.BtnCerrar.TabStop = false;
             this.BtnCerrar.Click += new System.EventHandler(this.BtnCerrar_Click);
             // 
-            // button2
-            // 
-            this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(118)))), ((int)(((byte)(210)))));
-            this.button2.FlatAppearance.BorderSize = 0;
-            this.button2.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Navy;
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Font = new System.Drawing.Font("Century Gothic", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Image = global::Visual.Properties.Resources.compras2;
-            this.button2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button2.Location = new System.Drawing.Point(12, 590);
-            this.button2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(237, 43);
-            this.button2.TabIndex = 14;
-            this.button2.Text = "Facturas";
-            this.button2.UseVisualStyleBackColor = false;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
-            // 
             // FrmPrincipalcs
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 23F);
@@ -386,6 +411,7 @@
             this.panelContenedor.ResumeLayout(false);
             this.panelContenedor.PerformLayout();
             this.MenuVertical.ResumeLayout(false);
+            this.panel6.ResumeLayout(false);
             this.panel5.ResumeLayout(false);
             this.panel4.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
@@ -424,5 +450,7 @@
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Button btnInventario;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Panel panel6;
+        private System.Windows.Forms.Button button7;
     }
 }

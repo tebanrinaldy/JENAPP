@@ -129,5 +129,10 @@ namespace Visual
         {
             AbrirFormularioEnPanel(new FrmFacturas());
         }
+
+        private void pictureBox2_Click(object sender, EventArgs e)
+        {
+            AbrirFormularioEnPanel(new FrmPrincipalcs());
+        }
     }
 }

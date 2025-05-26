@@ -41,8 +41,14 @@
             this.ventaRepositoryBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.label3 = new System.Windows.Forms.Label();
             this.panel = new System.Windows.Forms.Panel();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.btnBuscarVentas = new System.Windows.Forms.Button();
+            this.dtpHasta = new System.Windows.Forms.DateTimePicker();
+            this.dtpDesde = new System.Windows.Forms.DateTimePicker();
             ((System.ComponentModel.ISupportInitialize)(this.dgvVentas)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ventaRepositoryBindingSource)).BeginInit();
+            this.panel.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -138,26 +144,76 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(568, 26);
+            this.label3.Font = new System.Drawing.Font("Segoe UI", 16F);
+            this.label3.Location = new System.Drawing.Point(29, 37);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(176, 23);
+            this.label3.Size = new System.Drawing.Size(273, 37);
             this.label3.TabIndex = 48;
             this.label3.Text = "REPORTE DE VENTAS ";
             // 
             // panel
             // 
+            this.panel.Controls.Add(this.label4);
+            this.panel.Controls.Add(this.label2);
+            this.panel.Controls.Add(this.btnBuscarVentas);
+            this.panel.Controls.Add(this.dtpHasta);
+            this.panel.Controls.Add(this.dtpDesde);
+            this.panel.Controls.Add(this.label3);
             this.panel.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel.Location = new System.Drawing.Point(0, 0);
             this.panel.Name = "panel";
             this.panel.Size = new System.Drawing.Size(1215, 100);
             this.panel.TabIndex = 49;
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(560, 9);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(53, 23);
+            this.label4.TabIndex = 54;
+            this.label4.Text = "Hasta";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(339, 9);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(57, 23);
+            this.label2.TabIndex = 53;
+            this.label2.Text = "Desde";
+            // 
+            // btnBuscarVentas
+            // 
+            this.btnBuscarVentas.Location = new System.Drawing.Point(764, 43);
+            this.btnBuscarVentas.Name = "btnBuscarVentas";
+            this.btnBuscarVentas.Size = new System.Drawing.Size(123, 34);
+            this.btnBuscarVentas.TabIndex = 52;
+            this.btnBuscarVentas.Text = "Buscar";
+            this.btnBuscarVentas.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnBuscarVentas.Click += new System.EventHandler(this.btnBuscarVentas_Click);
+            // 
+            // dtpHasta
+            // 
+            this.dtpHasta.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpHasta.Location = new System.Drawing.Point(564, 44);
+            this.dtpHasta.Name = "dtpHasta";
+            this.dtpHasta.Size = new System.Drawing.Size(135, 30);
+            this.dtpHasta.TabIndex = 50;
+            // 
+            // dtpDesde
+            // 
+            this.dtpDesde.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpDesde.Location = new System.Drawing.Point(343, 44);
+            this.dtpDesde.Name = "dtpDesde";
+            this.dtpDesde.Size = new System.Drawing.Size(138, 30);
+            this.dtpDesde.TabIndex = 49;
+            // 
             // FrmReportes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 23F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1215, 884);
-            this.Controls.Add(this.label3);
             this.Controls.Add(this.btnExcel);
             this.Controls.Add(this.dgvVentas);
             this.Controls.Add(this.label1);
@@ -169,6 +225,8 @@
             this.Load += new System.EventHandler(this.FrmReportes_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvVentas)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ventaRepositoryBindingSource)).EndInit();
+            this.panel.ResumeLayout(false);
+            this.panel.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -188,5 +246,10 @@
         private System.Windows.Forms.Button btnExcel;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Panel panel;
+        private System.Windows.Forms.DateTimePicker dtpHasta;
+        private System.Windows.Forms.DateTimePicker dtpDesde;
+        private System.Windows.Forms.Button btnBuscarVentas;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label4;
     }
 }
