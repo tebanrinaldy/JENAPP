@@ -44,7 +44,7 @@
             this.BtnGuardarProducto.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
             this.BtnGuardarProducto.FlatAppearance.BorderSize = 0;
             this.BtnGuardarProducto.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnGuardarProducto.Location = new System.Drawing.Point(343, 443);
+            this.BtnGuardarProducto.Location = new System.Drawing.Point(352, 535);
             this.BtnGuardarProducto.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.BtnGuardarProducto.Name = "BtnGuardarProducto";
             this.BtnGuardarProducto.Size = new System.Drawing.Size(230, 50);
@@ -109,10 +109,10 @@
             // 
             this.listBox1.FormattingEnabled = true;
             this.listBox1.ItemHeight = 23;
-            this.listBox1.Location = new System.Drawing.Point(834, 62);
+            this.listBox1.Location = new System.Drawing.Point(812, 97);
             this.listBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(353, 372);
+            this.listBox1.Size = new System.Drawing.Size(344, 395);
             this.listBox1.TabIndex = 34;
             // 
             // BtnEliminarCategoria
@@ -120,7 +120,7 @@
             this.BtnEliminarCategoria.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
             this.BtnEliminarCategoria.FlatAppearance.BorderSize = 0;
             this.BtnEliminarCategoria.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnEliminarCategoria.Location = new System.Drawing.Point(85, 443);
+            this.BtnEliminarCategoria.Location = new System.Drawing.Point(84, 535);
             this.BtnEliminarCategoria.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.BtnEliminarCategoria.Name = "BtnEliminarCategoria";
             this.BtnEliminarCategoria.Size = new System.Drawing.Size(230, 50);
@@ -134,7 +134,7 @@
             this.BtnActualizar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
             this.BtnActualizar.FlatAppearance.BorderSize = 0;
             this.BtnActualizar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnActualizar.Location = new System.Drawing.Point(598, 443);
+            this.BtnActualizar.Location = new System.Drawing.Point(600, 535);
             this.BtnActualizar.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.BtnActualizar.Name = "BtnActualizar";
             this.BtnActualizar.Size = new System.Drawing.Size(230, 50);

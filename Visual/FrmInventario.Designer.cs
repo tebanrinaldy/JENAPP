@@ -43,57 +43,61 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(21, 163);
+            this.label1.Location = new System.Drawing.Point(24, 234);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(77, 16);
+            this.label1.Size = new System.Drawing.Size(102, 23);
             this.label1.TabIndex = 0;
             this.label1.Text = "ID Producto";
             // 
             // txtIdProducto
             // 
-            this.txtIdProducto.Location = new System.Drawing.Point(153, 160);
+            this.txtIdProducto.Location = new System.Drawing.Point(193, 231);
+            this.txtIdProducto.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtIdProducto.Name = "txtIdProducto";
-            this.txtIdProducto.Size = new System.Drawing.Size(100, 22);
+            this.txtIdProducto.Size = new System.Drawing.Size(112, 30);
             this.txtIdProducto.TabIndex = 1;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(21, 80);
+            this.label2.Location = new System.Drawing.Point(24, 115);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(126, 16);
+            this.label2.Size = new System.Drawing.Size(163, 23);
             this.label2.TabIndex = 2;
             this.label2.Text = "Tipo de Movimiento";
             // 
             // cmbTipo
             // 
             this.cmbTipo.FormattingEnabled = true;
-            this.cmbTipo.Location = new System.Drawing.Point(153, 77);
+            this.cmbTipo.Location = new System.Drawing.Point(193, 111);
+            this.cmbTipo.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.cmbTipo.Name = "cmbTipo";
-            this.cmbTipo.Size = new System.Drawing.Size(121, 24);
+            this.cmbTipo.Size = new System.Drawing.Size(136, 31);
             this.cmbTipo.TabIndex = 4;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(21, 127);
+            this.label3.Location = new System.Drawing.Point(24, 183);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(61, 16);
+            this.label3.Size = new System.Drawing.Size(79, 23);
             this.label3.TabIndex = 5;
             this.label3.Text = "Cantidad";
             // 
             // txtCantidad
             // 
-            this.txtCantidad.Location = new System.Drawing.Point(153, 121);
+            this.txtCantidad.Location = new System.Drawing.Point(193, 176);
+            this.txtCantidad.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtCantidad.Name = "txtCantidad";
-            this.txtCantidad.Size = new System.Drawing.Size(100, 22);
+            this.txtCantidad.Size = new System.Drawing.Size(112, 30);
             this.txtCantidad.TabIndex = 6;
             // 
             // btnRegistrar
             // 
-            this.btnRegistrar.Location = new System.Drawing.Point(24, 241);
+            this.btnRegistrar.Location = new System.Drawing.Point(27, 346);
+            this.btnRegistrar.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnRegistrar.Name = "btnRegistrar";
-            this.btnRegistrar.Size = new System.Drawing.Size(202, 23);
+            this.btnRegistrar.Size = new System.Drawing.Size(227, 33);
             this.btnRegistrar.TabIndex = 7;
             this.btnRegistrar.Text = "Registrar Movimiento";
             this.btnRegistrar.UseVisualStyleBackColor = true;
@@ -103,29 +107,30 @@
             // 
             this.dgvProductos.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvProductos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvProductos.Location = new System.Drawing.Point(326, 77);
+            this.dgvProductos.Location = new System.Drawing.Point(547, 111);
+            this.dgvProductos.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.dgvProductos.Name = "dgvProductos";
             this.dgvProductos.ReadOnly = true;
             this.dgvProductos.RowHeadersWidth = 51;
             this.dgvProductos.RowTemplate.Height = 24;
             this.dgvProductos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvProductos.Size = new System.Drawing.Size(462, 247);
+            this.dgvProductos.Size = new System.Drawing.Size(520, 355);
             this.dgvProductos.TabIndex = 8;
             // 
             // lblStock
             // 
             this.lblStock.AutoSize = true;
-            this.lblStock.Location = new System.Drawing.Point(21, 199);
+            this.lblStock.Location = new System.Drawing.Point(24, 286);
             this.lblStock.Name = "lblStock";
-            this.lblStock.Size = new System.Drawing.Size(100, 16);
+            this.lblStock.Size = new System.Drawing.Size(134, 23);
             this.lblStock.TabIndex = 9;
             this.lblStock.Text = "Stock actual: —\"";
             // 
             // FrmInventario
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 23F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(1214, 884);
             this.Controls.Add(this.lblStock);
             this.Controls.Add(this.dgvProductos);
             this.Controls.Add(this.btnRegistrar);
@@ -136,6 +141,7 @@
             this.Controls.Add(this.txtIdProducto);
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "FrmInventario";
             this.Text = "FrmInventario";
             ((System.ComponentModel.ISupportInitialize)(this.dgvProductos)).EndInit();

@@ -36,7 +36,6 @@ namespace Visual
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmVentas));
-            this.label1 = new System.Windows.Forms.Label();
             this.panelContenedor = new System.Windows.Forms.Panel();
             this.btnComprar = new System.Windows.Forms.Button();
             this.btnEliminar = new System.Windows.Forms.Button();
@@ -51,7 +50,6 @@ namespace Visual
             this.Producto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Subtotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.BtnCerrar = new System.Windows.Forms.PictureBox();
             this.BarraTitulo = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
@@ -62,23 +60,16 @@ namespace Visual
             this.label5 = new System.Windows.Forms.Label();
             this.txtCedula = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
+            this.BtnCerrar = new System.Windows.Forms.PictureBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.panelContenedor.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DataProducto)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvVentas)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.BtnCerrar)).BeginInit();
             this.BarraTitulo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnGuardarVenta)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BtnCerrar)).BeginInit();
             this.SuspendLayout();
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(182, 162);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(71, 23);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "VENTAS";
             // 
             // panelContenedor
             // 
@@ -154,6 +145,7 @@ namespace Visual
             this.DataProducto.Location = new System.Drawing.Point(3, 4);
             this.DataProducto.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.DataProducto.Name = "DataProducto";
+            this.DataProducto.ReadOnly = true;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(66)))), ((int)(((byte)(91)))));
             dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 10F);
@@ -173,6 +165,7 @@ namespace Visual
             this.colCategorias.HeaderText = "Categoria";
             this.colCategorias.MinimumWidth = 6;
             this.colCategorias.Name = "colCategorias";
+            this.colCategorias.ReadOnly = true;
             this.colCategorias.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.colCategorias.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.colCategorias.Width = 125;
@@ -182,6 +175,7 @@ namespace Visual
             this.IDProducto.HeaderText = "Id";
             this.IDProducto.MinimumWidth = 6;
             this.IDProducto.Name = "IDProducto";
+            this.IDProducto.ReadOnly = true;
             this.IDProducto.Width = 60;
             // 
             // NombreProducto
@@ -189,6 +183,7 @@ namespace Visual
             this.NombreProducto.HeaderText = "Nombre";
             this.NombreProducto.MinimumWidth = 6;
             this.NombreProducto.Name = "NombreProducto";
+            this.NombreProducto.ReadOnly = true;
             this.NombreProducto.Width = 125;
             // 
             // PrecioProducto
@@ -196,6 +191,7 @@ namespace Visual
             this.PrecioProducto.HeaderText = "Precio";
             this.PrecioProducto.MinimumWidth = 6;
             this.PrecioProducto.Name = "PrecioProducto";
+            this.PrecioProducto.ReadOnly = true;
             this.PrecioProducto.Width = 125;
             // 
             // StockProducto
@@ -203,6 +199,7 @@ namespace Visual
             this.StockProducto.HeaderText = "Stock";
             this.StockProducto.MinimumWidth = 6;
             this.StockProducto.Name = "StockProducto";
+            this.StockProducto.ReadOnly = true;
             this.StockProducto.Width = 80;
             // 
             // dgvVentas
@@ -273,18 +270,6 @@ namespace Visual
             this.Subtotal.Name = "Subtotal";
             this.Subtotal.ReadOnly = true;
             this.Subtotal.Width = 140;
-            // 
-            // BtnCerrar
-            // 
-            this.BtnCerrar.Image = ((System.Drawing.Image)(resources.GetObject("BtnCerrar.Image")));
-            this.BtnCerrar.Location = new System.Drawing.Point(1422, -3);
-            this.BtnCerrar.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.BtnCerrar.Name = "BtnCerrar";
-            this.BtnCerrar.Size = new System.Drawing.Size(39, 58);
-            this.BtnCerrar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.BtnCerrar.TabIndex = 0;
-            this.BtnCerrar.TabStop = false;
-            this.BtnCerrar.Click += new System.EventHandler(this.BtnCerrar_Click);
             // 
             // BarraTitulo
             // 
@@ -421,6 +406,27 @@ namespace Visual
             this.label6.TabIndex = 109;
             this.label6.Text = "Cedula";
             // 
+            // BtnCerrar
+            // 
+            this.BtnCerrar.Image = ((System.Drawing.Image)(resources.GetObject("BtnCerrar.Image")));
+            this.BtnCerrar.Location = new System.Drawing.Point(1422, -3);
+            this.BtnCerrar.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.BtnCerrar.Name = "BtnCerrar";
+            this.BtnCerrar.Size = new System.Drawing.Size(39, 58);
+            this.BtnCerrar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.BtnCerrar.TabIndex = 0;
+            this.BtnCerrar.TabStop = false;
+            this.BtnCerrar.Click += new System.EventHandler(this.BtnCerrar_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(182, 162);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(71, 23);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "VENTAS";
+            // 
             // FrmVentas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 23F);
@@ -437,11 +443,11 @@ namespace Visual
             this.panelContenedor.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.DataProducto)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvVentas)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.BtnCerrar)).EndInit();
             this.BarraTitulo.ResumeLayout(false);
             this.BarraTitulo.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnGuardarVenta)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BtnCerrar)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

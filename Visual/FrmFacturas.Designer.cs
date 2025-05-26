@@ -37,6 +37,8 @@ namespace Visual
         /// </summary>
         private void InitializeComponent()
         {
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.lblTitulo = new System.Windows.Forms.Label();
             this.dgvVentasDia = new System.Windows.Forms.DataGridView();
             this.btnGenerarFactura = new System.Windows.Forms.Button();
@@ -45,10 +47,26 @@ namespace Visual
             this.dtpDesde = new System.Windows.Forms.DateTimePicker();
             this.dtpHasta = new System.Windows.Forms.DateTimePicker();
             this.btnBuscarVentas = new System.Windows.Forms.Button();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvVentasDia)).BeginInit();
             this.SuspendLayout();
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(173, 119);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(53, 23);
+            this.label3.TabIndex = 9;
+            this.label3.Text = "Hasta";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(14, 119);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(57, 23);
+            this.label2.TabIndex = 8;
+            this.label2.Text = "Desde";
             // 
             // lblTitulo
             // 
@@ -81,15 +99,15 @@ namespace Visual
             // 
             // txtCorreoCliente
             // 
-            this.txtCorreoCliente.Location = new System.Drawing.Point(695, 166);
+            this.txtCorreoCliente.Location = new System.Drawing.Point(485, 162);
             this.txtCorreoCliente.Name = "txtCorreoCliente";
-            this.txtCorreoCliente.Size = new System.Drawing.Size(495, 30);
+            this.txtCorreoCliente.Size = new System.Drawing.Size(327, 30);
             this.txtCorreoCliente.TabIndex = 3;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(691, 119);
+            this.label1.Location = new System.Drawing.Point(481, 119);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(145, 23);
             this.label1.TabIndex = 4;
@@ -113,34 +131,16 @@ namespace Visual
             // 
             // btnBuscarVentas
             // 
-            this.btnBuscarVentas.Location = new System.Drawing.Point(389, 162);
+            this.btnBuscarVentas.Location = new System.Drawing.Point(337, 162);
             this.btnBuscarVentas.Name = "btnBuscarVentas";
             this.btnBuscarVentas.Size = new System.Drawing.Size(85, 34);
             this.btnBuscarVentas.TabIndex = 7;
             this.btnBuscarVentas.Text = "Buscar";
             this.btnBuscarVentas.Click += new System.EventHandler(this.btnBuscarVentas_Click);
             // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(14, 119);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(57, 23);
-            this.label2.TabIndex = 8;
-            this.label2.Text = "Desde";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(173, 119);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(53, 23);
-            this.label3.TabIndex = 9;
-            this.label3.Text = "Hasta";
-            // 
             // FrmFacturas
             // 
-            this.ClientSize = new System.Drawing.Size(1215, 884);
+            this.ClientSize = new System.Drawing.Size(1214, 884);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.lblTitulo);
