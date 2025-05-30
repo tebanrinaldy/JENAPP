@@ -2,7 +2,6 @@
 = CREACIÓN DE USUARIO Y PERMISOS CON SYSTEM
 ============================================================*/
 
--- Crear usuario con password (cambia USUARIO_Y_CONTRASEÑA por lo que desees)
 CREATE USER jenapp IDENTIFIED BY jen123
 DEFAULT TABLESPACE USERS
 TEMPORARY TABLESPACE TEMP
