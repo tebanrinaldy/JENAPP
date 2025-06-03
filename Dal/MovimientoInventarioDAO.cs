@@ -6,85 +6,96 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Oracle.ManagedDataAccess.Client;
 
 namespace Dal
 {
     public class MovimientoInventarioDAO
     {
-        private string connectionString = "User Id=jenapp;Password=jen123;Data Source=localhost:1521/XEPDB1";
+        // Ya no se recibe cadena en constructor, se usa Conexion directamente
 
-        public void RegistrarMovimiento(MovimientoInventario mov)
+        public MovimientoInventarioDAO()
         {
-            using (OracleConnection con = new OracleConnection(connectionString))
+        }
+
+        public bool RegistrarMovimiento(MovimientoInventario mov)
+        {
+            try
             {
-                con.Open();
-                OracleTransaction trans = con.BeginTransaction();
-
-                try
+                using (var connection = Conexion.ObtenerConexion())
                 {
-                    // Validar stock si es salida
-                    if (mov.Tipo == "Salida")
+                    connection.Open();
+                    using (var trans = connection.BeginTransaction())
                     {
-                        int stockActual = ObtenerStockActual(mov.IdProducto, con, trans);
-                        if (mov.Cantidad > stockActual)
-                            throw new Exception("La cantidad a retirar excede el stock disponible.");
+                        // Validar stock si es salida
+                        if (mov.Tipo == "Salida")
+                        {
+                            int stockActual = ObtenerStockActual(mov.IdProducto, connection, trans);
+                            if (mov.Cantidad > stockActual)
+                                throw new Exception("La cantidad a retirar excede el stock disponible.");
+                        }
+
+                        // Insertar movimiento
+                        string insertSql = @"INSERT INTO movimiento_inventario 
+                                             (id_producto, tipo, cantidad, fecha) 
+                                             VALUES (:id_producto, :tipo, :cantidad, CURRENT_TIMESTAMP)";
+
+                        using (var cmdInsert = new OracleCommand(insertSql, connection))
+                        {
+                            cmdInsert.Transaction = trans;
+                            cmdInsert.Parameters.Add(":id_producto", OracleDbType.Int32).Value = mov.IdProducto;
+                            cmdInsert.Parameters.Add(":tipo", OracleDbType.Varchar2).Value = mov.Tipo;
+                            cmdInsert.Parameters.Add(":cantidad", OracleDbType.Int32).Value = mov.Cantidad;
+                            cmdInsert.ExecuteNonQuery();
+                        }
+
+                        // Actualizar stock
+                        string operador = mov.Tipo == "Entrada" ? "+" : "-";
+                        string updateSql = $@"UPDATE productos 
+                                              SET stock = stock {operador} :cantidad 
+                                              WHERE id_producto = :id_producto";
+
+                        using (var cmdUpdate = new OracleCommand(updateSql, connection))
+                        {
+                            cmdUpdate.Transaction = trans;
+                            cmdUpdate.Parameters.Add(":cantidad", OracleDbType.Int32).Value = mov.Cantidad;
+                            cmdUpdate.Parameters.Add(":id_producto", OracleDbType.Int32).Value = mov.IdProducto;
+                            cmdUpdate.ExecuteNonQuery();
+                        }
+
+                        trans.Commit();
+                        return true;
                     }
-
-                    // Insertar el movimiento
-                    string insertSql = @"INSERT INTO movimiento_inventario 
-                                         (id_producto, tipo, cantidad, fecha) 
-                                         VALUES (:id_producto, :tipo, :cantidad, CURRENT_TIMESTAMP)";
-
-                    using (OracleCommand cmdInsert = new OracleCommand(insertSql, con))
-                    {
-                        cmdInsert.Transaction = trans;
-                        cmdInsert.Parameters.Add(":id_producto", OracleDbType.Int32).Value = mov.IdProducto;
-                        cmdInsert.Parameters.Add(":tipo", OracleDbType.Varchar2).Value = mov.Tipo;
-                        cmdInsert.Parameters.Add(":cantidad", OracleDbType.Int32).Value = mov.Cantidad;
-                        cmdInsert.ExecuteNonQuery();
-                    }
-
-                    // Actualizar el stock
-                    string operador = mov.Tipo == "Entrada" ? "+" : "-";
-                    string updateSql = $@"UPDATE productos 
-                                          SET stock = stock {operador} :cantidad 
-                                          WHERE id_producto = :id_producto";
-
-                    using (OracleCommand cmdUpdate = new OracleCommand(updateSql, con))
-                    {
-                        cmdUpdate.Transaction = trans;
-                        cmdUpdate.Parameters.Add(":cantidad", OracleDbType.Int32).Value = mov.Cantidad;
-                        cmdUpdate.Parameters.Add(":id_producto", OracleDbType.Int32).Value = mov.IdProducto;
-                        cmdUpdate.ExecuteNonQuery();
-                    }
-
-                    trans.Commit();
                 }
-                catch (Exception ex)
-                {
-                    trans.Rollback();
-                    throw new Exception("Error al registrar movimiento: " + ex.Message);
-                }
+            }
+            catch (Exception ex)
+            {
+                // Aquí podrías loguear el error si quieres
+                return false;
             }
         }
 
-        // ✅ Método auxiliar para obtener el stock actual de un producto
         public int ObtenerStockActual(int idProducto)
         {
-            using (OracleConnection con = new OracleConnection(connectionString))
+            try
             {
-                con.Open();
-                return ObtenerStockActual(idProducto, con, null);
+                using (var connection = Conexion.ObtenerConexion())
+                {
+                    connection.Open();
+                    return ObtenerStockActual(idProducto, connection, null);
+                }
+            }
+            catch
+            {
+                // Manejo simple, retorna 0 si hay error
+                return 0;
             }
         }
 
-        // Interno para uso dentro de una transacción
-        private int ObtenerStockActual(int idProducto, OracleConnection con, OracleTransaction trans)
+        private int ObtenerStockActual(int idProducto, OracleConnection connection, OracleTransaction trans)
         {
             string sql = "SELECT stock FROM productos WHERE id_producto = :id_producto";
 
-            using (OracleCommand cmd = new OracleCommand(sql, con))
+            using (var cmd = new OracleCommand(sql, connection))
             {
                 cmd.Transaction = trans;
                 cmd.Parameters.Add(":id_producto", OracleDbType.Int32).Value = idProducto;

@@ -13,14 +13,14 @@ namespace Dal
 {
     public class CategoriaRepository : IRepository<Categoria>
     {
-       
-        private readonly string _connectionString;
-
-        
-        public CategoriaRepository(string connectionString)
+        public CategoriaRepository()
         {
-            _connectionString = connectionString;
-        }   
+        }
+
+        private OracleConnection GetConnection()
+        {
+            return Conexion.ObtenerConexion();
+        }
 
         public bool Agregar(Categoria entidad)
         {
@@ -29,7 +29,7 @@ namespace Dal
                 VALUES (:nombre)
                 RETURNING id_categoria INTO :id_out";
 
-            using (var conn = new OracleConnection(_connectionString))
+            using (var conn = GetConnection())
             using (var cmd = new OracleCommand(sql, conn))
             {
                 cmd.BindByName = true;
@@ -39,7 +39,7 @@ namespace Dal
 
                 conn.Open();
                 var filas = cmd.ExecuteNonQuery();
-                entidad.Id = Convert.ToInt32(((OracleDecimal)pIdOut.Value).Value);
+                entidad.Id = Convert.ToInt32(((Oracle.ManagedDataAccess.Types.OracleDecimal)pIdOut.Value).Value);
                 return filas > 0;
             }
         }
@@ -51,7 +51,7 @@ namespace Dal
                 FROM   categorias
                 WHERE  id_categoria = :id";
 
-            using (var conn = new OracleConnection(_connectionString))
+            using (var conn = GetConnection())
             using (var cmd = new OracleCommand(sql, conn))
             {
                 cmd.BindByName = true;
@@ -82,10 +82,10 @@ namespace Dal
                 FROM   categorias
                 ORDER  BY id_categoria";
 
-            using (var conn = new OracleConnection(_connectionString))
+            using (var conn = GetConnection())
             using (var cmd = new OracleCommand(sql, conn))
             {
-                    conn.Open();
+                conn.Open();
                 using (var reader = cmd.ExecuteReader())
                 {
                     while (reader.Read())
@@ -108,7 +108,7 @@ namespace Dal
                 SET    nombre = :nombre
                 WHERE  id_categoria = :id_categoria";
 
-            using (var conn = new OracleConnection(_connectionString))
+            using (var conn = GetConnection())
             using (var cmd = new OracleCommand(sql, conn))
             {
                 cmd.BindByName = true;
@@ -126,7 +126,7 @@ namespace Dal
                 DELETE FROM categorias
                 WHERE  id_categoria = :id";
 
-            using (var conn = new OracleConnection(_connectionString))
+            using (var conn = GetConnection())
             using (var cmd = new OracleCommand(sql, conn))
             {
                 cmd.BindByName = true;

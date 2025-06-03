@@ -14,14 +14,15 @@ namespace Dal
 {
     public class ProductoRepository : IRepository<Producto>
     {
-
-        private readonly string _connectionString;
-
-
-        public ProductoRepository(string connectionString)
+        public ProductoRepository()
         {
-            _connectionString = connectionString;
         }
+
+        private OracleConnection GetConnection()
+        {
+            return Conexion.ObtenerConexion();
+        }
+
         public bool Agregar(Producto entidad)
         {
             const string sql = @"
@@ -30,7 +31,7 @@ namespace Dal
                 VALUES (:nombre, :descripcion, :precio, :stock, :id_categoria)
                 RETURNING id_producto INTO :id_out";
 
-            using (var conn = new OracleConnection(_connectionString))
+            using (var conn = GetConnection())
             using (var cmd = new OracleCommand(sql, conn))
             {
                 cmd.BindByName = true;
@@ -47,7 +48,7 @@ namespace Dal
                 conn.Open();
                 var filas = cmd.ExecuteNonQuery();
 
-                entidad.Id = Convert.ToInt32(((OracleDecimal)pIdOut.Value).Value);
+                entidad.Id = Convert.ToInt32(((Oracle.ManagedDataAccess.Types.OracleDecimal)pIdOut.Value).Value);
 
                 return filas > 0;
             }
@@ -67,7 +68,7 @@ namespace Dal
                 JOIN    categorias c ON c.id_categoria = p.id_categoria
                 WHERE   p.id_producto = :id";
 
-            using (var conn = new OracleConnection(_connectionString))
+            using (var conn = GetConnection())
             using (var cmd = new OracleCommand(sql, conn))
             {
                 cmd.BindByName = true;
@@ -101,7 +102,7 @@ namespace Dal
 
             var lista = new List<Producto>();
 
-            using (var conn = new OracleConnection(_connectionString))
+            using (var conn = GetConnection())
             using (var cmd = new OracleCommand(sql, conn))
             {
                 conn.Open();
@@ -127,7 +128,7 @@ namespace Dal
                        id_categoria = :id_categoria
                 WHERE  id_producto  = :id_producto";
 
-            using (var conn = new OracleConnection(_connectionString))
+            using (var conn = GetConnection())
             using (var cmd = new OracleCommand(sql, conn))
             {
                 cmd.BindByName = true;
@@ -150,7 +151,7 @@ namespace Dal
                 DELETE FROM productos
                 WHERE  id_producto = :id";
 
-            using (var conn = new OracleConnection(_connectionString))
+            using (var conn = GetConnection())
             using (var cmd = new OracleCommand(sql, conn))
             {
                 cmd.BindByName = true;

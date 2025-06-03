@@ -16,15 +16,20 @@ using Bll.Bll;
 
 
 
-
 namespace Visual
 {
     public partial class FrmVentas : FrmBase
     {
-
+        private readonly CategoriaRepository _categoriaRepository = new CategoriaRepository();
+        private readonly ProductoRepository _productoRepository = new ProductoRepository();
+        private readonly VentaRepository _ventaRepository = new VentaRepository();
+        private readonly VentaService _ventaService;
+        private readonly InventarioLogica inventarioLogica = new InventarioLogica();
         public FrmVentas()
         {
             InitializeComponent();
+            _ventaService = new VentaService(_ventaRepository);
+
             ConfigurarColumnasDataProducto();
             ConfigurarColumnasVenta();
             CargarTodosLosProductos();
@@ -33,11 +38,7 @@ namespace Visual
             txtBuscarProducto.TextChanged += txtBuscarProducto_TextChanged;
             DataProducto.CellDoubleClick += DataProducto_CellDoubleClick;
         }
-        private readonly InventarioLogica inventarioLogica = new InventarioLogica();
 
-        CategoriaRepository _categoriaRepository = new CategoriaRepository(" User Id=jenapp;Password=jen123;Data Source=localhost:1521/XEPDB1");
-        ProductoRepository _productoRepository = new ProductoRepository("User Id=jenapp;Password=jen123;Data Source=localhost/XEPDB1");
-        VentaRepository ventaRepository = new VentaRepository("User Id=jenapp;Password=jen123;Data Source=localhost:1521/XEPDB1");
    
         private void panelContenedor_Paint(object sender, PaintEventArgs e)
         {
@@ -265,7 +266,7 @@ namespace Visual
                 }
 
 
-                bool guardado = ventaRepository.Agregar(nuevaVenta);
+                bool guardado = _ventaRepository.Agregar(nuevaVenta);
                 if (guardado)
                 {
                     // ✅ Descontar stock

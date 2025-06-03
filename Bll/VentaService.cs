@@ -19,9 +19,16 @@ namespace Bll
         {
             private readonly IRepository<Venta> _ventaRepository;
 
+            // Constructor por defecto crea el repositorio desacoplado
+            public VentaService()
+            {
+                _ventaRepository = new VentaRepository();
+            }
+
+            // También puedes inyectar el repositorio (útil para tests)
             public VentaService(IRepository<Venta> ventaRepository)
             {
-                _ventaRepository = ventaRepository;
+                _ventaRepository = ventaRepository ?? throw new ArgumentNullException(nameof(ventaRepository));
             }
 
             public void Agregar(Venta entidad)
@@ -29,7 +36,7 @@ namespace Bll
                 if (entidad == null)
                     throw new ArgumentNullException(nameof(entidad));
 
-                if (entidad.Detalles == null || entidad.Detalles.Count == 0)
+                if (entidad.DetalleVentas == null || entidad.DetalleVentas.Count == 0)
                     throw new ArgumentException("La venta debe tener al menos un detalle.");
 
                 bool resultado = _ventaRepository.Agregar(entidad);
@@ -58,7 +65,7 @@ namespace Bll
                 if (!resultado)
                     throw new Exception("No se pudo eliminar la venta.");
             }
-            //er
+
             public Venta ObtenerPorId(int id)
             {
                 if (id <= 0)
