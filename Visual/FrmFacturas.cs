@@ -108,7 +108,7 @@ namespace Visual
             var fontHeader = FontFactory.GetFont(FontFactory.HELVETICA_BOLD, 10, BaseColor.BLACK);
             var fontFooter = FontFactory.GetFont(FontFactory.HELVETICA_OBLIQUE, 9, BaseColor.GRAY);
             BaseColor headerColor = new BaseColor(230, 230, 230);
-               
+
             // ✅ Logo
             string rutaLogo = Path.Combine(Application.StartupPath, "Resources", "LogoJenapp.png");
             if (File.Exists(rutaLogo))
