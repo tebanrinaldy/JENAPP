@@ -127,7 +127,7 @@
             this.btnExcel.BackgroundImage = global::Visual.Properties.Resources.logo_excel_moderno;
             this.btnExcel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnExcel.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnExcel.Location = new System.Drawing.Point(1120, 3);
+            this.btnExcel.Location = new System.Drawing.Point(1117, 4);
             this.btnExcel.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnExcel.Name = "btnExcel";
             this.btnExcel.RightToLeft = System.Windows.Forms.RightToLeft.No;
@@ -153,6 +153,7 @@
             // 
             // panel
             // 
+            this.panel.Controls.Add(this.btnExcel);
             this.panel.Controls.Add(this.label4);
             this.panel.Controls.Add(this.label2);
             this.panel.Controls.Add(this.btnBuscarVentas);
@@ -214,7 +215,6 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 23F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1215, 884);
-            this.Controls.Add(this.btnExcel);
             this.Controls.Add(this.dgvVentas);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.panel);
