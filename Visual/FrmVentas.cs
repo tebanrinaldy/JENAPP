@@ -30,6 +30,7 @@ namespace Visual
             CargarTodosLosProductos();
             AplicarEstiloControles(this);
 
+            txtBuscarProducto.TextChanged += txtBuscarProducto_TextChanged;
             DataProducto.CellDoubleClick += DataProducto_CellDoubleClick;
         }
         private readonly InventarioLogica inventarioLogica = new InventarioLogica();
@@ -37,7 +38,7 @@ namespace Visual
         CategoriaRepository _categoriaRepository = new CategoriaRepository(" User Id=jenapp;Password=jen123;Data Source=localhost:1521/XEPDB1");
         ProductoRepository _productoRepository = new ProductoRepository("User Id=jenapp;Password=jen123;Data Source=localhost/XEPDB1");
         VentaRepository ventaRepository = new VentaRepository("User Id=jenapp;Password=jen123;Data Source=localhost:1521/XEPDB1");
-        DetalleVentaRepository detalleVentaRepository = new DetalleVentaRepository("User Id=jenapp;Password=jen123;Data Source=localhost:1521/XEPDB1");
+   
         private void panelContenedor_Paint(object sender, PaintEventArgs e)
         {
 
@@ -300,6 +301,30 @@ namespace Visual
 
         }
 
+        private void txtBuscarProducto_TextChanged(object sender, EventArgs e)
+        {
+            string filtro = txtBuscarProducto.Text.Trim().ToLower();
+            DataProducto.Rows.Clear();
+            DataProducto.AllowUserToAddRows = false;
+
+            var productos = _productoRepository.ObtenerTodos()
+                .Where(p => p.Nombre.ToLower().Contains(filtro))
+                .ToList();
+
+            var categorias = _categoriaRepository.ObtenerTodos();
+
+            foreach (var producto in productos)
+            {
+                string nombreCategoria = categorias
+                    .FirstOrDefault(c => c.Id == producto.IdCategoria)?.Nombre ?? "Sin categoría";
+
+                int rowIndex = DataProducto.Rows.Add();
+                DataProducto.Rows[rowIndex].Cells["colNombre"].Value = producto.Nombre;
+                DataProducto.Rows[rowIndex].Cells["colPrecio"].Value = producto.Precio;
+                DataProducto.Rows[rowIndex].Cells["colStock"].Value = producto.Stock;
+                DataProducto.Rows[rowIndex].Cells["colCategorias"].Value = nombreCategoria;
+            }
+        }
     }
     
 }
