@@ -99,7 +99,7 @@ namespace Visual
             // 
             // txtCorreoCliente
             // 
-            this.txtCorreoCliente.Location = new System.Drawing.Point(485, 162);
+            this.txtCorreoCliente.Location = new System.Drawing.Point(485, 166);
             this.txtCorreoCliente.Name = "txtCorreoCliente";
             this.txtCorreoCliente.Size = new System.Drawing.Size(327, 30);
             this.txtCorreoCliente.TabIndex = 3;
@@ -140,7 +140,6 @@ namespace Visual
             // 
             // FrmFacturas
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 23F);
             this.ClientSize = new System.Drawing.Size(1214, 884);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
