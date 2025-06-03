@@ -120,7 +120,7 @@ namespace Visual
                 DateTime desde = dtpDesde.Value.Date;
                 DateTime hasta = dtpHasta.Value.Date.AddDays(1).AddTicks(-1); // Incluye toda la fecha de 'hasta'
 
-                var ventas = _ventaRepository.ObtenerPorRangoFechas(desde, hasta); // Asegúrate de tener este método en tu repositorio
+                var ventas = _ventaRepository.ObtenerPorRangoFechas(desde, hasta);
 
                 if (ventas.Count == 0)
                 {

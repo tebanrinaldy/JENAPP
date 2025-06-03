@@ -52,7 +52,7 @@ namespace Visual
             }
         }
 
-        private void CargarProductos()
+        private void CargarProductos() //obtener todos los productos y mostrarlos en el Dvg Jose_Z
         {
             var productos = _productoRepository.ObtenerTodos();
             dgvProductos.DataSource = productos

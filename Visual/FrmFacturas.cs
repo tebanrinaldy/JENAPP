@@ -92,7 +92,7 @@ namespace Visual
                 GenerarFacturaPDF(venta, saveFile.FileName);
                 MessageBox.Show("Factura generada correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                // 📨 Enviar por correo si hay correo
+                // Enviar por correo si existe Jose_z
                 if (!string.IsNullOrWhiteSpace(txtCorreoCliente.Text))
                 {
                     EnviarFacturaPorCorreo(saveFile.FileName, txtCorreoCliente.Text.Trim());
@@ -102,11 +102,11 @@ namespace Visual
 
         private void GenerarFacturaPDF(Venta venta, string ruta)
         {
-            Document doc = new Document(iTextSharp.text.PageSize.A4, 40f, 40f, 40f, 60f); // margen inferior para pie
+            Document doc = new Document(iTextSharp.text.PageSize.A4, 40f, 40f, 40f, 60f); // margen inferior de la factura Jose_z
             PdfWriter writer = PdfWriter.GetInstance(doc, new FileStream(ruta, FileMode.Create));
             doc.Open();
 
-            // Fuentes y colores
+            // perosnalizacion de internet Jose_z
             var fontTitle = FontFactory.GetFont(FontFactory.HELVETICA_BOLD, 18, BaseColor.BLACK);
             var fontSub = FontFactory.GetFont(FontFactory.HELVETICA_BOLD, 12, BaseColor.DARK_GRAY);
             var fontBody = FontFactory.GetFont(FontFactory.HELVETICA, 10, BaseColor.BLACK);
@@ -114,7 +114,7 @@ namespace Visual
             var fontFooter = FontFactory.GetFont(FontFactory.HELVETICA_OBLIQUE, 9, BaseColor.GRAY);
             BaseColor headerColor = new BaseColor(230, 230, 230);
                
-            // ✅ Logo
+            // apartado del Logo Jose_z
             string rutaLogo = Path.Combine(Application.StartupPath, "Resources", "LogoJenapp.png");
             if (File.Exists(rutaLogo))
             {
@@ -124,7 +124,7 @@ namespace Visual
                 doc.Add(logo);
             }
 
-            // Título
+            // Título de la factura Jose_z
             Paragraph titulo = new Paragraph("Factura de Venta", fontTitle)
             {
                 Alignment = Element.ALIGN_CENTER,
@@ -132,15 +132,15 @@ namespace Visual
             };
             doc.Add(titulo);
 
-            // Info del cliente
+            // datos registrados del cliente
             doc.Add(new Paragraph($"Fecha: {venta.FechaVenta:dd/MM/yyyy HH:mm}", fontBody));
             doc.Add(new Paragraph($"Cliente: {venta.NombreCliente}", fontBody));
             doc.Add(new Paragraph($"Cédula: {venta.CedulaCliente}", fontBody));
             string telefono = string.IsNullOrWhiteSpace(venta.TelefonoCliente) ? "No registrado" : venta.TelefonoCliente;
-            doc.Add(new Paragraph($"Teléfono: {telefono}", fontBody));
+            doc.Add(new Paragraph($"Teléfono: {telefono}", fontBody)); //hay que arreglar el error de cuando el cliente omite el telefono Jose_z
             doc.Add(new Paragraph(" "));
 
-            // Tabla de productos
+            // visualizacion de la tabla de productos jose_z
             PdfPTable table = new PdfPTable(4);
             table.WidthPercentage = 100;
             table.SetWidths(new float[] { 45f, 15f, 15f, 25f });
@@ -157,7 +157,7 @@ namespace Visual
                 table.AddCell(cell);
             }
 
-            foreach (var d in venta.DetalleVentas)
+            foreach (var d in venta.DetalleVentas) //metodo de buscar los detalles de la venta Jose_z   
             {
                 table.AddCell(new Phrase(d.NombreProducto, fontBody));
                 table.AddCell(new Phrase($"${d.PrecioUnitario:F2}", fontBody));
@@ -191,7 +191,7 @@ namespace Visual
             };
             doc.Add(footer);
 
-            // ✅ Agradecimiento
+            //apartado de agradecimiento de la factura Jose_z    
             Paragraph gracias = new Paragraph("¡Gracias por su compra!", fontFooter)
             {
                 Alignment = Element.ALIGN_CENTER,
@@ -199,7 +199,7 @@ namespace Visual
             };
             doc.Add(gracias);
 
-            // ❗ IMPORTANTE: cerrar el documento para evitar archivos dañados
+            // OJO NO SE PUEDE DEJAR EL DOCUMENTO ABIERTO ME DIO UN ERROR QUE NO DEJABA INICIAR EL VISUAL OJO NO QUITAR ESTA FUNCION!!!!!!!!!
             doc.Close();
         }
         private void EnviarFacturaPorCorreo(string rutaFactura, string correoDestino)

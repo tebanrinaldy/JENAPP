@@ -161,7 +161,7 @@ namespace Visual
                 txtDescripcion.Text = producto.Descripcion;
                 txtPrecio.Text = producto.Precio.ToString("F2");
                 txtStock.Text = producto.Stock.ToString();
-                comboBoxCategoria.SelectedValue = producto.IdCategoria; // aquí sí asignas la categoría
+                comboBoxCategoria.SelectedValue = producto.IdCategoria; // asignacion de categoria seleccionada
             }
         }
         private void CargarCategorias()
@@ -170,17 +170,17 @@ namespace Visual
 
             comboBoxCategoria.DataSource = null;
             comboBoxCategoria.DataSource = categorias;
-            comboBoxCategoria.DisplayMember = "Nombre";   // Lo que se muestra
-            comboBoxCategoria.ValueMember = "Id";         // El valor real
+            comboBoxCategoria.DisplayMember = "Nombre";
+            comboBoxCategoria.ValueMember = "Id"; // TENER CUIDADO CON LOS NOMBRES DECLARADOS jose_z
         }
 
         private void CargarProductos()
         {
-            var productos = _productoRepository.ObtenerTodos(); // Asegúrate que este método exista
+            var productos = _productoRepository.ObtenerTodos(); 
 
             ListaProducto.DataSource = null;
             ListaProducto.DataSource = productos;
-            ListaProducto.DisplayMember = "Nombre"; // Puedes cambiar esto para mostrar otra propiedad
+            ListaProducto.DisplayMember = "Nombre"; 
            
         }
         private void comboBoxCategoria_SelectedIndexChanged(object sender, EventArgs e)
@@ -248,7 +248,7 @@ namespace Visual
                     if (exito)
                     {
                         MessageBox.Show("Producto actualizado correctamente.");
-                        CargarProductos(); // Refresca lista
+                        CargarProductos(); // Refresca la lista para evitar duplicados jose_z
                         LimpiarCampos();
                     }
                     else
@@ -287,8 +287,8 @@ namespace Visual
                         if (eliminado)
                         {
                             MessageBox.Show("Producto eliminado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            CargarProductos(); // recarga el ListBox o DataGridView
-                            LimpiarCampos();   // opcional: limpia los campos de entrada
+                            CargarProductos();  
+                            LimpiarCampos();   
                         }
                         else
                         {

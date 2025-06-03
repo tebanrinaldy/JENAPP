@@ -45,7 +45,7 @@ namespace Visual
 
             listBox1.DataSource = null;
             listBox1.DataSource = categorias;
-            listBox1.DisplayMember = "Nombre"; // ← Asegúrate de que Categoria tenga esta propiedad
+            listBox1.DisplayMember = "Nombre";
         }
 
         private void BtnGuardarProducto_Click(object sender, EventArgs e)
@@ -66,7 +66,7 @@ namespace Visual
             {
                 textBox1.Text = nuevaCategoria.Id.ToString(); // Mostrar el ID generado
                 MessageBox.Show("Categoría guardada correctamente.");
-                CargarCategorias(); // Recargar lista
+                CargarCategorias(); // Mostrar la lista de categorias Joe_z
                 textBox1.Clear();
                 textBox2.Clear();
             }
@@ -128,7 +128,7 @@ namespace Visual
                     }
                     else
                     {
-                        MessageBox.Show("No se pudo eliminar la categoría.");
+                        MessageBox.Show("No se pudo eliminar la categoría.");// solucionar error de no eliminar categori
                     }
                 }
             }

@@ -61,7 +61,7 @@ namespace Visual
             {
                 FrmPrincipalcs principal = new FrmPrincipalcs();
                 principal.Show();
-                this.Hide(); // oculta el login
+                this.Hide(); 
             }
             else
             {

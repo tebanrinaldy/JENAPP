@@ -100,7 +100,7 @@ namespace Visual
         {
             AbrirFormularioEnPanel(new FrmCategorias());
         }
-        //err
+        
         private void AbrirFormularioEnPanel(Form formulario)
         {
             if (this.panelContenedor.Controls.Count > 0)

@@ -203,7 +203,7 @@ namespace Visual
                         // Si queda 1, eliminar la fila
                         dgvVentas.Rows.Remove(fila);
                     }
-                    CalcularTotal(); // Recalcular total después de cambiar cantidad o eliminar
+                    CalcularTotal(); // Recalcular total después de cualquier cambio jose_z
                 }
             }
             else
@@ -222,7 +222,7 @@ namespace Visual
 
             try
             {
-                // Crear el objeto venta y asignar datos  
+                // Creacion de objeto necesario para guardar la venta jose_z
 
                 Venta nuevaVenta = new Venta
                 {
@@ -245,7 +245,7 @@ namespace Visual
                     return;
                 }
 
-                // Agregar detalles de venta  
+                // Agregar detalles de venta  natan_P
                 nuevaVenta.DetalleVentas = new List<DetalleVenta>();
                 foreach (DataGridViewRow row in dgvVentas.Rows)
                 {
@@ -269,7 +269,7 @@ namespace Visual
                 bool guardado = _ventaRepository.Agregar(nuevaVenta);
                 if (guardado)
                 {
-                    // ✅ Descontar stock
+                    //  Descontar stock jose_z
                     foreach (var detalle in nuevaVenta.DetalleVentas)
                     {
                         var movimiento = new MovimientoInventario
