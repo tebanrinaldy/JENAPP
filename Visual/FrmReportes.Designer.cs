@@ -127,7 +127,7 @@
             this.btnExcel.BackgroundImage = global::Visual.Properties.Resources.logo_excel_moderno;
             this.btnExcel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnExcel.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnExcel.Location = new System.Drawing.Point(1117, 4);
+            this.btnExcel.Location = new System.Drawing.Point(1120, 5);
             this.btnExcel.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnExcel.Name = "btnExcel";
             this.btnExcel.RightToLeft = System.Windows.Forms.RightToLeft.No;
