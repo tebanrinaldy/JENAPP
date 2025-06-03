@@ -58,7 +58,7 @@ namespace Bll
                 if (!resultado)
                     throw new Exception("No se pudo eliminar la venta.");
             }
-
+            //er
             public Venta ObtenerPorId(int id)
             {
                 if (id <= 0)
