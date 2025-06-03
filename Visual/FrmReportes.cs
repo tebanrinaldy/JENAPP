@@ -17,13 +17,12 @@ namespace Visual
 {
     public partial class FrmReportes : FrmBase
     {
-        private readonly VentaRepository _ventaRepository;
+        private readonly VentaRepository _ventaRepository = new VentaRepository();
         public FrmReportes()
         {
             
             InitializeComponent();
             AplicarEstiloControles(this);
-            _ventaRepository = new VentaRepository("User Id=jenapp;Password=jen123;Data Source=localhost:1521/XEPDB1");
         }
 
 

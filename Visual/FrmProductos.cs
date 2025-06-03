@@ -15,16 +15,14 @@ namespace Visual
 {
     public partial class FrmProductos : FrmBase
     {
-        // ← Conexión a Oracle
-        private const string connectionString =
-            "User Id=jenapp;Password=jen123;Data Source=localhost:1521/XEPDB1";
+        private readonly ProductoRepository _productoRepository = new ProductoRepository();
+        private readonly CategoriaRepository _categoriaRepository = new CategoriaRepository();
         public FrmProductos()
         {
             InitializeComponent();
             AplicarEstiloControles(this);
         }
-        CategoriaRepository _categoriaRepository = new CategoriaRepository(" User Id=jenapp;Password=jen123;Data Source=localhost:1521/XEPDB1");
-        ProductoRepository _productoRepository = new ProductoRepository("User Id=jenapp;Password=jen123;Data Source=localhost:1521/XEPDB1");
+       
         public void Minimizar()
         {
             this.WindowState = FormWindowState.Minimized;

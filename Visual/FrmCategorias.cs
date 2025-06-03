@@ -16,19 +16,14 @@ namespace Visual
 {
     public partial class FrmCategorias : FrmBase
     {
-        // ← Conexión a Oracle
-        private const string connectionString =
-           "User Id=jenapp;Password=jen123;Data Source=localhost:1521/XEPDB1";
-
-        private readonly CategoriaRepository _categoriaRepository;
+        private readonly CategoriaRepository _categoriaRepository = new CategoriaRepository();
 
         public FrmCategorias()
         {
 
-            InitializeComponent();
-            _categoriaRepository = new CategoriaRepository(connectionString);
+           InitializeComponent();
            CargarCategorias();
-            AplicarEstiloControles(this);
+           AplicarEstiloControles(this);
 
 
 

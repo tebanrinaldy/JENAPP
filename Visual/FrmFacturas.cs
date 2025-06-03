@@ -13,18 +13,23 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Net.Mail;
+using Bll.Bll;
 
 namespace Visual
 {
     public partial class FrmFacturas: FrmBase
     {
-        
-        private readonly VentaRepository _ventaRepo = new VentaRepository("User Id=jenapp;Password=jen123;Data Source=localhost:1521/XEPDB1");
+
+        private readonly VentaRepository _ventaRepository = new VentaRepository();
+        private readonly VentaService _ventaService;
         private List<Venta> ventasDelDia;
+
 
         public FrmFacturas()
         {
             InitializeComponent();
+            _ventaService = new VentaService(_ventaRepository);
+
             AplicarEstiloControles(this);   
         }
 
@@ -46,7 +51,7 @@ namespace Visual
             dgvVentasDia.Columns.Add("FechaVenta", "Fecha");
             dgvVentasDia.Columns.Add("Total", "Total");
 
-            ventasDelDia = _ventaRepo.ObtenerTodos()
+            ventasDelDia = _ventaRepository.ObtenerTodos()
      .Where(v => v.FechaVenta.Date == DateTime.Today.Date &&
                  !string.IsNullOrWhiteSpace(v.TelefonoCliente))
      .ToList();
@@ -67,7 +72,7 @@ namespace Visual
             }
 
             int idVenta = Convert.ToInt32(dgvVentasDia.CurrentRow.Cells["Id"].Value);
-            Venta venta = _ventaRepo.ObtenerPorId(idVenta);
+            Venta venta = _ventaRepository.ObtenerPorId(idVenta);
 
             if (venta == null)
             {
@@ -233,7 +238,7 @@ namespace Visual
             dgvVentasDia.Columns.Add("FechaVenta", "Fecha");
             dgvVentasDia.Columns.Add("Total", "Total");
 
-            ventasDelDia = _ventaRepo.ObtenerTodos()
+            ventasDelDia = _ventaRepository.ObtenerTodos()
                 .Where(v => v.FechaVenta.Date >= desde &&
                             v.FechaVenta.Date <= hasta &&
                             !string.IsNullOrWhiteSpace(v.TelefonoCliente))

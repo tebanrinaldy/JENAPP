@@ -18,17 +18,14 @@ namespace Visual
     public partial class FrmInventario: FrmBase
 
     {
-
-        private readonly MovimientoInventarioDAO _movDao = new MovimientoInventarioDAO();
-
-        private readonly InventarioLogica logica = new InventarioLogica();
-        private readonly ProductoRepository _productoRepo;
+        private readonly MovimientoInventarioDAO _movimientoInventarioDAO = new MovimientoInventarioDAO();
+        private readonly InventarioLogica _inventarioLogica = new InventarioLogica();
+        private readonly ProductoRepository _productoRepository = new ProductoRepository();
         public FrmInventario()
         {
             
             InitializeComponent();
             AplicarEstiloControles(this);
-            _productoRepo = new ProductoRepository("User Id = jenapp; Password = jen123; Data Source = localhost:1521 / XEPDB1");
             cmbTipo.Items.AddRange(new string[] { "Entrada", "Salida" });
             cmbTipo.SelectedIndex = 0;
             txtIdProducto.TextChanged += txtIdProducto_TextChanged;
@@ -41,7 +38,7 @@ namespace Visual
             {
                 try
                 {
-                    int stock = _movDao.ObtenerStockActual(idProd);
+                    int stock = _movimientoInventarioDAO.ObtenerStockActual(idProd);
                     lblStock.Text = $"Stock actual: {stock}";
                 }
                 catch
@@ -57,7 +54,7 @@ namespace Visual
 
         private void CargarProductos()
         {
-            var productos = _productoRepo.ObtenerTodos();
+            var productos = _productoRepository.ObtenerTodos();
             dgvProductos.DataSource = productos
                 .Select(p => new {
                     ID = p.Id,
@@ -94,7 +91,7 @@ namespace Visual
                     Fecha = DateTime.Now
                 };
 
-                logica.ProcesarMovimiento(movimiento);
+                _inventarioLogica.ProcesarMovimiento(movimiento);
 
                 MessageBox.Show("Movimiento registrado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 LimpiarCampos();
@@ -132,7 +129,7 @@ namespace Visual
                     Fecha = DateTime.Now
                 };
 
-                logica.ProcesarMovimiento(movimiento);
+                _inventarioLogica.ProcesarMovimiento(movimiento);
 
                 MessageBox.Show("Movimiento registrado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 LimpiarCampos();
