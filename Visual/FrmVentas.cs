@@ -325,6 +325,11 @@ namespace Visual
                 DataProducto.Rows[rowIndex].Cells["colCategorias"].Value = nombreCategoria;
             }
         }
+
+        private void dgvVentas_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
     
 }

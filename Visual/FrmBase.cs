@@ -14,6 +14,8 @@ namespace Visual
     {
         public FrmBase()
         {
+            InitializeComponent();
+
             this.BackColor = Color.FromArgb(45, 45, 48);
             this.Font = new Font("Segoe UI", 10);
             this.ForeColor = Color.White;
