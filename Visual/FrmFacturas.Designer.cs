@@ -85,7 +85,7 @@ namespace Visual
             this.dgvVentasDia.ReadOnly = true;
             this.dgvVentasDia.RowHeadersWidth = 51;
             this.dgvVentasDia.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvVentasDia.Size = new System.Drawing.Size(600, 300);
+            this.dgvVentasDia.Size = new System.Drawing.Size(556, 300);
             this.dgvVentasDia.TabIndex = 1;
             // 
             // btnGenerarFactura
@@ -140,6 +140,7 @@ namespace Visual
             // 
             // FrmFacturas
             // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 23F);
             this.ClientSize = new System.Drawing.Size(1214, 884);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
