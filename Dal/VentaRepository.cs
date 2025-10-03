@@ -22,7 +22,7 @@ namespace Dal
             return Conexion.ObtenerConexion();
         }
 
-        public bool Agregar(Venta venta)
+        public bool Agregar(Venta venta)// LEER BIEN LOS NOMBRES DE LAS VARIABLES EN SQL Y EN C# OJO ALGUNAS LAS DECLARARON CON _ ::esteban
         {
             try
             {
@@ -279,7 +279,7 @@ namespace Dal
             }
         }
 
-        public List<Venta> ObtenerPorRangoFechas(DateTime desde, DateTime hasta)
+        public List<Venta> ObtenerPorRangoFechas(DateTime desde, DateTime hasta)// FUNCION PARA OBTENER VENTAS POR RANGO DE FECHAS NO MODIFICAR NADA DE LA FUNCION SIN AVISAR OJO jOSE_Z
         {
             List<Venta> lista = new List<Venta>();
             using (var conn = GetConnection())
