@@ -1,26 +1,27 @@
-/*============================================================
-= CREACIÓN DE USUARIO Y PERMISOS CON SYSTEM
-============================================================*/
+//CREACION DE TABLESPACE
+CREATE TABLESPACE tbjenapp
+DATAFILE 'C:\app\esteb\product\18.0.0\oradata\tbjenapp'    //ruta en la que se va a guardar el tablespace
+SIZE 50M 
+AUTOEXTEND ON;
 
+// CREACION DE USUARIO Y ASIGNACION DE PERMISOS
 CREATE USER jenapp IDENTIFIED BY jen123
-DEFAULT TABLESPACE USERS
-TEMPORARY TABLESPACE TEMP
-PROFILE DEFAULT
-ACCOUNT UNLOCK;
+DEFAULT TABLESPACE tbjenapp
+QUOTA UNLIMITED ON tbjenapp;
 
-/*============================================================
-= 1.  SECUENCIAS
-============================================================*/
-CREATE SEQUENCE seq_categorias  START WITH 1 INCREMENT BY 1 NOCACHE NOCYCLE;
-CREATE SEQUENCE seq_productos   START WITH 1 INCREMENT BY 1 NOCACHE NOCYCLE;
-CREATE SEQUENCE seq_ventas      START WITH 1 INCREMENT BY 1 NOCACHE NOCYCLE;
-CREATE SEQUENCE seq_detalle_ventas START WITH 1 INCREMENT BY 1 NOCACHE NOCYCLE;
-CREATE SEQUENCE seq_reportes    START WITH 1 INCREMENT BY 1 NOCACHE NOCYCLE;
+GRANT CONNECT TO jenapp;
+GRANT RESOURCE TO jenapp;
+GRANT CREATE SESSION TO jenapp;
+GRANT CREATE ANY TABLE TO jenapp;
+GRANT SELECT ANY TABLE TO jenapp;
+GRANT INSERT ANY TABLE TO jenapp;
+GRANT UPDATE ANY TABLE TO jenapp;
+GRANT DELETE ANY TABLE TO jenapp;
+GRANT CREATE ANY SEQUENCE TO jenapp;
+GRANT ALTER ANY SEQUENCE TO jenapp;
+GRANT EXECUTE ANY PROCEDURE TO jenapp;
 
-/*============================================================
-= 2.  TABLAS
-============================================================*/
-
+//TABLAS
 /*----------------------  CATEGORIA  -----------------------*/
 CREATE TABLE categorias (
     id_categoria    NUMBER          PRIMARY KEY,
@@ -78,9 +79,14 @@ CREATE TABLE movimiento_inventario (
     CONSTRAINT fk_mov_prod FOREIGN KEY (id_producto) REFERENCES productos(id_producto)
 );
 
-/*============================================================
-= 3.  CLAVES FORÁNEAS Y RESTRICCIONES
-============================================================*/
+// SECUENCIAS 
+CREATE SEQUENCE seq_categorias  START WITH 1 INCREMENT BY 1 NOCACHE NOCYCLE;
+CREATE SEQUENCE seq_productos   START WITH 1 INCREMENT BY 1 NOCACHE NOCYCLE;
+CREATE SEQUENCE seq_ventas      START WITH 1 INCREMENT BY 1 NOCACHE NOCYCLE;
+CREATE SEQUENCE seq_detalle_ventas START WITH 1 INCREMENT BY 1 NOCACHE NOCYCLE;
+CREATE SEQUENCE seq_reportes    START WITH 1 INCREMENT BY 1 NOCACHE NOCYCLE;
+
+// CLAVES FORÁNEAS Y RESTRICCIONES
 ALTER TABLE productos
   MODIFY id_categoria NUMBER NOT NULL;
 
@@ -89,9 +95,7 @@ ADD CONSTRAINT fk_producto_categoria
     FOREIGN KEY (id_categoria)
     REFERENCES categorias(id_categoria);
 
-/*============================================================
-= 4.  TRIGGERS DE AUTOINCREMENTO
-============================================================*/
+// TRIGGERS DE AUTOINCREMENTO
 /* CATEGORIA */
 CREATE OR REPLACE TRIGGER trg_categoria_bi
 BEFORE INSERT ON categorias
